@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/bk_login"
+    tools:context=".Login">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="LOGIN"
+        android:textColor="#8E1292"
+        android:textSize="40dp"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/background_user"
+        android:drawableLeft="@drawable/user_solid__1_"
+        android:drawablePadding="15dp"
+        android:paddingLeft="15dp"
+        android:hint="Username"
+        android:textColorHint="#CA94C6"
+        android:layout_gravity="center"
+        android:elevation="5dp"
+        app:backgroundTint="@null"
+        android:id="@+id/edt_username"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background_user"
+        android:drawableLeft="@drawable/lock_solid"
+        android:drawableRight="@drawable/eye_solid"
+        android:drawablePadding="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#CA94C6"
+        android:layout_gravity="center"
+        android:elevation="5dp"
+        app:backgroundTint="@null"
+        android:id="@+id/edt_password"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#CA94C6"
+        android:text="Forgot your password?"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="40dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_login"
+        android:gravity="center_horizontal"
+        android:text="LOGIN"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        android:id="@+id/btn_login" />
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or login with"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="#CA94C6"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:id="@+id/layout_social"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/google"
+            android:id="@+id/btn_google"
+            android:layout_marginRight="12dp"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/facebook"
+            android:id="@+id/btn_facebook"
+            android:layout_marginRight="12dp"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/instagram"
+            android:id="@+id/btn_instagram"
+            android:layout_marginRight="12dp"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/twitter"
+            android:id="@+id/btn_twitter"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account?"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="#CA94C6"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="#CC510B"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/tv_signup"
+        />
+
+
+</LinearLayout>
