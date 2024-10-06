@@ -1,15 +1,20 @@
-package com.example.appsellbook;
+package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.appsellbook.R;
 
 public class Login extends AppCompatActivity {
 
@@ -24,9 +29,12 @@ public class Login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        TextView tv_signup= findViewById(R.id.tv_signup);
         EditText edt_username, edt_password;
+        Button btn_login;
         edt_username = findViewById(R.id.edt_username);
         edt_password = findViewById(R.id.edt_password);
+        btn_login = findViewById(R.id.btn_login);
         edt_username.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 edt_username.setHint("");
@@ -60,11 +68,16 @@ public class Login extends AppCompatActivity {
 
                     }
                     edt_password.setSelection(edt_password.getText().length());
-                    requestFocus();
                     return true;
                 }
             }
             return false;
+        });
+        btn_login.setOnClickListener(view -> {
+
+        });
+        tv_signup.setOnClickListener(view -> {
+            startActivity(new Intent(Login.this, Signup.class));
         });
     }
 }
