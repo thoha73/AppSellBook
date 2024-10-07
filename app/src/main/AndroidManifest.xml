@@ -13,6 +13,27 @@
         android:theme="@style/Theme.AppSellBook"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".activities.NewProduct"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Popular"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AllCategories"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Home"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ForgetPassword"
+            android:exported="false" />
+        <activity
             android:name=".activities.Signup"
             android:exported="false" />
         <activity

@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.appsellbook.R;
 
 public class Login extends AppCompatActivity {
-
+    Button btn_login;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +29,11 @@ public class Login extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        TextView tv_signup= findViewById(R.id.tv_signup);
+        TextView tv_signup, tv_forgotpassword;
         EditText edt_username, edt_password;
-        Button btn_login;
+        tv_signup= findViewById(R.id.tv_signup);
+        tv_forgotpassword = findViewById(R.id.textView_ForgotPassword);
+
         edt_username = findViewById(R.id.edt_username);
         edt_password = findViewById(R.id.edt_password);
         btn_login = findViewById(R.id.btn_login);
@@ -73,11 +75,17 @@ public class Login extends AppCompatActivity {
             }
             return false;
         });
-        btn_login.setOnClickListener(view -> {
-
-        });
         tv_signup.setOnClickListener(view -> {
             startActivity(new Intent(Login.this, Signup.class));
+        });
+        tv_forgotpassword.setOnClickListener(view -> {
+            startActivity(new Intent(Login.this, ForgetPassword.class));
+        });
+        setUpLogin();
+    }
+    private void setUpLogin() {
+        btn_login.setOnClickListener(view -> {
+            startActivity(new Intent(Login.this, Home.class));
         });
     }
 }
