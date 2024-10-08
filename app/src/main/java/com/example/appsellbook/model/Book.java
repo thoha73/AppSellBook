@@ -1,6 +1,9 @@
 package com.example.appsellbook.model;
 
+import java.util.List;
+
 public class Book {
+    private int bookId;
     private int image;
     private String bookName;
     private String author;
@@ -10,6 +13,7 @@ public class Book {
     private String category;
     private String publisher;
     private int saleNumber;
+    private List<BookReview> bookReviewList;
     public Book(){
 
     }
@@ -25,10 +29,23 @@ public class Book {
         this.publisher = publisher;
         this.saleNumber = saleNumber;
     }
+    public Book(int bookId,int image, String bookName) {
+        this.bookId=bookId;
+        this.image = image;
+        this.bookName = bookName;
+    }
 
     public Book(int image, String bookName) {
         this.image = image;
         this.bookName = bookName;
+    }
+
+    public int getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public int getImage() {
