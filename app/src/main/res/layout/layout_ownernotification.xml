@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EAEF"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:gravity="center"
+    >
+        <ImageView
+            android:id="@+id/imgUserNotification"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/book3"
+            />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="230dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="Elsa has submitted one review for an order"
+            android:textSize="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_day"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="10 thg 10"
+                android:textSize="12dp"
+                android:gravity="bottom|center"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:id="@+id/tv_Orderdetails"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Order details"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:textColor="#387FD2"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,11 +1,11 @@
 package com.example.appsellbook.model;
 
-public class Account {
+public class User {
     String name;
     String username;
     String passwword;
 
-    public Account(String name, String username, String passwword) {
+    public User(String name, String username, String passwword) {
         this.name = name;
         this.username = username;
         this.passwword = passwword;

@@ -85,7 +85,8 @@ public class Login extends AppCompatActivity {
     }
     private void setUpLogin() {
         btn_login.setOnClickListener(view -> {
-            startActivity(new Intent(Login.this, Home.class));
+            startActivity(new Intent(Login.this, ShopOwner.class));
         });
     }
+
 }

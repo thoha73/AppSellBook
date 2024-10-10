@@ -50,6 +50,16 @@
         </activity>
         <activity android:name=".activities.ProductDetail"
             android:exported="false"/>
+        <activity android:name=".activities.TotalUser"
+            android:exported="false"/>
+        <activity android:name=".activities.ChangePasswordUser"
+            android:exported="false"/>
+        <activity android:name=".activities.ChangePasswordSuccessful"
+            android:exported="false"/>
+        <activity android:name=".activities.OwnerNotification"
+            android:exported="false"/>
+        <activity android:name=".activities.ShopOwner"
+            android:exported="false"/>
     </application>
 
 </manifest>

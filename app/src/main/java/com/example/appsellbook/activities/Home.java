@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
     int image[]={R.drawable.book11,R.drawable.book13,R.drawable.book6,R.drawable.book12};
-    String nameBook[]={"English","Nhật ký của tôi","Mỗi lần vấp ngã là mội lần trưởng thành","Thành phố phép màu"};
+    String nameBook[]={"English","Nhật ký của tôi","Mỗi lần vấp ngã là một lần trưởng thành","Thành phố phép màu"};
     String author[] ={"Jason","Nguyễn Nhật Ánh","Trần Văn An","Đặng Khánh Vân"};
     double price[]={150000,500000,999999,8888888};
     String description[]={"Xin chào","Xin chào","Xin chào","Xin chào"};
@@ -38,7 +38,7 @@ public class Home extends AppCompatActivity {
     int image2[]={R.drawable.book1,R.drawable.book3,R.drawable.book4,R.drawable.book5};
     String nameBook2[]={"Sách động lực","Sách hư cấu","Sách tiểu thuyết","Sách kinh tế"};
     String author2[] ={"Jackma","Võ Nghịch Tiên","Lý Mộ Uyển","Elon Musk"};
-    double price2[]={111000,1000000,676767676,12315488};
+    double price2[]={111000,1000000,676767,12315488};
     String description2[]={"Hello ","Hello","Method...","Hello"};
     String ISBN2[]={"345634643","5236346","1523562352","57345435"};
     GridView gridview1,gridview2,gridview3;
@@ -85,20 +85,22 @@ public class Home extends AppCompatActivity {
                 intent.putExtra("price",price[position]);
                 intent.putExtra("description",description[position]);
                 intent.putExtra("ISBN",ISBN[position]);
+                intent.putExtra("source","gridview1");
                 startActivity(intent);
             }
         });
         gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent1 = new Intent(Home.this,ProductDetail.class);
-                intent1.putExtra("image1",image1[position]);
-                intent1.putExtra("name1",nameBook1[position]);
-                intent1.putExtra("author1",author1[position]);
-                intent1.putExtra("price1",price1[position]);
-                intent1.putExtra("description1",description1[position]);
-                intent1.putExtra("ISBN1",ISBN1[position]);
-                startActivity(intent1);
+                Intent intent = new Intent(Home.this,ProductDetail.class);
+                intent.putExtra("image1",image1[position]);
+                intent.putExtra("name1",nameBook1[position]);
+                intent.putExtra("author1",author1[position]);
+                intent.putExtra("price1",price1[position]);
+                intent.putExtra("description1",description1[position]);
+                intent.putExtra("ISBN1",ISBN1[position]);
+                intent.putExtra("source","gridview2");
+                startActivity(intent);
             }
         });
         gridview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {

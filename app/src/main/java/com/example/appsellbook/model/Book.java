@@ -40,6 +40,14 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Book(int saleNumber, int image, String bookName) {
+        this.saleNumber =saleNumber;
+        this.image = image;
+        this.bookName = bookName;
+    }
+    public Book(int image){
+        this.image = image;
+    }
     public int getImage() {
         return image;
     }

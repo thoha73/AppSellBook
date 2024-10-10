@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/main">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -59,7 +60,8 @@
 
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="30dp"
+        android:id="@+id/linearLayout1"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
@@ -82,6 +84,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <ImageView
+                android:id="@+id/imglogUser"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/lock_open"
@@ -107,27 +110,31 @@
             >
             <TextView
                 android:id="@+id/textViewPasswordTTU"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Password: ********"
+                android:text="Password: "
                 android:paddingLeft="25dp"
                 android:textSize="16dp"
                 />
+            <EditText
+                android:id="@+id/edittextPasswordTTU"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_change"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:text="Change"
                 android:textSize="16dp"
-                android:textColor="#2752C1"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_change"/>
+                android:textColor="#2752C1"
+                android:drawableRight="@drawable/ic_change"
+                />
 
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
@@ -149,6 +156,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <ImageView
+                android:id="@+id/imglogUser1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/lock_open"
@@ -174,31 +182,36 @@
             >
             <TextView
                 android:id="@+id/textViewPasswordTTU1"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Password: ********"
+                android:text="Password: "
                 android:paddingLeft="25dp"
                 android:textSize="16dp"
                 />
+            <EditText
+                android:id="@+id/edittextPasswordTTU1"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_change1"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:text="Change"
                 android:textSize="16dp"
-                android:textColor="#2752C1"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_change"/>
+                android:textColor="#2752C1"
+                android:drawableRight="@drawable/ic_change"
+                />
 
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
-        android:background="#CFD6D6"
+        android:background="@drawable/bg_radius"
+        android:backgroundTint="#CFD6D6"
         >
         <LinearLayout
             android:layout_width="wrap_content"
@@ -215,6 +228,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <ImageView
+                android:id="@+id/imglogUser2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/lock_open"
@@ -240,31 +254,36 @@
             >
             <TextView
                 android:id="@+id/textViewPasswordTTU2"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Password: ********"
+                android:text="Password: "
                 android:paddingLeft="25dp"
                 android:textSize="16dp"
                 />
+            <EditText
+                android:id="@+id/edittextPasswordTTU2"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_change2"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:text="Change"
                 android:textSize="16dp"
-                android:textColor="#2752C1"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_change"/>
+                android:textColor="#2752C1"
+                android:drawableRight="@drawable/ic_change"
+                />
 
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
-        android:background="#CFD6D6"
+        android:background="@drawable/bg_radius"
+        android:backgroundTint="#CFD6D6"
         >
         <LinearLayout
             android:layout_width="wrap_content"
@@ -281,6 +300,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <ImageView
+                android:id="@+id/imglogUser3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/lock_open"
@@ -306,31 +326,36 @@
             >
             <TextView
                 android:id="@+id/textViewPasswordTTU3"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Password: ********"
+                android:text="Password: "
                 android:paddingLeft="25dp"
                 android:textSize="16dp"
                 />
+            <EditText
+                android:id="@+id/edittextPasswordTTU3"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_change3"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:text="Change"
                 android:textSize="16dp"
-                android:textColor="#2752C1"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_change"/>
+                android:textColor="#2752C1"
+                android:drawableRight="@drawable/ic_change"
+                />
 
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
-        android:background="#CFD6D6"
+        android:background="@drawable/bg_radius"
+        android:backgroundTint="#CFD6D6"
         >
         <LinearLayout
             android:layout_width="wrap_content"
@@ -347,6 +372,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"/>
             <ImageView
+                android:id="@+id/imglogUser4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/lock_open"
@@ -372,22 +398,26 @@
             >
             <TextView
                 android:id="@+id/textViewPasswordTTU4"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Password: ********"
+                android:text="Password: "
                 android:paddingLeft="25dp"
                 android:textSize="16dp"
                 />
+            <EditText
+                android:id="@+id/edittextPasswordTTU4"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_change4"
+                android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:text="Change"
                 android:textSize="16dp"
-                android:textColor="#2752C1"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_change"/>
+                android:textColor="#2752C1"
+                android:drawableRight="@drawable/ic_change"
+                />
 
         </LinearLayout>
     </LinearLayout>
