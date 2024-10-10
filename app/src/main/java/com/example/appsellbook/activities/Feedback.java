@@ -32,7 +32,6 @@ public class Feedback extends AppCompatActivity {
         Intent intent = getIntent();
         imageV_book.setImageResource(intent.getIntExtra("image", -1));
         textView_bookName.setText(intent.getStringExtra("bookName"));
-
         imageV_back.setOnClickListener(v -> finish());
     }
 }
