@@ -12,7 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppSellBook"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activities.ChangeSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".layout_item_notification"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Notification"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AdminDashboard"
+            android:exported="false" />
         <activity
             android:name=".activities.Feedback"
             android:exported="false" />
@@ -20,7 +31,6 @@
             android:name=".activities.History"
             android:exported="false" />
         <activity
-
             android:name=".activities.ChangePassword"
             android:exported="false" />
         <activity
@@ -56,18 +66,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ProductDetail"
-            android:exported="false"/>
-        <activity android:name=".activities.TotalUser"
-            android:exported="false"/>
-        <activity android:name=".activities.ChangePasswordUser"
-            android:exported="false"/>
-        <activity android:name=".activities.ChangePasswordSuccessful"
-            android:exported="false"/>
-        <activity android:name=".activities.OwnerNotification"
-            android:exported="false"/>
-        <activity android:name=".activities.ShopOwner"
-            android:exported="false"/>
+        <activity
+            android:name=".activities.ProductDetail"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TotalUser"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ChangePasswordUser"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ChangePasswordSuccessful"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OwnerNotification"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ShopOwner"
+            android:exported="false" />
     </application>
 
 </manifest>

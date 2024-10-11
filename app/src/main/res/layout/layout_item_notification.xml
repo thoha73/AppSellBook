@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingBottom="10dp"
+    android:paddingRight="10dp"
+    android:background="#D1CECE"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/layer_list_loud"
+        />
+    <TextView
+        android:id="@+id/textView_titleNotification"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Giảm giá đến 15% cho ngày 11/11"
+        android:textSize="16sp"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20 thg 10"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/imageV_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/circle_red"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appsellbook.R;
 import com.example.appsellbook.model.Book;
 import com.example.appsellbook.model.User;
-import com.example.appsellbook.adapter.NotificationAdapter;
+import com.example.appsellbook.adapter.NotificationShopAdapter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +43,7 @@ public class OwnerNotification extends AppCompatActivity {
 
         // Khởi tạo ListView và CustomAdapter
         ListView listViewNotification = findViewById(R.id.lv1);
-        NotificationAdapter adapter = new NotificationAdapter(OwnerNotification.this, R.layout.layout_ownernotification, name, image);
+        NotificationShopAdapter adapter = new NotificationShopAdapter(OwnerNotification.this, R.layout.layout_ownernotification, name, image);
 
         // Thiết lập adapter cho ListView
         listViewNotification.setAdapter(adapter);

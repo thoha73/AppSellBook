@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <shape android:shape="rectangle">
+            <size android:width="50dp" android:height="50dp"/>
+            <solid android:color="#CE3131"></solid>
+            <corners android:radius="14dp"/>
+        </shape>
+    </item >
+    <item android:drawable="@drawable/bullhorn_solid" android:gravity="center"/>
+</layer-list>

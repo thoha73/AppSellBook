@@ -1,106 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.ChangePassword">
-    <LinearLayout
+    tools:context=".activities.ChangeSuccess">
+
+    <ImageView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/changesuccess" />
+
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#BE9352"
-            android:paddingLeft="10dp"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/arrow_back"
-                android:layout_gravity="center"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Change password"
-                android:textColor="#FFFFFF"
-                android:textSize="30dp"
-                android:textStyle="bold" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="Your password must have a minimum of 6 characters, and include numbers, letters and special characters (!@#$%)"/>
-
-        </LinearLayout>
-        <EditText
-            android:id="@+id/current_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Input current password"
-            android:layout_marginTop="60dp"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:paddingLeft="14dp"
-            android:textColorHint="@color/black"
-            android:background="@drawable/bk_changepassword"/>
-        <EditText
-            android:id="@+id/new_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Input new password"
-            android:layout_marginTop="40dp"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:paddingLeft="14dp"
-            android:textColorHint="@color/black"
-            android:background="@drawable/bk_changepassword"/>
-        <EditText
-            android:id="@+id/confirm_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Input confirm new password"
-            android:layout_marginTop="40dp"
-            android:textSize="16sp"
-            android:layout_gravity="center"
-            android:paddingLeft="14dp"
-            android:textColorHint="@color/black"
-            android:background="@drawable/bk_changepassword"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Don't remember your password?"
-            android:textColor="#495ED9"
-            android:layout_marginLeft="54dp"
-            android:layout_marginTop="20dp"
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/btn_change_blue"
-            app:backgroundTint="@null"
-            android:layout_gravity="center"
-            android:text="Change password"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            />
-    </LinearLayout>
+        android:background="@drawable/btn_donechange"
+        app:backgroundTint="@null"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="110dp"
+        android:text="DONE"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

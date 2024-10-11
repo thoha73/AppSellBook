@@ -17,14 +17,14 @@ import com.example.appsellbook.model.Book;
 
 import java.util.List;
 
-public class NotificationAdapter extends ArrayAdapter<User> {
+public class NotificationShopAdapter extends ArrayAdapter<User> {
 
     private Context Context;
     private int Resource;
     private List<User> userList;
     private Book[] imageList; // Mảng chứa các hình ảnh
 
-    public NotificationAdapter(@NonNull Context context, int resource, @NonNull List<User> name, Book[] images) {
+    public NotificationShopAdapter(@NonNull Context context, int resource, @NonNull List<User> name, Book[] images) {
         super(context, resource, name);
         this.Context = context;
         this.Resource = resource;
