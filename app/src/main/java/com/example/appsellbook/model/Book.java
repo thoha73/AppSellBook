@@ -1,5 +1,7 @@
 package com.example.appsellbook.model;
 
+import android.net.Uri;
+
 public class Book {
     private int image;
     private String bookName;
@@ -10,6 +12,7 @@ public class Book {
     private String category;
     private String publisher;
     private int saleNumber;
+    private Uri uri;
     public Book(){
 
     }
@@ -48,6 +51,20 @@ public class Book {
     public Book(int image){
         this.image = image;
     }
+
+    public Book(Uri uri, String bookName) {
+        this.uri = uri;
+        this.bookName = bookName;
+    }
+
+    public Uri getUri() {
+        return uri;
+    }
+
+    public void setUri(Uri uri) {
+        this.uri = uri;
+    }
+
     public int getImage() {
         return image;
     }

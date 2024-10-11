@@ -1,5 +1,7 @@
 package com.example.appsellbook.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -22,6 +24,7 @@ public class NewProduct extends AppCompatActivity {
     private RecyclerView recyclerView;
     private BookAdapter bookAdapter;
     private ImageView imageV_back;
+    List<Book> books;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +37,26 @@ public class NewProduct extends AppCompatActivity {
             return insets;
         });
         recyclerView = findViewById(R.id.rcv_bookItem);
+        Intent intent = getIntent();
+        String newBookName = intent.getStringExtra("bookName");
+        String newBookImageUri = intent.getStringExtra("bookImageUri");
+
+        // Khởi tạo danh sách book và adapter
+        books = getData(); // Lấy danh sách dữ liệu ban đầu
+
+        if (newBookName != null && newBookImageUri != null) {
+            // Nếu có dữ liệu mới, thêm vào danh sách
+            books.add(new Book(Uri.parse(newBookImageUri), newBookName));
+        }
+        bookAdapter = new BookAdapter(this);
+        bookAdapter.setData(books);
+
         imageV_back = findViewById(R.id.imageV_back);
         bookAdapter = new BookAdapter(this);
         recyclerView.setAdapter(bookAdapter);
         GridLayoutManager grv= new GridLayoutManager(this,3);
         recyclerView.setLayoutManager(grv);
-        bookAdapter.setData(getData());
+        bookAdapter.setData(books);
         recyclerView.setAdapter(bookAdapter);
         imageV_back.setOnClickListener(v -> finish());
 
