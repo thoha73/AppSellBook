@@ -62,7 +62,8 @@
             android:exported="false"/>
         <activity android:name=".activities.PostNewProduct"
             android:exported="false"/>
-
+        <activity android:name=".activities.OrderTotal"
+            android:exported="false"/>
     </application>
 
 </manifest>

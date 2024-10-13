@@ -57,6 +57,8 @@ public class Book {
         this.bookName = bookName;
     }
 
+
+
     public Uri getUri() {
         return uri;
     }
