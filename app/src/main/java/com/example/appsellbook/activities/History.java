@@ -79,10 +79,10 @@ public class History extends AppCompatActivity {
 
         });
         llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
+           startActivity(new Intent(History.this,Settings.class));
         });
         llProfile.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Profile.class));
+           startActivity(new Intent(History.this,Profile.class));
         });
 
 //        lv_OrderHistory.setOnItemClickListener((adapterView, view, i, l) -> {

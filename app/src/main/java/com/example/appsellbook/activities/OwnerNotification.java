@@ -29,7 +29,7 @@ public class OwnerNotification extends AppCompatActivity {
         llNotification=findViewById(R.id.ll_notification);
         llSearch=findViewById(R.id.ll_search);
         llSetting=findViewById(R.id.ll_settings);
-        llProfile=findViewById(R.id.ll_profile);
+        llProfile=findViewById(R.id.ll_product);
         // Tạo danh sách người dùng
         List<User> name = new ArrayList<>(Arrays.asList(
                 new User("Võ Vĩ Khương", "vikhuong92", "123"),
@@ -68,10 +68,10 @@ public class OwnerNotification extends AppCompatActivity {
 
         });
         llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
+           startActivity(new Intent(OwnerNotification.this,ShopOwner.class));
         });
         llProfile.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Profile.class));
+           startActivity(new Intent(OwnerNotification.this,PostNewProduct.class));
         });
     }
 }

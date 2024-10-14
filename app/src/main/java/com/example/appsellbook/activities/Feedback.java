@@ -51,10 +51,10 @@ public class Feedback extends AppCompatActivity {
 
         });
         llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
+           startActivity(new Intent(Feedback.this,Settings.class));
         });
         llProfile.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Profile.class));
+           startActivity(new Intent(Feedback.this,Profile.class));
         });
     }
 }

@@ -18,6 +18,7 @@ import com.example.appsellbook.R;
 
 public class Login extends AppCompatActivity {
     Button btn_login;
+    EditText edt_username, edt_password;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class Login extends AppCompatActivity {
             return insets;
         });
         TextView tv_signup, tv_forgotpassword;
-        EditText edt_username, edt_password;
+
         tv_signup= findViewById(R.id.tv_signup);
         tv_forgotpassword = findViewById(R.id.textView_ForgotPassword);
 
@@ -85,7 +86,16 @@ public class Login extends AppCompatActivity {
     }
     private void setUpLogin() {
         btn_login.setOnClickListener(view -> {
-            startActivity(new Intent(Login.this,OrderTotal.class));
+            if(edt_username.getText().toString().equals("User") && edt_password.getText().toString().equals("123456")){
+                startActivity(new Intent(Login.this,CartsActivity.class));
+            }
+            if(edt_username.getText().toString().equals("Admin") && edt_password.getText().toString().equals("123456")){
+                startActivity(new Intent(Login.this,AdminDashboard.class));
+            }
+            if(edt_username.getText().toString().equals("Shop") && edt_password.getText().toString().equals("123456")){
+                startActivity(new Intent(Login.this,ShopOwner.class));
+            }
+
         });
     }
 

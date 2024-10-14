@@ -134,10 +134,10 @@ public class Home extends AppCompatActivity {
 
         });
         llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
+           startActivity(new Intent(Home.this,Settings.class));
         });
         llProfile.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Profile.class));
+           startActivity(new Intent(Home.this,Profile.class));
         });
 
     }

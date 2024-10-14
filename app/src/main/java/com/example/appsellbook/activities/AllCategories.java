@@ -76,10 +76,10 @@ public class AllCategories extends AppCompatActivity {
 
         });
         llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
+           startActivity(new Intent(AllCategories.this,Settings.class));
         });
         llProfile.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Profile.class));
+           startActivity(new Intent(AllCategories.this,Profile.class));
         });
 
     }

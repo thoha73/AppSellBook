@@ -27,6 +27,7 @@ public class PostNewProduct extends AppCompatActivity {
     Button btn_selectedimage,btn_POST;
     Uri uri;
     EditText edtbookName;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +38,28 @@ public class PostNewProduct extends AppCompatActivity {
         btn_POST = findViewById(R.id.btn_Post);
         edtbookName = findViewById(R.id.editTextbookname);
         img_home = findViewById(R.id.img_home);
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_product);
+        llHome.setOnClickListener(view -> {
+
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(PostNewProduct.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(PostNewProduct.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+            startActivity(new Intent(PostNewProduct.this,ShopOwner.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//            startActivity(new Intent(PostNewProduct.this,PostNewProduct.class));
+        });
         btn_selectedimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,12 +1,15 @@
 package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,10 +32,18 @@ public class Signup extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Button btn_signup = findViewById(R.id.btn_signup);
+        TextView textViewLogin = findViewById(R.id.textView_Login);
         EditText edt_username, edt_password1, edt_confirmPassword;
         edt_username= findViewById(R.id.edt_username);
         edt_password1 = findViewById(R.id.edt_password);
         edt_confirmPassword = findViewById(R.id.edt_confirmPassword);
+        btn_signup.setOnClickListener(v->{
+
+        });
+        textViewLogin.setOnClickListener(v->{
+            startActivity(new Intent(Signup.this, Login.class));
+        });
         edt_username.setOnFocusChangeListener((view, b) -> {
             if (b) {
                 edt_username.setHint("");

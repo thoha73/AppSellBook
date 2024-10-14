@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,12 +12,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,17 +57,13 @@
     <LinearLayout
         android:layout_width="409dp"
         android:layout_height="644dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/linearLayoutN"
             android:layout_width="315dp"
             android:layout_height="57dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="170dp"
             android:layout_marginLeft="45dp"
             android:background="@drawable/bk_buttonsetting"
             android:orientation="horizontal">
@@ -184,7 +175,7 @@
             android:id="@+id/viewLine"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="25dp"
             android:background="@color/black"
             android:paddingTop="40dp" />
 
@@ -193,7 +184,7 @@
             android:layout_width="315dp"
             android:layout_height="60dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -211,112 +202,145 @@
 
         </LinearLayout>
 
+    </LinearLayout>
     <LinearLayout
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:background="#CBC9C9"
-        android:orientation="horizontal"
-        android:layout_marginTop="48dp">
+        android:layout_height="wrap_content"
+        android:background="#DBD9D9"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="78.6dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="4dp"
-            android:paddingRight="10dp"
-            android:gravity="center">
+            android:id="@+id/ll_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/img_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"
                 android:src="@drawable/home" />
 
             <TextView
+                android:id="@+id/tv_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home" />
+                android:text="Home"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#655F5F" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_notification"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="4dp"
-            android:paddingRight="10dp">
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/notification" />
+                android:id="@+id/img_bell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/bell_regular" />
 
             <TextView
+                android:id="@+id/tv_bell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notification" />
+                android:text="Notification"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#655F5F" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="68.6dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="4dp"
-            android:paddingRight="10dp"
-            android:gravity="center">
+            android:id="@+id/ll_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="7dp"
+            android:paddingRight="7dp"
+            android:paddingTop="5dp"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/img_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/search" />
 
             <TextView
+                android:id="@+id/tv_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search" />
+                android:text="Search"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#655F5F" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="85dp"
+            android:id="@+id/ll_settings"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingLeft="10dp"
-            android:paddingTop="4dp"
             android:paddingRight="10dp"
-            android:gravity="center">
+            android:paddingTop="5dp"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/setting" />
-
-            <TextView
+                android:id="@+id/img_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Setting" />
+                android:layout_gravity="center"
+                android:src="@drawable/settings" />
+
+            <TextView
+                android:id="@+id/tv_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Setting"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#655F5F" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/ll_product"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingLeft="10dp"
-            android:paddingTop="4dp"
             android:paddingRight="10dp"
-            android:gravity="center">
+            android:paddingTop="5dp"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/user" />
-
-            <TextView
+                android:id="@+id/img_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile" />
+                android:layout_gravity="center"
+                android:src="@drawable/book_solid" />
+
+            <TextView
+                android:id="@+id/tv_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#655F5F" />
         </LinearLayout>
-    </LinearLayout>
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
