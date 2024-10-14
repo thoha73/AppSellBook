@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="142dp">
+        <ImageView
+            android:id="@+id/img_cart"
+            android:layout_margin="15dp"
+            android:layout_width="71dp"
+            android:layout_height="75dp"
+            android:src="@drawable/book3"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            >
+            <TextView
+                android:id="@+id/tv_nameBookCart"
+                android:layout_width="wrap_content"
+                android:layout_height="37.5dp"
+                android:text="Chữa lành trái tim"/>
+            <TextView
+                android:id="@+id/tv_priceCart"
+                android:layout_width="match_parent"
+                android:layout_height="37.5dp"
+                android:text="100.000 đ"
+                android:textColor="#BB2B2B"
+                />
+            <LinearLayout
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/decrease"
+                    android:textColor="@color/white"
+                    />
+                <TextView
+                    android:id="@+id/tv_quantity"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:text="1"
+                    android:textColor="#A19D9D"
+                    android:gravity="center"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/increase"
+                    android:textColor="@color/white"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -32,17 +32,26 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_carditem_book,parent,false);
         return new BookViewHolder(view);
     }
-
+//    @Override
+//    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
+//        Book book=listBook.get(position);
+//        if(book==null){
+//            return;
+//        }
+//        holder.imageView.setImageResource(book.getImage());
+//        holder.textViewName.setText(book.getBookName());
+//    }
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Book book=listBook.get(position);
-        if(book==null){
-            return;
+        Book book = listBook.get(position);
+        if (book.getUri() != null) {
+            holder.imageView.setImageURI(book.getUri()); // Load ảnh từ URI
+        } else {
+            holder.imageView.setImageResource(book.getImage()); // Load ảnh từ drawable
         }
-        holder.imageView.setImageResource(book.getImage());
-        holder.textViewName.setText(book.getBookName());
-    }
 
+    holder.textViewName.setText(book.getBookName());
+}
     @Override
     public int getItemCount() {
         if(listBook!=null){
