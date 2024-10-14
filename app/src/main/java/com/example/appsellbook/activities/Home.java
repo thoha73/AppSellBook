@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class Home extends AppCompatActivity {
     GridView gridview1,gridview2,gridview3;
     TextView tv_new,tv_popular,tv_category;
     ArrayList<Book> listBook,listBook1,listBook2;
+    LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
     BookArrayAdapter myAdapter;
 
     @Override
@@ -62,6 +64,11 @@ public class Home extends AppCompatActivity {
         gridview1=findViewById(R.id.gridview1);
         gridview2=findViewById(R.id.gridview2);
         gridview3=findViewById(R.id.gridview3);
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
         initGridView(listBook,image,nameBook,author,price,description,ISBN,gridview1);
         initGridView(listBook1,image1,nameBook1,author1,price1,description1,ISBN1,gridview2);
         initGridView(listBook2,image2,nameBook2,author2,price2,description2,ISBN2,gridview3);
@@ -116,7 +123,22 @@ public class Home extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+        llHome.setOnClickListener(view -> {
 
+        });
+        llNotification.setOnClickListener(view -> {
+           startActivity(new Intent(Home.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+           startActivity(new Intent(Home.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
 
     }
     private void initGridView(ArrayList<Book> list,int img[],String nameBook[],String author[],double price[],String description[],String ISBN[],GridView grv){

@@ -1,8 +1,10 @@
 package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +24,12 @@ public class OwnerNotification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ownernotification);
-
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
         // Tạo danh sách người dùng
         List<User> name = new ArrayList<>(Arrays.asList(
                 new User("Võ Vĩ Khương", "vikhuong92", "123"),
@@ -49,5 +56,22 @@ public class OwnerNotification extends AppCompatActivity {
         listViewNotification.setAdapter(adapter);
         img_back = findViewById(R.id.imgView_Notificationback);
         img_back.setOnClickListener(v->finish());
+
+        llHome.setOnClickListener(view -> {
+
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(OwnerNotification.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(OwnerNotification.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -35,9 +36,29 @@ public class ProductDetail  extends AppCompatActivity {
         tv_author= findViewById(R.id.textViewContentAuthor);
         tv_description = findViewById(R.id.textViewContentDescription);
         tv_isbn = findViewById(R.id.textViewContentISBN);
-        img_Home = findViewById(R.id.imageView_Home);
-        img_Notification = findViewById(R.id.imageView_Notification);
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(ProductDetail.this,Home.class));
+        });
 
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(ProductDetail.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(ProductDetail.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
         Intent  intent = getIntent();
         String source = intent.getStringExtra("source");
         if("gridview1".equals(source)) {

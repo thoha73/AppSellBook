@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +37,12 @@ public class NewProduct extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
         recyclerView = findViewById(R.id.rcv_bookItem);
         Intent intent = getIntent();
         String newBookName = intent.getStringExtra("bookName");
@@ -60,6 +67,22 @@ public class NewProduct extends AppCompatActivity {
         recyclerView.setAdapter(bookAdapter);
         imageV_back.setOnClickListener(v -> finish());
 
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(NewProduct.this,Home.class));
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(NewProduct.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(NewProduct.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
 
     }
     private List<Book> getData(){

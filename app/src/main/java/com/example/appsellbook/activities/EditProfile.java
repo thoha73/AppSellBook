@@ -1,6 +1,8 @@
 package com.example.appsellbook.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,29 @@ public class EditProfile extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(EditProfile.this,Home.class));
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(EditProfile.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(EditProfile.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
         });
     }
 }

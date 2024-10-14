@@ -1,5 +1,6 @@
 package com.example.appsellbook.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -40,6 +41,16 @@ public class AdminDashboard extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         adminAdapter.setData(getData());
         recyclerView.setAdapter(adminAdapter);
+        adminAdapter.setOnItemClickListener(position -> {
+            Statistic stc=adminAdapter.getData().get(position);
+            if(stc.getTitle()=="Total user"){
+                startActivity(new Intent(AdminDashboard.this,TotalUser.class));
+            }else if(stc.getTitle()=="Product"){
+                startActivity(new Intent(AdminDashboard.this,Home.class));
+            }else if(stc.getTitle()=="Orders"){
+//                startActivity(new Intent(AdminDashboard.this,Orders.class));
+            }
+        });
     }
     public List<Statistic> getData(){
         List<Statistic> list = new ArrayList<>();

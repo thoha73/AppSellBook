@@ -1,9 +1,11 @@
 package com.example.appsellbook.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -49,6 +51,12 @@ public class AllCategories extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
         recyclerView = findViewById(R.id.rcv_bookItem);
         imageV_back = findViewById(R.id.imageV_back);
         bookAdapter = new BookAdapter(this);
@@ -57,6 +65,22 @@ public class AllCategories extends AppCompatActivity {
         bookAdapter.setData(getData());
         recyclerView.setAdapter(bookAdapter);
         imageV_back.setOnClickListener(view -> finish());
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(AllCategories.this,Home.class));
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(AllCategories.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(AllCategories.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
 
     }
     private List<Book> getData(){

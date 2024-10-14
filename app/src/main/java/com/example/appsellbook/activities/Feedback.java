@@ -3,6 +3,7 @@ package com.example.appsellbook.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -26,12 +27,34 @@ public class Feedback extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
         imageV_book = findViewById(R.id.image_ItemBook);
         imageV_back=findViewById(R.id.imageV_back);
         textView_bookName = findViewById(R.id.textView_bookName);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
+        llHome=findViewById(R.id.ll_home);
         Intent intent = getIntent();
         imageV_book.setImageResource(intent.getIntExtra("image", -1));
         textView_bookName.setText(intent.getStringExtra("bookName"));
         imageV_back.setOnClickListener(v -> finish());
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(Feedback.this,Home.class));
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(Feedback.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(Feedback.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
     }
 }

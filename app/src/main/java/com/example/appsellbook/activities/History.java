@@ -3,6 +3,7 @@ package com.example.appsellbook.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -33,6 +34,12 @@ public class History extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
         lv_OrderHistory = findViewById(R.id.lv_OrderHistory);
         Book book1= new Book(1,R.drawable.book1,"Sách động lực");
         Book book2= new Book(2,R.drawable.book3,"Sách động lực");
@@ -61,6 +68,22 @@ public class History extends AppCompatActivity {
         listOrder.add(order4);
         OrderAdapter orderAdapter= new OrderAdapter(this,R.layout.layout_item_history,listOrder);
         lv_OrderHistory.setAdapter(orderAdapter);
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(History.this,Home.class));
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(History.this,Notification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(History.this,Home.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
 
 //        lv_OrderHistory.setOnItemClickListener((adapterView, view, i, l) -> {
 //            Order order= listOrder.get(i);

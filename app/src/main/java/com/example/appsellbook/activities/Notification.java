@@ -1,6 +1,8 @@
 package com.example.appsellbook.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -33,6 +35,12 @@ public class Notification extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProfile=findViewById(R.id.ll_profile);
         lv_Notification=findViewById(R.id.listView_Notification);
         List<com.example.appsellbook.model.Notification> list= new ArrayList<>();
         Calendar calendar= Calendar.getInstance();
@@ -42,6 +50,21 @@ public class Notification extends AppCompatActivity {
         list.add(new com.example.appsellbook.model.Notification("Giảm giá đến 10% cho ngày 12/11",df.format(calendar.getTime()),false));
         NotificationUserAdapter notificationUserAdapter= new NotificationUserAdapter(this,R.layout.layout_item_notification,list);
         lv_Notification.setAdapter(notificationUserAdapter);
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(Notification.this,Home.class));
+        });
+//        llNotification.setOnClickListener(view -> {
+//            startActivity(new Intent(Notification.this,Notification.class));
+//        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(Notification.this,Home.class));
 
+        });
+        llSetting.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Setting.class));
+        });
+        llProfile.setOnClickListener(view -> {
+//           startActivity(new Intent(Home.this,Profile.class));
+        });
     }
 }
