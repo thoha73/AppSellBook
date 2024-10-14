@@ -36,7 +36,7 @@ public class NewProduct extends AppCompatActivity {
         recyclerView = findViewById(R.id.rcv_bookItem);
         imageV_back = findViewById(R.id.imageV_back);
         bookAdapter = new BookAdapter(this);
-        recyclerView.setAdapter(bookAdapter);
+//        recyclerView.setAdapter(bookAdapter);
         GridLayoutManager grv= new GridLayoutManager(this,3);
         recyclerView.setLayoutManager(grv);
         bookAdapter.setData(getData());
