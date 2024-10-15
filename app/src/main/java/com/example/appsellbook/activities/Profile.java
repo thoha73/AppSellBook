@@ -2,6 +2,7 @@ package com.example.appsellbook.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +25,7 @@ public class Profile extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Button btnChange=findViewById(R.id.change_button);
         LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
         llHome=findViewById(R.id.ll_home);
         llNotification=findViewById(R.id.ll_notification);
@@ -45,6 +47,9 @@ public class Profile extends AppCompatActivity {
         });
         llProfile.setOnClickListener(view -> {
 //           startActivity(new Intent(Home.this,Profile.class));
+        });
+        btnChange.setOnClickListener(view -> {
+            startActivity(new Intent(Profile.this,EditProfile.class));
         });
     }
 }

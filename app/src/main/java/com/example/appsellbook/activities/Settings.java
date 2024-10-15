@@ -53,6 +53,9 @@ public class Settings extends AppCompatActivity {
         llSetting.setOnClickListener(view -> {
 //           startActivity(new Intent(Home.this,Setting.class));
         });
+        llProfile.setOnClickListener(v->{
+            startActivity(new Intent(Settings.this,Profile.class));
+        });
 
         btnNotification.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this,Notification.class));
@@ -70,7 +73,7 @@ public class Settings extends AppCompatActivity {
             startActivity(new Intent(Settings.this,History.class));
         });
         btnMyCart.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this,CartsActivity.class));
+            startActivity(new Intent(Settings.this,Cart.class));
         });
         }
     }

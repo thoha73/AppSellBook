@@ -87,7 +87,7 @@ public class Login extends AppCompatActivity {
     private void setUpLogin() {
         btn_login.setOnClickListener(view -> {
             if(edt_username.getText().toString().equals("User") && edt_password.getText().toString().equals("123456")){
-                startActivity(new Intent(Login.this,CartsActivity.class));
+                startActivity(new Intent(Login.this,Home.class));
             }
             if(edt_username.getText().toString().equals("Admin") && edt_password.getText().toString().equals("123456")){
                 startActivity(new Intent(Login.this,AdminDashboard.class));

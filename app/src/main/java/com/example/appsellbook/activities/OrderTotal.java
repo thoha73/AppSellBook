@@ -2,6 +2,7 @@ package com.example.appsellbook.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ public class OrderTotal extends AppCompatActivity {
         llSearch=findViewById(R.id.ll_search);
         llSetting=findViewById(R.id.ll_settings);
         llProfile=findViewById(R.id.ll_profile);
+        Button btnPurchase=findViewById(R.id.btn_purchase);
         llHome.setOnClickListener(view -> {
 
         });
@@ -33,10 +35,13 @@ public class OrderTotal extends AppCompatActivity {
 
         });
         llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
+           startActivity(new Intent(OrderTotal.this,Settings.class));
         });
         llProfile.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Profile.class));
+           startActivity(new Intent(OrderTotal.this,Profile.class));
+        });
+        btnPurchase.setOnClickListener(view -> {
+            startActivity(new Intent(OrderTotal.this,OrderProcessed.class));
         });
     }
 }

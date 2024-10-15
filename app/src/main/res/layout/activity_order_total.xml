@@ -260,6 +260,7 @@
 
         </LinearLayout>
         <Button
+            android:id="@+id/btn_purchase"
             android:layout_width="295dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
