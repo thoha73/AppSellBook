@@ -3,16 +3,20 @@ package com.example.appsellbook.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appsellbook.R;
 import com.example.appsellbook.model.Book;
 import com.example.appsellbook.model.User;
 import com.example.appsellbook.adapter.NotificationShopAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,12 +28,6 @@ public class OwnerNotification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ownernotification);
-        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
-        llHome=findViewById(R.id.ll_home);
-        llNotification=findViewById(R.id.ll_notification);
-        llSearch=findViewById(R.id.ll_search);
-        llSetting=findViewById(R.id.ll_settings);
-        llProfile=findViewById(R.id.ll_product);
         // Tạo danh sách người dùng
         List<User> name = new ArrayList<>(Arrays.asList(
                 new User("Võ Vĩ Khương", "vikhuong92", "123"),
@@ -57,21 +55,38 @@ public class OwnerNotification extends AppCompatActivity {
         img_back = findViewById(R.id.imgView_Notificationback);
         img_back.setOnClickListener(v->finish());
 
-        llHome.setOnClickListener(view -> {
 
-        });
-        llNotification.setOnClickListener(view -> {
-            startActivity(new Intent(OwnerNotification.this,Notification.class));
-        });
-        llSearch.setOnClickListener(view -> {
-            startActivity(new Intent(OwnerNotification.this,Home.class));
-
-        });
-        llSetting.setOnClickListener(view -> {
-           startActivity(new Intent(OwnerNotification.this,ShopOwner.class));
-        });
-        llProfile.setOnClickListener(view -> {
-           startActivity(new Intent(OwnerNotification.this,PostNewProduct.class));
+        BottomNavigationView bottom_NavigationView2;
+        bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id==R.id.menu_home){
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_notification){
+                    return  true;
+                }
+                if(id==R.id.menu_search){
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_setting){
+                    startActivity(new Intent(getApplicationContext(), ShopOwner.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_product){
+                    startActivity(new Intent(getApplicationContext(), PostNewProduct.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                return false;
+            }
         });
     }
 }

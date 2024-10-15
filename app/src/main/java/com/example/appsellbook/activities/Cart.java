@@ -1,12 +1,15 @@
 package com.example.appsellbook.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -15,12 +18,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.appsellbook.R;
 import com.example.appsellbook.adapter.CartsAdapter;
 import com.example.appsellbook.model.Carts;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart extends AppCompatActivity {
-
+    @SuppressLint("MissinginFlatedID")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +35,7 @@ public class Cart extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
-        Button buttonOrder=findViewById(R.id.btn_order);
-        llHome=findViewById(R.id.ll_home);
-        llNotification=findViewById(R.id.ll_notification);
-        llSearch=findViewById(R.id.ll_search);
-        llSetting=findViewById(R.id.ll_settings);
-        llProfile=findViewById(R.id.ll_profile);
+
         ListView listView = findViewById(R.id.cart_list);
         List<Carts> cartList = new ArrayList<>();
         cartList.add(new Carts(R.drawable.img_chualanhtraitim, "Chữa lành trái tim", "100.000 đ"));
@@ -46,25 +44,40 @@ public class Cart extends AppCompatActivity {
         cartList.add(new Carts(R.drawable.img_sucmanhtiemthuc, "Sức mạnh tiềm thức (Tái bản năm 2021)", "100.000 đ"));
         CartsAdapter adapter = new CartsAdapter(this, R.layout.cart_item, cartList);
         listView.setAdapter(adapter);
-        llHome.setOnClickListener(view -> {
-            startActivity(new Intent(Cart.this,Home.class));
-        });
-        llNotification.setOnClickListener(view -> {
-            startActivity(new Intent(Cart.this,Notification.class));
-        });
-        llSearch.setOnClickListener(view -> {
-            startActivity(new Intent(Cart.this,Home.class));
 
+        BottomNavigationView bottom_NavigationView;
+        bottom_NavigationView = findViewById(R.id.bottom_navigation);
+        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id==R.id.menu_home){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_notification){
+                    startActivity(new Intent(getApplicationContext(), Notification.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_search){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_setting){
+                    startActivity(new Intent(getApplicationContext(), Settings.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_profile){
+                    startActivity(new Intent(getApplicationContext(), Profile.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                return false;
+            }
         });
-        llSetting.setOnClickListener(view -> {
-            startActivity(new Intent(Cart.this,Settings.class));
-        });
-        llProfile.setOnClickListener(view -> {
-            startActivity(new Intent(Cart.this,Profile.class));
-        });
-        buttonOrder.setOnClickListener(view -> {
-            startActivity(new Intent(Cart.this,OrderTotal.class));
-        });
-
     }
 }

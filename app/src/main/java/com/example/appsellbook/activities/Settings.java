@@ -1,20 +1,25 @@
 package com.example.appsellbook.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appsellbook.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Settings extends AppCompatActivity {
 
+    @SuppressLint("MissinginFlatedID")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,29 +39,39 @@ public class Settings extends AppCompatActivity {
         btnLogout.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this,Login.class));
         });
-        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
-        llHome=findViewById(R.id.ll_home1);
-        llNotification=findViewById(R.id.ll_notification1);
-        llSearch=findViewById(R.id.ll_search1);
-        llSetting=findViewById(R.id.ll_settings1);
-        llProfile=findViewById(R.id.ll_profile1);
-        llHome.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this,Home.class));
+        BottomNavigationView bottom_NavigationView;
+        bottom_NavigationView = findViewById(R.id.bottom_navigation);
+        bottom_NavigationView.setSelectedItemId(R.id.menu_setting);
+        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id==R.id.menu_home){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_notification){
+                    startActivity(new Intent(getApplicationContext(), Notification.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_search){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_setting){
+                    return  true;
+                }
+                if(id==R.id.menu_profile){
+                    startActivity(new Intent(getApplicationContext(), Profile.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                return false;
+            }
         });
-        llNotification.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this,Notification.class));
-        });
-        llSearch.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this,Home.class));
-
-        });
-        llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
-        });
-        llProfile.setOnClickListener(v->{
-            startActivity(new Intent(Settings.this,Profile.class));
-        });
-
         btnNotification.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this,Notification.class));
         });
@@ -67,7 +82,9 @@ public class Settings extends AppCompatActivity {
             startActivity(new Intent(Settings.this,EditProfile.class));
         });
         btnChangePassword.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this,ChangePassword.class));
+            Intent intent = new Intent(Settings.this, ChangePassword.class);
+            intent.putExtra("role", "user");
+            startActivity(intent);
         });
         btnMyHictory.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this,History.class));

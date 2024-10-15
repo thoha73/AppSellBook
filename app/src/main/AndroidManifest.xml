@@ -104,6 +104,23 @@
         <activity
             android:name=".activities.OrderTotal"
             android:exported="false" />
-    </application>
+        <activity
+            android:name=".activities.Home1"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OrderdetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.WishList"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Review"
+            android:exported="false" />
 
+    </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 </manifest>

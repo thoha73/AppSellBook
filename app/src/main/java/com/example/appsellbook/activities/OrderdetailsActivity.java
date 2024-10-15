@@ -30,5 +30,6 @@ public class OrderdetailsActivity extends AppCompatActivity {
 
         OrderDetailAdapter orderDetailAdapter = new OrderDetailAdapter(R.layout.order_detail_item, this, orderDetailList);
         listView.setAdapter(orderDetailAdapter);
+
     }
 }

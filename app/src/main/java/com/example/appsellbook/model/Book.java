@@ -57,7 +57,11 @@ public class Book {
         this.bookName = bookName;
     }
 
-
+    public Book(int image, String bookName, String author) {
+        this.image = image;
+        this.bookName = bookName;
+        this.author = author;
+    }
 
     public Uri getUri() {
         return uri;

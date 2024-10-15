@@ -1,14 +1,17 @@
 package com.example.appsellbook.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,6 +23,7 @@ import com.example.appsellbook.R;
 import com.example.appsellbook.adapter.BookAdapter;
 import com.example.appsellbook.adapter.BookArrayAdapter;
 import com.example.appsellbook.model.Book;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +45,7 @@ public class AllCategories extends AppCompatActivity {
     GridView gridview1;
     ArrayList<Book> listBook;
     BookArrayAdapter myAdapter;
+    @SuppressLint("MissinginFlatedID")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +56,6 @@ public class AllCategories extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
-        llHome=findViewById(R.id.ll_home);
-        llNotification=findViewById(R.id.ll_notification);
-        llSearch=findViewById(R.id.ll_search);
-        llSetting=findViewById(R.id.ll_settings);
-        llProfile=findViewById(R.id.ll_profile);
         recyclerView = findViewById(R.id.rcv_bookItem);
         imageV_back = findViewById(R.id.imageV_back);
         bookAdapter = new BookAdapter(this);
@@ -65,21 +64,40 @@ public class AllCategories extends AppCompatActivity {
         bookAdapter.setData(getData());
         recyclerView.setAdapter(bookAdapter);
         imageV_back.setOnClickListener(view -> finish());
-        llHome.setOnClickListener(view -> {
-            startActivity(new Intent(AllCategories.this,Home.class));
-        });
-        llNotification.setOnClickListener(view -> {
-            startActivity(new Intent(AllCategories.this,Notification.class));
-        });
-        llSearch.setOnClickListener(view -> {
-            startActivity(new Intent(AllCategories.this,Home.class));
 
-        });
-        llSetting.setOnClickListener(view -> {
-           startActivity(new Intent(AllCategories.this,Settings.class));
-        });
-        llProfile.setOnClickListener(view -> {
-           startActivity(new Intent(AllCategories.this,Profile.class));
+        BottomNavigationView bottom_NavigationView;
+        bottom_NavigationView = findViewById(R.id.bottom_navigation);
+        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id==R.id.menu_home){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_notification){
+                    startActivity(new Intent(getApplicationContext(), Notification.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_search){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_setting){
+                    startActivity(new Intent(getApplicationContext(), Settings.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_profile){
+                    startActivity(new Intent(getApplicationContext(), Profile.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                return false;
+            }
         });
 
     }

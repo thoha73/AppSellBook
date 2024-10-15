@@ -26,7 +26,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class Home extends AppCompatActivity {
+public class Home1 extends AppCompatActivity {
+    String role;
     int image[]={R.drawable.book11,R.drawable.book13,R.drawable.book6,R.drawable.book12};
     String nameBook[]={"English","Nhật ký của tôi","Mỗi lần vấp ngã là một lần trưởng thành","Thành phố phép màu"};
     String author[] ={"Jason","Nguyễn Nhật Ánh","Trần Văn An","Đặng Khánh Vân"};
@@ -49,15 +50,14 @@ public class Home extends AppCompatActivity {
     GridView gridview1,gridview2,gridview3;
     TextView tv_new,tv_popular,tv_category;
     ArrayList<Book> listBook,listBook1,listBook2;
-    BottomNavigationView bottom_NavigationView;
+    LinearLayout llHome,llNotification,llSetting,llSearch,llProduct;
     BookArrayAdapter myAdapter;
-
-    @SuppressLint("MissinginFlatedID")
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home1);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -69,52 +69,53 @@ public class Home extends AppCompatActivity {
         gridview1=findViewById(R.id.gridview1);
         gridview2=findViewById(R.id.gridview2);
         gridview3=findViewById(R.id.gridview3);
-        bottom_NavigationView = findViewById(R.id.bottom_navigation);
+
+
         initGridView(listBook,image,nameBook,author,price,description,ISBN,gridview1);
         initGridView(listBook1,image1,nameBook1,author1,price1,description1,ISBN1,gridview2);
         initGridView(listBook2,image2,nameBook2,author2,price2,description2,ISBN2,gridview3);
 
         tv_category.setOnClickListener(view -> {
-            startActivity(new Intent(Home.this,AllCategories.class));
+            startActivity(new Intent(Home1.this,AllCategories.class));
         });
         tv_popular.setOnClickListener(view -> {
-            startActivity(new Intent(Home.this,Popular.class));
+            startActivity(new Intent(Home1.this,Popular.class));
         });
         tv_new.setOnClickListener(view -> {
-            startActivity(new Intent(Home.this,NewProduct.class));
+            startActivity(new Intent(Home1.this,NewProduct.class));
         });
         gridview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(Home.this,ProductDetail.class);
+                Intent intent = new Intent(Home1.this,ProductDetail.class);
                 intent.putExtra("image",image[position]);
                 intent.putExtra("name",nameBook[position]);
                 intent.putExtra("author",author[position]);
                 intent.putExtra("price",price[position]);
                 intent.putExtra("description",description[position]);
                 intent.putExtra("ISBN",ISBN[position]);
-                intent.putExtra("source","grv1");
+                intent.putExtra("source","gridview1");
                 startActivity(intent);
             }
         });
         gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(Home.this,ProductDetail.class);
+                Intent intent = new Intent(Home1.this,ProductDetail.class);
                 intent.putExtra("image1",image1[position]);
                 intent.putExtra("name1",nameBook1[position]);
                 intent.putExtra("author1",author1[position]);
                 intent.putExtra("price1",price1[position]);
                 intent.putExtra("description1",description1[position]);
                 intent.putExtra("ISBN1",ISBN1[position]);
-                intent.putExtra("source","grv2");
+                intent.putExtra("source","gridview2");
                 startActivity(intent);
             }
         });
         gridview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent2 = new Intent(Home.this,ProductDetail.class);
+                Intent intent2 = new Intent(Home1.this,ProductDetail.class);
                 intent2.putExtra("image2",image2[position]);
                 intent2.putExtra("name2",nameBook2[position]);
                 intent2.putExtra("author2",author2[position]);
@@ -124,28 +125,35 @@ public class Home extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-        bottom_NavigationView.setSelectedItemId(R.id.menu_home);
-        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        BottomNavigationView bottom_NavigationView2;
+        bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+                if(id==R.id.menu_home){
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
                 if(id==R.id.menu_notification){
-                    startActivity(new Intent(getApplicationContext(), Notification.class));
+                    startActivity(new Intent(getApplicationContext(), OwnerNotification.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
                 if(id==R.id.menu_search){
-                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
                 if(id==R.id.menu_setting){
-                    startActivity(new Intent(getApplicationContext(), Settings.class));
+                    startActivity(new Intent(getApplicationContext(), ShopOwner.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
-                if(id==R.id.menu_profile){
-                    startActivity(new Intent(getApplicationContext(), Profile.class));
+                if(id==R.id.menu_product){
+                    startActivity(new Intent(getApplicationContext(), PostNewProduct.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
@@ -163,6 +171,12 @@ public class Home extends AppCompatActivity {
         myAdapter = new BookArrayAdapter(this,R.layout.layout_item_book,list);
         grv.setAdapter(myAdapter);
     }
-
+    private void navigateToSettings() {
+        if ("admin".equals(role)) {
+            startActivity(new Intent(Home1.this, AdminDashboard.class));
+        } else {
+            startActivity(new Intent(Home1.this, ShopOwner.class));
+        }
+    }
 
 }

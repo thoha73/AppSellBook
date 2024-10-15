@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appsellbook.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,28 +40,38 @@ public class PostNewProduct extends AppCompatActivity {
         img = findViewById(R.id.imgBookSelected);
         btn_POST = findViewById(R.id.btn_Post);
         edtbookName = findViewById(R.id.editTextbookname);
-        img_home = findViewById(R.id.img_home);
-        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
-        llHome=findViewById(R.id.ll_home);
-        llNotification=findViewById(R.id.ll_notification);
-        llSearch=findViewById(R.id.ll_search);
-        llSetting=findViewById(R.id.ll_settings);
-        llProfile=findViewById(R.id.ll_product);
-        llHome.setOnClickListener(view -> {
 
-        });
-        llNotification.setOnClickListener(view -> {
-            startActivity(new Intent(PostNewProduct.this,Notification.class));
-        });
-        llSearch.setOnClickListener(view -> {
-            startActivity(new Intent(PostNewProduct.this,Home.class));
-
-        });
-        llSetting.setOnClickListener(view -> {
-            startActivity(new Intent(PostNewProduct.this,ShopOwner.class));
-        });
-        llProfile.setOnClickListener(view -> {
-//            startActivity(new Intent(PostNewProduct.this,PostNewProduct.class));
+        BottomNavigationView bottom_NavigationView2;
+        bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id==R.id.menu_home){
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_notification){
+                    startActivity(new Intent(getApplicationContext(), OwnerNotification.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_search){
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_setting){
+                    startActivity(new Intent(getApplicationContext(), ShopOwner.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_product){
+                    return  true;
+                }
+                return false;
+            }
         });
         btn_selectedimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,10 +102,6 @@ public class PostNewProduct extends AppCompatActivity {
                     Toast.makeText(PostNewProduct.this, "Vui lòng chọn ảnh và nhập tên sách!", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
-        img_home.setOnClickListener(View->{
-            Intent intent = new Intent(PostNewProduct.this,Home.class);
-            startActivity(intent);
         });
     }
 
