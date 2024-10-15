@@ -104,6 +104,16 @@
         <activity
             android:name=".activities.OrderTotal"
             android:exported="false" />
+        <activity
+            android:name=".activities.Home1"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OrderdetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OrdersActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

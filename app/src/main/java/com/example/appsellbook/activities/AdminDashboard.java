@@ -46,7 +46,10 @@ public class AdminDashboard extends AppCompatActivity {
             if(stc.getTitle()=="Total user"){
                 startActivity(new Intent(AdminDashboard.this,TotalUser.class));
             }else if(stc.getTitle()=="Product"){
-                startActivity(new Intent(AdminDashboard.this,Home.class));
+                Intent intent = new Intent(AdminDashboard.this, Home1.class);
+                intent.putExtra("role","admin");
+                startActivity(intent);
+//                startActivity(new Intent(AdminDashboard.this,Home.class));
             }else if(stc.getTitle()=="Orders"){
 //                startActivity(new Intent(AdminDashboard.this,Orders.class));
             }

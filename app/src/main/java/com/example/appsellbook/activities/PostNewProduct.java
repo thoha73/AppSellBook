@@ -38,26 +38,26 @@ public class PostNewProduct extends AppCompatActivity {
         btn_POST = findViewById(R.id.btn_Post);
         edtbookName = findViewById(R.id.editTextbookname);
         img_home = findViewById(R.id.img_home);
-        LinearLayout llHome,llNotification,llSetting,llSearch,llProfile;
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProduct;
         llHome=findViewById(R.id.ll_home);
         llNotification=findViewById(R.id.ll_notification);
         llSearch=findViewById(R.id.ll_search);
         llSetting=findViewById(R.id.ll_settings);
-        llProfile=findViewById(R.id.ll_product);
+        llProduct=findViewById(R.id.ll_product);
         llHome.setOnClickListener(view -> {
-
+            startActivity(new Intent(PostNewProduct.this, Home1.class));
         });
         llNotification.setOnClickListener(view -> {
             startActivity(new Intent(PostNewProduct.this,Notification.class));
         });
         llSearch.setOnClickListener(view -> {
-            startActivity(new Intent(PostNewProduct.this,Home.class));
+            startActivity(new Intent(PostNewProduct.this,Home1.class));
 
         });
         llSetting.setOnClickListener(view -> {
             startActivity(new Intent(PostNewProduct.this,ShopOwner.class));
         });
-        llProfile.setOnClickListener(view -> {
+        llProduct.setOnClickListener(view -> {
 //            startActivity(new Intent(PostNewProduct.this,PostNewProduct.class));
         });
         btn_selectedimage.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +91,7 @@ public class PostNewProduct extends AppCompatActivity {
             }
         });
         img_home.setOnClickListener(View->{
-            Intent intent = new Intent(PostNewProduct.this,Home.class);
+            Intent intent = new Intent(PostNewProduct.this,Home1.class);
             startActivity(intent);
         });
     }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class ProductDetail  extends AppCompatActivity {
     private TextView tv_nameBook,tv_price,tv_author,tv_isbn,tv_description;
-    private ImageView img,img_Home,img_Notification,img_Search,img_Setting,img_Profile;
+    private ImageView img;
 
 
     @SuppressLint("MissingInflatedId")
@@ -54,14 +54,14 @@ public class ProductDetail  extends AppCompatActivity {
 
         });
         llSetting.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Setting.class));
+           startActivity(new Intent(ProductDetail.this,Settings.class));
         });
         llProfile.setOnClickListener(view -> {
-//           startActivity(new Intent(Home.this,Profile.class));
+           startActivity(new Intent(ProductDetail.this,Profile.class));
         });
         Intent  intent = getIntent();
         String source = intent.getStringExtra("source");
-        if("gridview1".equals(source)) {
+        if("grv1".equals(source)) {
             int image = intent.getIntExtra("image", 0);
             double price = intent.getDoubleExtra("price", 0);
             String name = intent.getStringExtra("name");
@@ -74,7 +74,7 @@ public class ProductDetail  extends AppCompatActivity {
             tv_author.setText(author);
             tv_description.setText(description);
             tv_isbn.setText(ISBN);
-        }else if("gridview2".equals(source)){
+        }else if("grv2".equals(source)){
             int image = intent.getIntExtra("image1", 0);
             double price = intent.getDoubleExtra("price1", 0);
             String name = intent.getStringExtra("name1");
@@ -129,14 +129,5 @@ public class ProductDetail  extends AppCompatActivity {
 //        tv_author.setText(author2);
 //        tv_description.setText(description2);
 //        tv_isbn.setText(ISBN2);
-
-
-        img_Home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductDetail.this, Home.class);
-                startActivity(intent);
-            }
-        });
     }
 }

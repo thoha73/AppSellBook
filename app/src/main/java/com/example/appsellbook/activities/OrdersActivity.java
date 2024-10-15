@@ -1,6 +1,8 @@
 package com.example.appsellbook.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,30 @@ public class OrdersActivity extends AppCompatActivity {
 
         OrdersAdapter ordersAdapter = new OrdersAdapter(this, R.layout.order_item, ordersList);
         listView.setAdapter(ordersAdapter);
+        LinearLayout llHome,llNotification,llSetting,llSearch,llProduct;
+
+        llHome=findViewById(R.id.ll_home);
+        llNotification=findViewById(R.id.ll_notification);
+        llSearch=findViewById(R.id.ll_search);
+        llSetting=findViewById(R.id.ll_settings);
+        llProduct=findViewById(R.id.ll_product);
+        llHome.setOnClickListener(view -> {
+            startActivity(new Intent(OrdersActivity.this,Home1.class));
+        });
+        llNotification.setOnClickListener(view -> {
+            startActivity(new Intent(OrdersActivity.this,OwnerNotification.class));
+        });
+        llSearch.setOnClickListener(view -> {
+            startActivity(new Intent(OrdersActivity.this,Home1.class));
+
+        });
+        llSetting.setOnClickListener(view -> {
+            startActivity(new Intent(OrdersActivity.this, ShopOwner.class));
+        });
+        llProduct.setOnClickListener(view -> {
+            startActivity(new Intent(OrdersActivity.this,PostNewProduct.class));
+        });
     }
+
 }
 

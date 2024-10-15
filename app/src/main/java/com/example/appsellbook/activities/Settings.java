@@ -67,7 +67,9 @@ public class Settings extends AppCompatActivity {
             startActivity(new Intent(Settings.this,EditProfile.class));
         });
         btnChangePassword.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this,ChangePassword.class));
+            Intent intent = new Intent(Settings.this, ChangePassword.class);
+            intent.putExtra("role", "user");
+            startActivity(intent);
         });
         btnMyHictory.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this,History.class));

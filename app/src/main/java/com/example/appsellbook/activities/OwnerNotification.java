@@ -58,13 +58,13 @@ public class OwnerNotification extends AppCompatActivity {
         img_back.setOnClickListener(v->finish());
 
         llHome.setOnClickListener(view -> {
-
+            startActivity(new Intent(OwnerNotification.this,Home1.class));
         });
         llNotification.setOnClickListener(view -> {
-            startActivity(new Intent(OwnerNotification.this,Notification.class));
+//            startActivity(new Intent(OwnerNotification.this,Notification.class));
         });
         llSearch.setOnClickListener(view -> {
-            startActivity(new Intent(OwnerNotification.this,Home.class));
+            startActivity(new Intent(OwnerNotification.this,Home1.class));
 
         });
         llSetting.setOnClickListener(view -> {
