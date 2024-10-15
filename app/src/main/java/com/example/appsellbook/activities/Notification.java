@@ -48,6 +48,7 @@ public class Notification extends AppCompatActivity {
 
         list.add(new com.example.appsellbook.model.Notification("Giảm giá đến 15% cho ngày 11/11",df.format(calendar.getTime()),false));
         list.add(new com.example.appsellbook.model.Notification("Giảm giá đến 10% cho ngày 12/11",df.format(calendar.getTime()),false));
+        list.add(new com.example.appsellbook.model.Notification("Đơn hàng của bạn đã được xác nhận! Vui lòng chú ý điện thoại để nhận hàng.",df.format(calendar.getTime()),false));
         NotificationUserAdapter notificationUserAdapter= new NotificationUserAdapter(this,R.layout.layout_item_notification,list);
         lv_Notification.setAdapter(notificationUserAdapter);
         llHome.setOnClickListener(view -> {
