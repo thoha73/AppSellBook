@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.appsellbook.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ChangePassword extends AppCompatActivity {
+public class ChangePassword2 extends AppCompatActivity {
     String role;
 
     BottomNavigationView bottom_NavigationView;
@@ -27,7 +27,7 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_change_password);
+        setContentView(R.layout.activity_change_password2);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -50,33 +50,34 @@ public class ChangePassword extends AppCompatActivity {
 //            tv_profile.setText("Profile");
 //        }
 
-        bottom_NavigationView = findViewById(R.id.bottom_navigation);
-        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        BottomNavigationView bottom_NavigationView2;
+        bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if(id==R.id.menu_home){
-                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
                 if(id==R.id.menu_notification){
-                    startActivity(new Intent(getApplicationContext(), Notification.class));
+                    startActivity(new Intent(getApplicationContext(), OwnerNotification.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
                 if(id==R.id.menu_search){
-                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    startActivity(new Intent(getApplicationContext(), Home1.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
                 if(id==R.id.menu_setting){
-                    startActivity(new Intent(getApplicationContext(), Settings.class));
+                    startActivity(new Intent(getApplicationContext(), ShopOwner.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
-                if(id==R.id.menu_profile){
-                    startActivity(new Intent(getApplicationContext(), Profile.class));
+                if(id==R.id.menu_product){
+                    startActivity(new Intent(getApplicationContext(), PostNewProduct.class));
                     overridePendingTransition(0,0);
                     return  true;
                 }
@@ -125,3 +126,4 @@ public class ChangePassword extends AppCompatActivity {
 //        }
 //    }
 }
+

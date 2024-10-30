@@ -42,7 +42,7 @@ public class ShopOwner extends AppCompatActivity {
             startActivity(intent);
         });
         ln4.setOnClickListener(v->{
-            Intent intent = new Intent(ShopOwner.this, ChangePassword.class);
+            Intent intent = new Intent(ShopOwner.this, ChangePassword2.class);
 //            intent.putExtra("role","shop");
             startActivity(intent);
         });
@@ -53,6 +53,7 @@ public class ShopOwner extends AppCompatActivity {
 
         BottomNavigationView bottom_NavigationView2;
         bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setSelectedItemId(R.id.menu_setting);
         bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

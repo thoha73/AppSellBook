@@ -41,8 +41,12 @@ public class PostNewProduct extends AppCompatActivity {
         btn_POST = findViewById(R.id.btn_Post);
         edtbookName = findViewById(R.id.editTextbookname);
 
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
         BottomNavigationView bottom_NavigationView2;
         bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setSelectedItemId(R.id.menu_product);
         bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

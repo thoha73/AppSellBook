@@ -24,17 +24,17 @@
             android:id="@+id/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Người đặt hàng:"
             android:textColor="#D02C2C"
             android:textSize="16sp"
-            android:text="Order:"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/detail_text"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="13sp"
-            android:text="Jenny Huynh"/>
+            android:text="Jenny Huỳnh"
+            android:textSize="13sp" />
 
     </LinearLayout>
 

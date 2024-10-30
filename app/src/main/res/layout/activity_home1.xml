@@ -21,10 +21,10 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Home"
-                android:textSize="35sp"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"/>
+                android:text="Trang Chủ"
+                android:textSize="35sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -43,11 +43,11 @@
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Discover"
-                android:textSize="25sp"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="8sp"
-                android:textStyle="bold"/>
+                android:text="Khám phá"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <!-- New section -->
             <LinearLayout
@@ -61,20 +61,20 @@
                     android:id="@+id/tv_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:text="Mới"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_showallNew"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Show all"
-                    android:textStyle="italic"
-                    android:textSize="16sp"
+                    android:layout_marginRight="20dp"
                     android:gravity="right"
+                    android:text="xem tất cả"
                     android:textColor="#085FE0"
-                    android:layout_marginRight="20dp" />
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <GridView
@@ -98,20 +98,20 @@
                     android:id="@+id/tv_popular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Popular"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:text="Phổ biến"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_showallPopular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Show all"
-                    android:textStyle="italic"
-                    android:textSize="16sp"
+                    android:layout_marginRight="20dp"
                     android:gravity="right"
+                    android:text="xem tất cả"
                     android:textColor="#085FE0"
-                    android:layout_marginRight="20dp" />
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <GridView
@@ -135,20 +135,20 @@
                     android:id="@+id/tv_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category"
-                    android:textStyle="bold"
-                    android:textSize="20sp" />
+                    android:text="Thể loại"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_showallCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Show all"
-                    android:textStyle="italic"
-                    android:textSize="16sp"
+                    android:layout_marginRight="20dp"
                     android:gravity="right"
+                    android:text="xem tất cả"
                     android:textColor="#085FE0"
-                    android:layout_marginRight="20dp" />
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <GridView

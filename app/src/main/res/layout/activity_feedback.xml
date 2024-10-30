@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Feedback"
+                android:text="Đánh giá"
                 android:textColor="#FFFFFF"
                 android:textSize="30dp"
                 android:textStyle="bold" />
@@ -66,7 +66,7 @@
             android:paddingLeft="20dp"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
-            android:text="What's your rate ?"
+            android:text="Mức độ hài lòng về sản phẩm"
             />
 
         <RatingBar
@@ -87,25 +87,26 @@
             android:paddingLeft="20dp"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
-            android:text="What's can we improve ?"
+            android:text="Nhận xét về sản phẩm "
             />
 
         <EditText
             android:id="@+id/editTextTextMultiLine"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Write your feedback here!!!"
             android:layout_marginLeft="20dp"
-            android:textSize="15sp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bk_inputfeedback"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Viết nhận xét của bạn vào đây !!!"
+            android:inputType="textMultiLine"
             android:paddingLeft="20dp"
             android:paddingTop="15dp"
-            android:ems="10"
-            android:background="@drawable/bk_inputfeedback"
-            app:backgroundTint="@null"
-            android:gravity="start|top"
             android:scrollbars="vertical"
-            android:inputType="textMultiLine" />
+            android:textSize="15sp"
+            app:backgroundTint="@null" />
 
         <Button
             android:layout_width="wrap_content"
@@ -115,7 +116,7 @@
             android:background="@drawable/button_orange"
             app:backgroundTint="@null"
             android:textSize="20sp"
-            android:text="Submit"/>
+            android:text="Đánh giá"/>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

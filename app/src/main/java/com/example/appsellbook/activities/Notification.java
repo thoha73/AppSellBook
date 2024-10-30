@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -50,6 +51,11 @@ public class Notification extends AppCompatActivity {
         list.add(new com.example.appsellbook.model.Notification("Đơn hàng của bạn đã được xác nhận! Vui lòng chú ý điện thoại để nhận hàng.",df.format(calendar.getTime()),false));
         NotificationUserAdapter notificationUserAdapter= new NotificationUserAdapter(this,R.layout.layout_item_notification,list);
         lv_Notification.setAdapter(notificationUserAdapter);
+
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
+
         BottomNavigationView bottom_NavigationView;
         bottom_NavigationView = findViewById(R.id.bottom_navigation);
         bottom_NavigationView.setSelectedItemId(R.id.menu_notification);

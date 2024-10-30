@@ -34,6 +34,11 @@ public class ProductDetail  extends AppCompatActivity {
         tv_description = findViewById(R.id.textViewContentDescription);
         tv_isbn = findViewById(R.id.textViewContentISBN);
         btn_review = findViewById(R.id.btn_review);
+        ImageView img_cart;
+        img_cart = findViewById(R.id.imageView3);
+        img_cart.setOnClickListener(view -> {
+            startActivity(new Intent(ProductDetail.this, Cart.class));
+        });
         Intent intent = getIntent();
         ImageView img_heart = findViewById(R.id.imageView2);
         img_heart.setOnClickListener(v -> {

@@ -58,6 +58,7 @@ public class OwnerNotification extends AppCompatActivity {
 
         BottomNavigationView bottom_NavigationView2;
         bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setSelectedItemId(R.id.menu_notification);
         bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -44,37 +45,46 @@ public class Cart extends AppCompatActivity {
         cartList.add(new Carts(R.drawable.img_sucmanhtiemthuc, "Sức mạnh tiềm thức (Tái bản năm 2021)", "100.000 đ"));
         CartsAdapter adapter = new CartsAdapter(this, R.layout.cart_item, cartList);
         listView.setAdapter(adapter);
+        Button btnOrder = findViewById(R.id.btn_order);
+        btnOrder.setOnClickListener(v -> {
+            Intent intent = new Intent(Cart.this,OrderTotal.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
 
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
         BottomNavigationView bottom_NavigationView;
         bottom_NavigationView = findViewById(R.id.bottom_navigation);
         bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if(id==R.id.menu_home){
+                if (id == R.id.menu_home) {
                     startActivity(new Intent(getApplicationContext(), Home.class));
-                    overridePendingTransition(0,0);
-                    return  true;
+                    overridePendingTransition(0, 0);
+                    return true;
                 }
-                if(id==R.id.menu_notification){
+                if (id == R.id.menu_notification) {
                     startActivity(new Intent(getApplicationContext(), Notification.class));
-                    overridePendingTransition(0,0);
-                    return  true;
+                    overridePendingTransition(0, 0);
+                    return true;
                 }
-                if(id==R.id.menu_search){
+                if (id == R.id.menu_search) {
                     startActivity(new Intent(getApplicationContext(), Home.class));
-                    overridePendingTransition(0,0);
-                    return  true;
+                    overridePendingTransition(0, 0);
+                    return true;
                 }
-                if(id==R.id.menu_setting){
+                if (id == R.id.menu_setting) {
                     startActivity(new Intent(getApplicationContext(), Settings.class));
-                    overridePendingTransition(0,0);
-                    return  true;
+                    overridePendingTransition(0, 0);
+                    return true;
                 }
-                if(id==R.id.menu_profile){
+                if (id == R.id.menu_profile) {
                     startActivity(new Intent(getApplicationContext(), Profile.class));
-                    overridePendingTransition(0,0);
-                    return  true;
+                    overridePendingTransition(0, 0);
+                    return true;
                 }
                 return false;
             }

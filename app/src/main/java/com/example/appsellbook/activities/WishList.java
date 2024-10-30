@@ -34,7 +34,7 @@ public class WishList extends AppCompatActivity {
         setContentView(R.layout.activity_wish_list);
 
         listViewWishlist = findViewById(R.id.listView_WishList);
-        img_back = findViewById(R.id.img_back);
+        img_back = findViewById(R.id.imageV_back);
         img_back.setOnClickListener(view -> finish());
         wishlistItems = new ArrayList<>();
 

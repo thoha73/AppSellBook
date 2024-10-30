@@ -27,7 +27,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Orders Detail"
+            android:text="Chi tiết đơn hàng"
             android:textSize="30sp"
             android:textColor="@android:color/white"
             android:layout_marginStart="55dp"
@@ -49,22 +49,24 @@
         android:layout_below="@+id/order_details_list"
         android:layout_marginTop="20dp"
         >
+
         <Button
             android:id="@+id/btn_cancelorder"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:text="Cancel order"
-            android:backgroundTint="#C10C0C"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="#C10C0C"
+            android:text="Hủy đơn " />
+
         <Button
             android:id="@+id/btn_confirmorder"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:text="Order Confirm"
-            android:backgroundTint="#4CAF50"/>
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#4CAF50"
+            android:text="Xác nhận đơn" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

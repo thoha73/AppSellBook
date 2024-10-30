@@ -25,7 +25,7 @@
             android:id="@+id/orders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Orderer:Jenny Huynh"
+            android:text="Người đặt hàng:Jenny Huỳnh"
             android:textColor="#D02C2C"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -34,16 +34,16 @@
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Order content:How to Win Friends and Influence People (Total number of products: 1)"
+            android:text="Nội dung đơn hàng:How to Win Friends and Influence People (Tổng só sản phẩm:1)"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/viewdetail"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:layout_gravity="end"
-            android:text="View Details"
+            android:layout_marginTop="3dp"
+            android:text="Xem chi tiết"
             android:textColor="#2CC43B" />
     </LinearLayout>
 

@@ -30,18 +30,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tho Ha"
+                    android:text="User01"
                     android:textColor="#2C5086"
                     android:textSize="30sp" />
                 <TextView
                     android:id="@+id/user_role"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User"
+                    android:text="Người dùng"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -69,17 +70,17 @@
                 android:layout_marginBottom="25dp"
                 android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/ic_notifications"
-                android:text="Notification"
+                android:text="Thông báo"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btn_mycart"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:drawableLeft="@drawable/ic_cart"
-                android:text="My Cart"
+                android:text="Giỏ hàng"
                 android:textAlignment="textStart"
                 android:textSize="20dp"
                 android:textColor="@color/black"
@@ -92,7 +93,7 @@
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:drawableLeft="@drawable/ic_hictory"
-                android:text="My Hictory"
+                android:text="Lịch sử"
                 android:textAlignment="textStart"
                 android:textSize="20dp"
                 android:textColor="@color/black"
@@ -105,7 +106,7 @@
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:drawableLeft="@drawable/ic_changepassword"
-                android:text="Change password"
+                android:text="Thay đổi mật khẩu"
                 android:textAlignment="textStart"
                 android:textSize="20dp"
                 android:textColor="@color/black"
@@ -121,7 +122,7 @@
                 android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/ic_edit"
                 android:drawablePadding="16dp"
-                android:text="Edit profile"
+                android:text="Chỉnh sửa hồ sơ"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
@@ -137,7 +138,7 @@
                 android:backgroundTint="#F5F5F5"
                 android:drawableRight="@drawable/ic_logout"
                 android:textSize="27sp"
-                android:text="Log out"
+                android:text="Đăng xuất"
                 android:textAlignment="textEnd"
                 android:textColor="#FF5722" />
         </LinearLayout>

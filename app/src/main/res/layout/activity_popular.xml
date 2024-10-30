@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Popular"
+                android:text="Phổ biến"
                 android:textColor="#FFFFFF"
                 android:textSize="30dp"
                 android:textStyle="bold" />
@@ -43,14 +43,14 @@
             android:layout_marginBottom="10dp"
             />
     </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu"
         android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
         android:background="#D5D1D1"
-        />
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu" />
 
 </RelativeLayout>

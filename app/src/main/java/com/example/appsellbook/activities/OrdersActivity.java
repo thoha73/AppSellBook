@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -29,17 +30,20 @@ public class OrdersActivity extends AppCompatActivity {
 
 
         List<Orders> ordersList = new ArrayList<>();
-        ordersList.add(new Orders(R.drawable.img_orderer, "Orderer:Jenny Huynh", "Order content:How to Win Friends and Influence People (Total number of products: 1)"));
-        ordersList.add(new Orders(R.drawable.img_order1, "Orderer:John Doe", "Order content:The Power of Habit (Total number of products: 2)"));
-        ordersList.add(new Orders(R.drawable.img_order2, "Orderer:Alice Smith", "Order content:Clean Code (Total number of products: 3)"));
-        ordersList.add(new Orders(R.drawable.img_order3, "Orderer:Bob Johnson", "Order content:Atomic Habits (Total number of products: 1)"));
-        ordersList.add(new Orders(R.drawable.img_order4, "Orderer:Emma Brown", "Order content:The Pragmatic Programmer (Total number of products: 4)"));
-        ordersList.add(new Orders(R.drawable.img_orderer, "Orderer:Lucas Green", "Order content:You Don't Know JS (Total number of products: 1)"));
+        ordersList.add(new Orders(R.drawable.img_orderer, "Người đặt hàng:Jenny Huynh", "Nội dung đặt hàng: How to Win Friends and Influence People (Tổng sản phẩm: 1)"));
+        ordersList.add(new Orders(R.drawable.img_order1, "Người đặt hàng:John Doe", "Nội dung đặt hàng: The Power of Habit (Tổng sản phẩm: 2)"));
+        ordersList.add(new Orders(R.drawable.img_order2, "Người đặt hàng:Alice Smith", "Nội dung đặt hàng: Clean Code (Tổng sản phẩm: 3)"));
+        ordersList.add(new Orders(R.drawable.img_order3, "Người đặt hàng:Bob Johnson", "Nội dung đặt hàng: Atomic Habits (Tổng sản phẩm: 1)"));
+        ordersList.add(new Orders(R.drawable.img_order4, "Người đặt hàng:Emma Brown", "Nội dung đặt hàng: The Pragmatic Programmer (Tổng sản phẩm: 4)"));
+        ordersList.add(new Orders(R.drawable.img_orderer, "Người đặt hàng:Lucas Green", "Nội dung đặt hàng: You Don't Know JS (Tổng sản phẩm: 1)"));
 
 
         OrdersAdapter ordersAdapter = new OrdersAdapter(this, R.layout.order_item, ordersList);
         listView.setAdapter(ordersAdapter);
 
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
         BottomNavigationView bottom_NavigationView2;
         bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
         bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

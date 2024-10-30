@@ -19,6 +19,7 @@
             android:paddingLeft="10dp">
 
             <ImageView
+                android:id="@+id/imageV_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/arrow_back"
@@ -28,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Notification"
+                android:text="Thông báo"
                 android:textColor="#FFFFFF"
                 android:textSize="30dp"
                 android:textStyle="bold" />
@@ -59,7 +60,7 @@
                     android:layout_marginLeft="10dp"
                     android:textStyle="bold"
                     android:textSize="40sp"
-                    android:text="All" />
+                    android:text="Tất cả" />
             </LinearLayout>
 
             <LinearLayout
@@ -80,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="#3F51B5"
-                    android:text="Delete all" />
+                    android:text="Xóa tất cả" />
             </LinearLayout>
 
         </LinearLayout>

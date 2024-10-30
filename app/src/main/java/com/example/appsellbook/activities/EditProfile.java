@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +29,11 @@ public class EditProfile extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
+
         BottomNavigationView bottom_NavigationView;
         bottom_NavigationView = findViewById(R.id.bottom_navigation);
         bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

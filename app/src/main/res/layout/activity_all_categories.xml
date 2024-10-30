@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="All categories"
+                android:text="Tất cả thể loại"
                 android:textColor="#FFFFFF"
                 android:textSize="30dp"
                 android:textStyle="bold" />

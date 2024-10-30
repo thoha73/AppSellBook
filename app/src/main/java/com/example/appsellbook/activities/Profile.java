@@ -30,6 +30,9 @@ public class Profile extends AppCompatActivity {
             return insets;
         });
         Button btnChange=findViewById(R.id.change_button);
+        btnChange.setOnClickListener(view -> {
+            startActivity(new Intent(Profile.this, EditProfile.class));
+        });
         BottomNavigationView bottom_NavigationView;
         bottom_NavigationView = findViewById(R.id.bottom_navigation);
         bottom_NavigationView.setSelectedItemId(R.id.menu_profile);

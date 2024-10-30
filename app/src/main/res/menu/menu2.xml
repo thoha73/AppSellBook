@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Home"
+        android:title="Trang chủ"
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home"
         />
     <item
-        android:title="Notification"
+        android:title="Thông báo"
         android:id="@+id/menu_notification"
         android:icon="@drawable/ic_notifications"
 
@@ -14,13 +14,13 @@
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/baseline_search_24"
-        android:title="Search" />
+        android:title="Tìm kiếm" />
     <item
         android:id="@+id/menu_setting"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Setting" />
+        android:title="Cài đặt" />
     <item
         android:id="@+id/menu_product"
         android:icon="@drawable/book_solid"
-        android:title="Product" />
+        android:title="Sản phẩm" />
 </menu>

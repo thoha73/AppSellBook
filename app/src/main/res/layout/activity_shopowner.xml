@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingTop="10dp"
-                    android:text="Admin"
+                    android:text="Chủ Cửa Hàng"
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -55,6 +55,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingLeft="20dp"
         android:layout_width="409dp"
         android:layout_height="644dp"
         android:orientation="vertical">
@@ -64,7 +65,7 @@
             android:layout_width="315dp"
             android:layout_height="57dp"
             android:layout_marginTop="170dp"
-            android:layout_marginLeft="45dp"
+
             android:background="@drawable/bk_buttonsetting"
             android:orientation="horizontal">
 
@@ -78,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="20dp"
                 android:paddingTop="13dp"
-                android:text="Notification"
+                android:text="Thông báo"
                 android:textSize="24dp" />
 
             <ImageView
@@ -92,7 +93,6 @@
             android:layout_width="315dp"
             android:layout_height="57dp"
             android:layout_marginTop="40dp"
-            android:layout_marginLeft="45dp"
             android:background="@drawable/bk_buttonsetting"
             android:orientation="horizontal">
 
@@ -106,7 +106,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="20dp"
                 android:paddingTop="13dp"
-                android:text="Order"
+                android:text="Đơn đặt hàng"
                 android:textSize="24dp" />
 
             <ImageView
@@ -119,7 +119,6 @@
             android:id="@+id/linearLayoutPostP"
             android:layout_width="315dp"
             android:layout_height="57dp"
-            android:layout_marginLeft="45dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/bk_buttonsetting"
             android:orientation="horizontal">
@@ -134,7 +133,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="20dp"
                 android:paddingTop="13dp"
-                android:text="Post product"
+                android:text="Đăng sản phẩm"
                 android:textSize="24dp" />
 
             <ImageView
@@ -148,7 +147,7 @@
             android:layout_width="315dp"
             android:layout_height="57dp"
             android:layout_marginTop="40dp"
-            android:layout_marginLeft="45dp"
+
             android:background="@drawable/bk_buttonsetting"
             android:orientation="horizontal">
 
@@ -162,7 +161,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="20dp"
                 android:paddingTop="13dp"
-                android:text="Change password"
+                android:text="Đổi mật khẩu"
                 android:textSize="24dp" />
 
             <ImageView
@@ -195,7 +194,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Log Out"
+                android:text="Đăng Xuất"
                 android:textColor="#CD510B"
                 android:textSize="24dp"
                 android:paddingTop="10dp"/>

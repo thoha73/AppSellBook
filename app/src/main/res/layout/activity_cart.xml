@@ -16,7 +16,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:id="@+id/back_button"
+            android:id="@+id/imageV_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Back"
@@ -26,9 +26,9 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:gravity="center"
-            android:text="Cart"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="85dp"
+            android:text="Giỏ hàng"
             android:textColor="@android:color/white"
             android:textSize="30sp" />
     </LinearLayout>
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="All"
+                android:text="Tất cả"
                 android:textColor="@android:color/black" />
 
             <LinearLayout
@@ -87,7 +87,7 @@
                     android:id="@+id/totalPaymentLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total payment"
+                    android:text="Tổng thanh toán"
                     android:textColor="@android:color/black" />
 
                 <TextView
@@ -108,7 +108,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:backgroundTint="@android:color/holo_red_dark"
-            android:text="Order"
+            android:text="Đặt hàng"
             android:textColor="@android:color/white" />
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView

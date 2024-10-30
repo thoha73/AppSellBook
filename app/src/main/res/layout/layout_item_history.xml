@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
+            android:paddingLeft="10dp"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tv_bookName"
@@ -51,7 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold"
                         android:text="Tổng số tiền ("
                         />
@@ -60,7 +60,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold"
                         android:text="1 "
                         />
@@ -69,7 +69,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold"
                         android:text=" sản phẩm )"
                         />
@@ -93,7 +93,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="38dp"
         android:layout_marginTop="15dp"
         android:paddingLeft="10dp"
         android:layout_marginBottom="10dp"
@@ -105,8 +105,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/bk_purchase_small"
             android:maxHeight="20dp"
-            android:text="Purchase"
-            android:textSize="16sp"
+            android:text="Mua lại"
+            android:textSize="14sp"
             app:backgroundTint="@null" />
 
         <Button
@@ -114,9 +114,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/bk_feedback_small"
-            android:text="Feedback"
+            android:text="Đánh giá"
             android:layout_marginLeft="10dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:backgroundTint="@null" />
 
     </LinearLayout>

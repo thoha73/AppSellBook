@@ -27,7 +27,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Elsa has submitted one review for an order"
+            android:text="Elsa đã gửi một đánh giá cho một đơn hàng"
             android:textSize="12dp" />
 
         <LinearLayout
@@ -44,14 +44,15 @@
                 android:gravity="bottom|center"
                 android:layout_gravity="center"
                 />
+
             <TextView
                 android:id="@+id/tv_Orderdetails"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Order details"
                 android:gravity="center"
-                android:textSize="12dp"
-                android:textColor="#387FD2"/>
+                android:text="Chi tiết "
+                android:textColor="#387FD2"
+                android:textSize="12dp" />
         </LinearLayout>
 
     </LinearLayout>

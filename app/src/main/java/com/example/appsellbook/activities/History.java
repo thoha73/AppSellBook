@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -39,6 +40,11 @@ public class History extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
+
         lv_OrderHistory = findViewById(R.id.lv_OrderHistory);
         Book book1= new Book(1,R.drawable.book1,"Sách động lực");
         Book book2= new Book(2,R.drawable.book3,"Sách động lực");

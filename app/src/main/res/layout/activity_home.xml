@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Home"
+                android:text="Trang Chủ"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="8sp"
-                android:text="Discover"
+                android:text="Khám Phá"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
                     android:id="@+id/tv_new"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New"
+                    android:text="Mới"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:gravity="right"
-                    android:text="Show all"
+                    android:text="xem tất cả"
                     android:textColor="#085FE0"
                     android:textSize="16sp"
                     android:textStyle="italic" />
@@ -98,7 +98,7 @@
                     android:id="@+id/tv_popular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Popular"
+                    android:text="Phổ biến"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:gravity="right"
-                    android:text="Show all"
+                    android:text="xem tất cả"
                     android:textColor="#085FE0"
                     android:textSize="16sp"
                     android:textStyle="italic" />
@@ -135,7 +135,7 @@
                     android:id="@+id/tv_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category"
+                    android:text="Thể loại"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
                     android:gravity="right"
-                    android:text="Show all"
+                    android:text="xem tất cả"
                     android:textColor="#085FE0"
                     android:textSize="16sp"
                     android:textStyle="italic" />

@@ -1,20 +1,25 @@
 package com.example.appsellbook.activities;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appsellbook.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,6 +28,7 @@ import java.io.OutputStream;
 public class Review extends AppCompatActivity {
     private ImageView imageView1,imageView2,imageView3;
     private Button btn_download;
+    @SuppressLint("MissinginFlatedID")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,44 @@ public class Review extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 downloadImages();
+            }
+        });
+
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
+        BottomNavigationView bottom_NavigationView;
+        bottom_NavigationView = findViewById(R.id.bottom_navigation);
+        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id==R.id.menu_home){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_notification){
+                    startActivity(new Intent(getApplicationContext(), Notification.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_search){
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_setting){
+                    startActivity(new Intent(getApplicationContext(), Settings.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                if(id==R.id.menu_profile){
+                    startActivity(new Intent(getApplicationContext(), Profile.class));
+                    overridePendingTransition(0,0);
+                    return  true;
+                }
+                return false;
             }
         });
     }

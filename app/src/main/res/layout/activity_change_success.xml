@@ -14,34 +14,16 @@
         android:src="@drawable/changesuccess" />
 
     <Button
+        android:id="@+id/btn_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_donechange"
         app:backgroundTint="@null"
         android:layout_gravity="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="110dp"
-        android:text="DONE"/>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/menu"
-        android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
-        android:background="#D5D1D1"
-        />
-
-
-
-
-
-
-
-
-
-
+        android:text="Xong"/>
 
 </RelativeLayout>

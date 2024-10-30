@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Information"
+            android:text="Hồ sơ"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -57,7 +57,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
-                        android:text="Name:"
+                        android:text="Tên:"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
-                        android:text="Gender:"
+                        android:text="Giới tính:"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -113,7 +113,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
-                        android:text="Date of birth:"
+                        android:text="Ngày sinh:"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -141,7 +141,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
-                        android:text="Phone:"
+                        android:text="Số điện thoại:"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -197,7 +197,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingEnd="8dp"
-                        android:text="Address:"
+                        android:text="Địa chỉ:"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -219,7 +219,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="#FFA726"
-                    android:text="Save"
+                    android:text="Lưu"
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
             </LinearLayout>

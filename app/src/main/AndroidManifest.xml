@@ -8,8 +8,8 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/icon_logo"
+        android:label="HKVBOOK"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppSellBook"
@@ -40,6 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.Feedback"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".activities.History"
@@ -119,7 +120,9 @@
         <activity
             android:name=".activities.Review"
             android:exported="false" />
-
+        <activity
+            android:name=".activities.ChangePassword2"
+            android:exported="false" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
