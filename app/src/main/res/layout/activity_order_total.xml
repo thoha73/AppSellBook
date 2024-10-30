@@ -6,10 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="81dp"
@@ -34,7 +38,7 @@
         <ListView
             android:id="@+id/listview_ordertotal"
             android:layout_width="match_parent"
-            android:layout_height="142dp" />
+            android:layout_height="109dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,6 +87,41 @@
                 android:textSize="15dp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="7dp"
+                android:layout_weight="1"
+                android:text="Pay with Reward Points"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-10.000đ"
+                android:textColor="#DEB8B7B3" />
+
+            <Switch
+                android:id="@+id/switchbtn_bypoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textOff=""
+                android:textOn=""
+                android:thumbTint="@color/white"
+                android:trackTint="#0DD90D" />
+
+        </LinearLayout>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -94,71 +133,93 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            >
+            android:layout_height="40dp">
+
             <TextView
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
                 android:text="Subtotal"
-                android:textSize="18dp"
-                android:layout_marginTop="8dp"
                 android:textColor="@color/black"
-                />
+                android:textSize="18dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="100.000 đ"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:text="100.000đ"
                 android:textColor="#BB2B2B"
-                />
+                android:textSize="15dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            >
+            android:layout_height="40dp">
+
             <TextView
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="Reward Points"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="-10.000đ"
+                android:textColor="#BB2B2B"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="280dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
                 android:text="Transport"
-                android:textSize="18dp"
-                android:layout_marginTop="8dp"
                 android:textColor="@color/black"
-                />
+                android:textSize="18dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="0 đ"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:text="0đ"
                 android:textColor="#BB2B2B"
-                />
+                android:textSize="15dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            >
+            android:layout_height="40dp">
+
             <TextView
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
-                android:text="Total"
-                android:textSize="18dp"
-                android:textStyle="bold"
                 android:layout_marginTop="8dp"
+                android:text="Total"
                 android:textColor="@color/black"
-                />
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="100.000 đ"
-                android:textSize="15dp"
                 android:gravity="center"
+                android:text="90.000đ"
                 android:textColor="#BB2B2B"
-                />
+                android:textSize="15dp" />
 
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -167,118 +228,111 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            >
+            android:layout_height="40dp">
+
             <TextView
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
-                android:text="Payment by cash"
-                android:textSize="18dp"
                 android:layout_marginTop="8dp"
+                android:text="Payment by cash"
                 android:textColor="@color/black"
-                />
+                android:textSize="18dp" />
+
             <Switch
                 android:id="@+id/switchbtn_bycash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
                 android:checked="true"
+                android:gravity="center"
                 android:textOff=""
                 android:textOn=""
-                android:trackTint="#0DD90D"
                 android:thumbTint="@color/white"
-                android:gravity="center"
-                android:layout_marginLeft="30dp"
-                />
+                android:trackTint="#0DD90D" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            >
+            android:layout_height="40dp">
+
             <TextView
                 android:layout_width="280dp"
                 android:layout_height="match_parent"
-                android:text="Payment by banking"
-                android:textSize="18dp"
                 android:layout_marginTop="8dp"
+                android:text="Payment by banking"
                 android:textColor="@color/black"
-                />
+                android:textSize="18dp" />
+
             <Switch
                 android:id="@+id/switchbtn_Banking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
                 android:checked="false"
+                android:gravity="center"
                 android:textOff=""
                 android:textOn=""
-                android:thumbTint="@color/white"
-                android:gravity="center"
-                android:layout_marginLeft="35dp"
-                />
+                android:thumbTint="@color/white" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            >
+            android:layout_height="40dp">
+
             <RadioButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:gravity="center"
-                />
+                android:gravity="center" />
+
             <TextView
                 android:layout_width="280dp"
                 android:layout_height="40dp"
-                android:text="Terms of use and sales of HKVBOOK"
-                android:textSize="14dp"
                 android:gravity="center"
+                android:text="Terms of use and sales of HKVBOOK"
                 android:textColor="@color/black"
-                />
+                android:textSize="14dp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            >
+            android:layout_height="40dp">
+
             <TextView
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
-                android:text="Total"
-                android:textSize="22dp"
-                android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="10dp"
+                android:text="Total"
                 android:textColor="@color/black"
-                />
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="100.000 đ"
-                android:textSize="22dp"
                 android:gravity="center"
+                android:text="90.000 đ"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                />
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
+
         <Button
             android:id="@+id/btn_purchase"
             android:layout_width="295dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:text="Purchase"
-            android:backgroundTint="#EA8713"
             android:layout_marginTop="10dp"
-            />
+            android:backgroundTint="#EA8713"
+            android:text="Purchase" />
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/menu"
-        android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
-        android:background="#D5D1D1"
-        />
+
 </RelativeLayout>
+

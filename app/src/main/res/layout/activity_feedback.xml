@@ -92,20 +92,20 @@
 
         <EditText
             android:id="@+id/editTextTextMultiLine"
-            android:layout_width="wrap_content"
+            android:layout_width="355dp"
             android:layout_height="wrap_content"
-            android:hint="Write your feedback here!!!"
             android:layout_marginLeft="20dp"
-            android:textSize="15sp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/bk_inputfeedback"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Write your feedback here!!!"
+            android:inputType="textMultiLine"
             android:paddingLeft="20dp"
             android:paddingTop="15dp"
-            android:ems="10"
-            android:background="@drawable/bk_inputfeedback"
-            app:backgroundTint="@null"
-            android:gravity="start|top"
             android:scrollbars="vertical"
-            android:inputType="textMultiLine" />
+            android:textSize="15sp"
+            app:backgroundTint="@null" />
 
         <Button
             android:layout_width="wrap_content"
