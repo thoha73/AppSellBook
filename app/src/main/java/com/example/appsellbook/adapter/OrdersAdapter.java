@@ -1,6 +1,7 @@
 package com.example.appsellbook.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.appsellbook.R;
+import com.example.appsellbook.activities.OrderdetailsActivity;
+import com.example.appsellbook.model.OrderDetail;
 import com.example.appsellbook.model.Orders;
 
 import java.util.List;
@@ -53,6 +56,7 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
             holder.img = convertView.findViewById(R.id.icon);
             holder.order = convertView.findViewById(R.id.orders);
             holder.content = convertView.findViewById(R.id.content);
+            holder.detail = convertView.findViewById(R.id.viewdetail);
             convertView.setTag(holder); // Lưu lại ViewHolder để tái sử dụng
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -64,15 +68,21 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
             holder.img.setImageResource(orders.getImg());
             holder.order.setText(orders.getOrderer());
             holder.content.setText(orders.getContent());
+            holder.detail.setOnClickListener(view -> {
+                Intent intent = new Intent(getContext(), OrderdetailsActivity.class);
+                intent.putExtra("img", orders.getImg());
+                intent.putExtra("orderer", orders.getOrderer());
+                intent.putExtra("content", orders.getContent());
+                getContext().startActivity(intent);
+            });
         }
 
         return convertView;
     }
-
-
     static class ViewHolder {
         ImageView img;
         TextView order;
         TextView content;
+        TextView detail;
     }
 }

@@ -30,12 +30,12 @@ public class OrdersActivity extends AppCompatActivity {
 
 
         List<Orders> ordersList = new ArrayList<>();
-        ordersList.add(new Orders(R.drawable.img_orderer, "Người đặt hàng:Jenny Huynh", "Nội dung đặt hàng: How to Win Friends and Influence People (Tổng sản phẩm: 1)"));
-        ordersList.add(new Orders(R.drawable.img_order1, "Người đặt hàng:John Doe", "Nội dung đặt hàng: The Power of Habit (Tổng sản phẩm: 2)"));
-        ordersList.add(new Orders(R.drawable.img_order2, "Người đặt hàng:Alice Smith", "Nội dung đặt hàng: Clean Code (Tổng sản phẩm: 3)"));
-        ordersList.add(new Orders(R.drawable.img_order3, "Người đặt hàng:Bob Johnson", "Nội dung đặt hàng: Atomic Habits (Tổng sản phẩm: 1)"));
-        ordersList.add(new Orders(R.drawable.img_order4, "Người đặt hàng:Emma Brown", "Nội dung đặt hàng: The Pragmatic Programmer (Tổng sản phẩm: 4)"));
-        ordersList.add(new Orders(R.drawable.img_orderer, "Người đặt hàng:Lucas Green", "Nội dung đặt hàng: You Don't Know JS (Tổng sản phẩm: 1)"));
+        ordersList.add(new Orders(R.drawable.img_orderer, "Jenny Huynh", "How to Win Friends and Influence People (Tổng sản phẩm: 1)"));
+        ordersList.add(new Orders(R.drawable.img_order1, "John Doe", " The Power of Habit (Tổng sản phẩm: 2)"));
+        ordersList.add(new Orders(R.drawable.img_order2, "Alice Smith", "Clean Code (Tổng sản phẩm: 3)"));
+        ordersList.add(new Orders(R.drawable.img_order3, "Bob Johnson", "Atomic Habits (Tổng sản phẩm: 1)"));
+        ordersList.add(new Orders(R.drawable.img_order4, "Emma Brown", "The Pragmatic Programmer (Tổng sản phẩm: 4)"));
+        ordersList.add(new Orders(R.drawable.img_orderer, "Lucas Green", "You Don't Know JS (Tổng sản phẩm: 1)"));
 
 
         OrdersAdapter ordersAdapter = new OrdersAdapter(this, R.layout.order_item, ordersList);

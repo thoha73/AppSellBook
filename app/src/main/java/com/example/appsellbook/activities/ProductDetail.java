@@ -112,9 +112,9 @@ public class ProductDetail  extends AppCompatActivity {
             img.setImageResource(image);
             tv_nameBook.setText(name);
             tv_price.setText(price + "");
-            tv_author.setText(author);
+            tv_author.setText("Tác giả: " + author);
             tv_description.setText(description);
-            tv_isbn.setText(ISBN);
+            tv_isbn.setText("ISBN: "+ ISBN);
         }else if("grv2".equals(source)){
             intent.putExtra("source1", "grv2");
             int image = intent.getIntExtra("image1", 0);
@@ -126,9 +126,9 @@ public class ProductDetail  extends AppCompatActivity {
             img.setImageResource(image);
             tv_nameBook.setText(name);
             tv_price.setText(price + "");
-            tv_author.setText(author);
+            tv_author.setText("Tác giả: " + author);
             tv_description.setText(description);
-            tv_isbn.setText(ISBN);
+            tv_isbn.setText("ISBN: "+ISBN);
         }else {
             int image = intent.getIntExtra("image2", 0);
             double price = intent.getDoubleExtra("price2", 0);
@@ -139,9 +139,9 @@ public class ProductDetail  extends AppCompatActivity {
             img.setImageResource(image);
             tv_nameBook.setText(name);
             tv_price.setText(price + "");
-            tv_author.setText(author);
+            tv_author.setText("Tác giả: " + author);
             tv_description.setText(description);
-            tv_isbn.setText(ISBN);
+            tv_isbn.setText("ISBN: " +ISBN);
         }
 
 //        Intent  intent1 = getIntent();

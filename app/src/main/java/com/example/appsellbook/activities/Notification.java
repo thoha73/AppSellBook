@@ -89,5 +89,11 @@ public class Notification extends AppCompatActivity {
                 return false;
             }
         });
+        LinearLayout ll_delete ;
+        ll_delete = findViewById(R.id.layout_delete);
+        ll_delete.setOnClickListener(view -> {
+            list.clear();
+            notificationUserAdapter.notifyDataSetChanged();
+        });
     }
 }

@@ -48,6 +48,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appsellbook.activities.HKVBook;
+import com.example.appsellbook.activities.InformationGroup;
 import com.example.appsellbook.activities.Login;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Chuyển sang Activity B sau 5 giây
-                Intent intent = new Intent(MainActivity.this, HKVBook.class);
+                Intent intent = new Intent(MainActivity.this, InformationGroup.class);
                 startActivity(intent);
                 // Đóng Activity hiện tại (nếu muốn)
                 finish();

@@ -23,6 +23,7 @@ import java.util.List;
 
 public class OwnerNotification extends AppCompatActivity {
     ImageView img_back;
+    LinearLayout ll_delete;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,12 @@ public class OwnerNotification extends AppCompatActivity {
                 }
                 return false;
             }
+        });
+        ll_delete = findViewById(R.id.ll_delete);
+        ll_delete.setOnClickListener(view -> {
+            name.clear();
+            adapter.notifyDataSetChanged();
+
         });
     }
 }

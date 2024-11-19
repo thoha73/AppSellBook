@@ -74,7 +74,7 @@
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="120dp"
         android:backgroundTint="#FFA500"
         android:text="Bắt đầu"
         android:textColor="#161515"
@@ -104,8 +104,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="40dp"
         android:backgroundTint="#F8E3CA"
         android:text="Tôi đã có tài khoản"
         android:textColor="#161515"
@@ -114,6 +114,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonsignup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

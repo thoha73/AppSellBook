@@ -72,7 +72,7 @@
                 android:id="@+id/tv_dateofbirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sinh nhật"
+                android:text="Ngày sinh"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 />
