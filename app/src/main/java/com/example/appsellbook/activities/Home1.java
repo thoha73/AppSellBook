@@ -71,9 +71,9 @@ public class Home1 extends AppCompatActivity {
         gridview3=findViewById(R.id.gridview3);
 
 
-        initGridView(listBook,image,nameBook,author,price,description,ISBN,gridview1);
-        initGridView(listBook1,image1,nameBook1,author1,price1,description1,ISBN1,gridview2);
-        initGridView(listBook2,image2,nameBook2,author2,price2,description2,ISBN2,gridview3);
+//        initGridView(listBook,image,nameBook,author,price,description,ISBN,gridview1);
+//        initGridView(listBook1,image1,nameBook1,author1,price1,description1,ISBN1,gridview2);
+//        initGridView(listBook2,image2,nameBook2,author2,price2,description2,ISBN2,gridview3);
 
         tv_category.setOnClickListener(view -> {
             startActivity(new Intent(Home1.this,AllCategories.class));
@@ -162,15 +162,15 @@ public class Home1 extends AppCompatActivity {
         });
 
     }
-    private void initGridView(ArrayList<Book> list,int img[],String nameBook[],String author[],double price[],String description[],String ISBN[],GridView grv){
-        grv.setPadding(10,10,10,20);
-        list=new ArrayList<>();
-        for(int i=0;i<img.length;i++){
-            list.add(new Book(img[i],nameBook[i],author[i],price[i],description[i],ISBN[i]));
-        }
-        myAdapter = new BookArrayAdapter(this,R.layout.layout_item_book,list);
-        grv.setAdapter(myAdapter);
-    }
+//    private void initGridView(ArrayList<Book> list,int img[],String nameBook[],String author[],double price[],String description[],String ISBN[],GridView grv){
+//        grv.setPadding(10,10,10,20);
+//        list=new ArrayList<>();
+//        for(int i=0;i<img.length;i++){
+//            list.add(new Book(img[i],nameBook[i],author[i],price[i],description[i],ISBN[i]));
+//        }
+//        myAdapter = new BookArrayAdapter(this,R.layout.layout_item_book,list);
+//        grv.setAdapter(myAdapter);
+//    }
     private void navigateToSettings() {
         if ("admin".equals(role)) {
             startActivity(new Intent(Home1.this, AdminDashboard.class));
