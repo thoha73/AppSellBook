@@ -9,14 +9,21 @@
 
 
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/li"
+        android:orientation="vertical"
+        >
         <LinearLayout
             android:id="@+id/LinearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
             android:background="#E9EAEF"
             android:orientation="vertical">
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/imageViewAvatar"
                 android:layout_width="416dp"
                 android:layout_height="272dp"
                 />
@@ -28,7 +35,7 @@
                 android:paddingLeft="10sp"
                 android:text="Third pronunciations of history"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -105,6 +112,9 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
                 android:text="Sách Third pronunciation of history thuộc thể loại self-help luôn dẫn đầu về lượng bán, nổi tiếng và có tầm ảnh hưởng rất lớn."
+                android:minLines="3"
+                android:maxLines="6"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -199,13 +209,28 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textColor="#673AB7"
+                android:text="Commentation"
+                android:textSize="24dp"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listview_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
     <LinearLayout
+        android:id="@+id/li"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#DBD9D9"
-        android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
         <LinearLayout
