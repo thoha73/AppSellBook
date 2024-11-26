@@ -1,11 +1,15 @@
 package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,6 +22,9 @@ import com.example.appsellbook.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EditProfile extends AppCompatActivity {
+    EditText edt_fullname, edt_dateofbirth, edt_email, edt_address, edt_phone;
+    RadioButton radio_nam, radio_nu;
+    Button buttonSave;
     @SuppressLint("MissinginFlatedID")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,15 @@ public class EditProfile extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        edt_fullname=findViewById(R.id.edt_fullname);
+        edt_dateofbirth=findViewById(R.id.edt_dateofbirth);
+        edt_email=findViewById(R.id.edt_email);
+        edt_address=findViewById(R.id.edt_address);
+        edt_phone=findViewById(R.id.edt_phone);
+        radio_nam=findViewById(R.id.radio_nam);
+        radio_nu=findViewById(R.id.radio_nu);
+        buttonSave=findViewById(R.id.buttonSave);
+
 
         ImageView img_back;
         img_back = findViewById(R.id.imageV_back);
@@ -68,6 +84,30 @@ public class EditProfile extends AppCompatActivity {
                 return false;
             }
         });
-
+        buttonSave.setOnClickListener(view -> {
+//            String gender="";
+//            if((edt_fullname.getText().toString().isEmpty())
+//                    ||(edt_dateofbirth.getText().toString().isEmpty())
+//                    ||(edt_email.getText().toString().isEmpty())
+//                    ||(edt_address.getText().toString().isEmpty())
+//                    ||(edt_phone.getText().toString().isEmpty())){
+//                new AlertDialog.Builder(this)
+//                        .setTitle("Thông báo")
+//                        .setMessage("Vui lònd điền đầy đủ thông tin!")
+//                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+//                        .show();
+//            }else {
+//                if (radio_nam.isChecked()) {
+//                    gender = "Nam";
+//                } else if (radio_nu.isChecked()) {
+//                    gender = "Nữ";
+//                }
+//                new AlertDialog.Builder(this)
+//                        .setTitle("Thông báo")
+//                        .setMessage("Cập nhật thành công!")
+//                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+//                        .show();
+//            }
+        });
     }
 }
