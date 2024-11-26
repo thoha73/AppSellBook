@@ -55,12 +55,7 @@ public class BookArrayAdapter extends ArrayAdapter<Book> {
         }
         TextView textView=convertView.findViewById(R.id.textView);
         textView.setText(book.getBookName());
-//        convertView.setOnClickListener(v -> {
-//            // Chuyển đến ProductDetailActivity và truyền dữ liệu về cuốn sách
-//            Intent intent = new Intent(context, ProductDetail.class);
-//            intent.putExtra("bookId", book.getBookId()); // Truyền ID của cuốn sách
-//            context.startActivity(intent);
-//        });
+
         return convertView;
     }
     private Bitmap decodeBase64ToBitmap(String base64String) {

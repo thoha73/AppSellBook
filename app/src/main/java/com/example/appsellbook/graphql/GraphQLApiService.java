@@ -7,6 +7,6 @@ import retrofit2.http.POST;
 
 public interface GraphQLApiService {
     @Headers("Content-Type: application/json")
-    @POST("http://192.168.1.7/appsellbook/graphql/")
+    @POST("http://192.168.1.10/appsellbook/graphql/")
     Call<GraphQLResponse<Object>> executeQuery(@Body GraphQLRequest request);
 }

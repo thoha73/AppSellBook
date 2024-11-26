@@ -103,7 +103,9 @@ public class Home extends AppCompatActivity {
         });
         GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
         String query = " query{\n" +
-                "    books{\n" +
+                "    books(order: [ {\n" +
+                "       bookId: DESC\n" +
+                "    }]){\n" +
                 "        bookId\n" +
                 "        bookName\n" +
                 "        isbn\n" +
@@ -111,6 +113,10 @@ public class Home extends AppCompatActivity {
                 "        sellPrice\n" +
                 "        quantity\n" +
                 "        description\n" +
+                "        author{\n" +
+                "          authorId\n" +
+                "          authorName\n" +
+                "        }\n" +
                 "        rank\n" +
                 "        images{\n" +
                 "            imageId\n" +
@@ -191,14 +197,14 @@ public class Home extends AppCompatActivity {
                 Log.e("GraphQL Error", t.getMessage());
             }
         });
-
-    }
+            }
     private void initGridView1(List<com.example.appsellbook.DTOs.Book> list,GridView grv){
         grv.setPadding(10,10,10,20);
         ArrayList<com.example.appsellbook.DTOs.Book> books=new ArrayList<com.example.appsellbook.DTOs.Book>(list);
-        myAdapter = new BookArrayAdapter(this,R.layout.layout_item_book,books);
+        myAdapter = new BookArrayAdapter(Home.this,R.layout.layout_item_book,books);
         grv.setAdapter(myAdapter);
+    }
     }
 
 
-}
+
