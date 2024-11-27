@@ -2,7 +2,9 @@ package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -37,7 +39,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Home extends AppCompatActivity {
+public class Home extends BaseActivity {
 
     GridView gridview1,gridview2,gridview3;
     TextView tv_new,tv_popular,tv_category;
@@ -198,12 +200,52 @@ public class Home extends AppCompatActivity {
             }
         });
             }
+
     private void initGridView1(List<com.example.appsellbook.DTOs.Book> list,GridView grv){
         grv.setPadding(10,10,10,20);
         ArrayList<com.example.appsellbook.DTOs.Book> books=new ArrayList<com.example.appsellbook.DTOs.Book>(list);
         myAdapter = new BookArrayAdapter(Home.this,R.layout.layout_item_book,books);
         grv.setAdapter(myAdapter);
     }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        checkSessionTimeout();
+//    }
+//    private void updateSessionStartTime() {
+//        long currentTimeMillis = System.currentTimeMillis();
+//        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putLong("session_start_time", currentTimeMillis); // Cập nhật thời gian bắt đầu
+//        editor.apply();
+//    }
+//    private void checkSessionTimeout() {
+//        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+//        long sessionStartTime = preferences.getLong("session_start_time", -1);
+//
+//        if (sessionStartTime != -1) {
+//            long currentTimeMillis = System.currentTimeMillis();
+//            long sessionDuration = currentTimeMillis - sessionStartTime;
+//            long maxSessionDuration = 5 * 60 * 1000; // 5 phút
+//
+//            if (sessionDuration < maxSessionDuration) {
+//                // Nếu session còn hiệu lực, kéo dài thời gian session
+//                updateSessionStartTime();
+//            } else {
+//                // Nếu session hết hạn, yêu cầu người dùng đăng nhập lại
+//                new AlertDialog.Builder(this)
+//                        .setTitle("Phiên làm việc hết hạn")
+//                        .setMessage("Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.")
+//                        .setPositiveButton("OK", (dialog, which) -> {
+//                            dialog.dismiss();
+//                            // Xử lý đăng nhập lại (chẳng hạn như mở lại màn hình đăng nhập)
+//                            startActivity(new Intent(Home.this, Login.class));
+//                            finish(); // Đóng activity hiện tại
+//                        })
+//                        .show();
+//            }
+//        }
+//    }
     }
 
 
