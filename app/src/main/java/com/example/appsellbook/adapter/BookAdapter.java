@@ -1,6 +1,8 @@
 package com.example.appsellbook.adapter;
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,63 +12,55 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appsellbook.DTOs.Book;
 import com.example.appsellbook.R;
-import com.example.appsellbook.model.Book;
 
 import java.util.List;
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder>{
-    private Context myContext;
-    private List<Book> listBook;
-    public BookAdapter(Context myContext) {
-        this.myContext = myContext;
-    }
-    public void setData(List<Book> list){
-        this.listBook=list;
-        notifyDataSetChanged();
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
+    private List<com.example.appsellbook.DTOs.Book> books;
+    private boolean isNewProduct;
+    public BookAdapter(List<Book> books, boolean isNewProduct) {
+        this.books = books;
+        this.isNewProduct = isNewProduct;
     }
 
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_carditem_book,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_carditem_book, parent, false);
         return new BookViewHolder(view);
     }
-//    @Override
-//    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-//        Book book=listBook.get(position);
-//        if(book==null){
-//            return;
-//        }
-//        holder.imageView.setImageResource(book.getImage());
-//        holder.textViewName.setText(book.getBookName());
-//    }
+
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Book book = listBook.get(position);
-        if (book.getUri() != null) {
-            holder.imageView.setImageURI(book.getUri()); // Load ảnh từ URI
-        } else {
-            holder.imageView.setImageResource(book.getImage()); // Load ảnh từ drawable
-        }
+        Book book;
+        if (isNewProduct) {
+            book = books.get(position);
 
-    holder.textViewName.setText(book.getBookName());
-}
-    @Override
-    public int getItemCount() {
-        if(listBook!=null){
-            return listBook.size();
+        } else {
+            book = books.get(books.size() - 5 + position);
         }
-        return 0;
+        holder.textView.setText(book.getBookName());
+        String base64Image = book.getImages().get(0).getImageData();
+        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        holder.imageView.setImageBitmap(decodedByte);
     }
 
-    public class BookViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageView;
-        private TextView textViewName;
+    @Override
+    public int getItemCount() {
+        return 5;
+    }
+
+    public static class BookViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        TextView textView;
+
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView_book);
-            textViewName = itemView.findViewById(R.id.tv_bookName);
+            textView = itemView.findViewById(R.id.tv_bookName);
         }
     }
 }

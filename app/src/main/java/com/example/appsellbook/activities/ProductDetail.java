@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
@@ -49,7 +48,6 @@ public class ProductDetail  extends AppCompatActivity {
     private Button btn_review;
     private RecyclerView recyclerView;
     private CommentArrayAdapter commentArrayAdapter;
-    public List<String > listImageReview;
 
     @SuppressLint({"MissingInflatedId", "ResourceType"})
     @Override
@@ -64,7 +62,6 @@ public class ProductDetail  extends AppCompatActivity {
         tv_isbn = findViewById(R.id.textViewContentISBN);
         tv_category=findViewById(R.id.textViewContentCategory);
         tv_publisher=findViewById(R.id.textViewContentPublisher);
-        listImageReview= new ArrayList<String>();
 
         btn_review = findViewById(R.id.btn_review);
         recyclerView = findViewById(R.id.listview_comment);
@@ -125,20 +122,21 @@ public class ProductDetail  extends AppCompatActivity {
                 return false;
             }
         });
-
+        btn_review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductDetail.this, Review.class);
+                int[] imageIds = {R.drawable.dacnhantam1, R.drawable.dacnhantam2, R.drawable.dacnhantam3};
+                intent.putExtra("imageIds", imageIds);
+                startActivity(intent);
+            }
+        });
         int bookId = getIntent().getIntExtra("BookId", 0);
         if (bookId != 0) {
             fetchBookDetails(bookId);
             getCommentationInBook(bookId);
         }
-        btn_review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductDetail.this, Review.class);
-                intent.putExtra("ListImage", (Parcelable) listImageReview);
-                startActivity(intent);
-            }
-        });
+
     }
     private void fetchBookDetails(int bookId) {
         GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
@@ -194,12 +192,6 @@ public class ProductDetail  extends AppCompatActivity {
                             List<LinkedTreeMap<String, Object>> images = (List<LinkedTreeMap<String, Object>>) bookById.get("images");
                             if (images != null && !images.isEmpty()) {
                                 String base64Image = (String) images.get(0).get("imageData");
-                                String img1=(String) images.get(1).get("imageData");
-                                String img2=(String) images.get(2).get("imageData");
-                                String img3=(String) images.get(3).get("imageData");
-                                listImageReview.add(img1);
-                                listImageReview.add(img2);
-                                listImageReview.add(img3);
                                 setImageFromBase64(base64Image);
                             }
                             LinkedTreeMap<String ,Object> author = (LinkedTreeMap<String, Object>) bookById.get("author");

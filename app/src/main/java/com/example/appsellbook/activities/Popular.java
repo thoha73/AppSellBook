@@ -2,6 +2,7 @@ package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.GridLayout;
@@ -18,11 +19,14 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appsellbook.DTOs.Book;
 import com.example.appsellbook.R;
 import com.example.appsellbook.adapter.BookAdapter;
-import com.example.appsellbook.model.Book;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,14 +45,18 @@ public class Popular extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         recyclerView = findViewById(R.id.rcv_bookItem);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String json = sharedPreferences.getString("popularbooks", null);
+        Type type = new TypeToken<ArrayList<Book>>() {}.getType();
+        List<com.example.appsellbook.DTOs.Book> books = new Gson().fromJson(json, type);
+
+// Truyền true để chỉ định đây là sản phẩm mới
+        BookAdapter adapter = new BookAdapter(books, false);
+        recyclerView.setAdapter(adapter);
         imageV_back= findViewById(R.id.imageV_back);
-        bookAdapter = new BookAdapter(this);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        bookAdapter.setData(getData());
-        recyclerView.setAdapter(bookAdapter);
         imageV_back.setOnClickListener(view -> finish());
 
         BottomNavigationView bottom_NavigationView;
@@ -87,22 +95,6 @@ public class Popular extends AppCompatActivity {
         });
 
     }
-    private List<Book> getData(){
-        List<Book> list = new ArrayList<>();
-        list.add(new Book(R.drawable.book9_2,"Đắc nhân tâm"));
-        list.add(new Book(R.drawable.book8,"Tài chính căn bản"));
-        list.add(new Book(R.drawable.book4,"Hai đứa trẻ"));
-        list.add(new Book(R.drawable.book10,"Think & Grow Rich"));
-        list.add(new Book(R.drawable.caycamngot,"Cây cam ngọt của tôi"));
-        list.add(new Book(R.drawable.book7,"Chí phèo"));
-        list.add(new Book(R.drawable.book14,"Đóa hoa mùa xuân"));
-        list.add(new Book(R.drawable.nenkinhtetudo,"Nền kinh tế tự do"));
-        list.add(new Book(R.drawable.kiuctuoithanhxuan,"Kí ức tuổi thanh xuân"));
-        list.add(new Book(R.drawable.tamlihocdamdong,"Tâm lý học đám đông"));
-        list.add(new Book(R.drawable.book18,"Sự tích chú cuội"));
-        list.add(new Book(R.drawable.tuoitredanggiabn,"Tuổi trẻ đáng giá bao nhiêu"));
-        list.add(new Book(R.drawable.book6,"Mỗi lần vấp ngã là một lần trưởng thành"));
-        return list;
-    }
+
 
 }

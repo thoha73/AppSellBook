@@ -75,12 +75,12 @@ public class Home1 extends AppCompatActivity {
 //        initGridView(listBook1,image1,nameBook1,author1,price1,description1,ISBN1,gridview2);
 //        initGridView(listBook2,image2,nameBook2,author2,price2,description2,ISBN2,gridview3);
 
-        tv_category.setOnClickListener(view -> {
-            startActivity(new Intent(Home1.this,AllCategories.class));
-        });
-        tv_popular.setOnClickListener(view -> {
-            startActivity(new Intent(Home1.this,Popular.class));
-        });
+//        tv_category.setOnClickListener(view -> {
+//            startActivity(new Intent(Home1.this,AllCategories.class));
+//        });
+//        tv_popular.setOnClickListener(view -> {
+//            startActivity(new Intent(Home1.this,Popular.class));
+//        });
         tv_new.setOnClickListener(view -> {
             startActivity(new Intent(Home1.this,NewProduct.class));
         });

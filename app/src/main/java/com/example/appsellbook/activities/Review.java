@@ -3,12 +3,15 @@ package com.example.appsellbook.activities;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +23,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appsellbook.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class Review extends AppCompatActivity {
     private ImageView imageView1,imageView2,imageView3;
@@ -33,18 +40,32 @@ public class Review extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+        imageView1 = findViewById(R.id.page1);
+        imageView2 = findViewById(R.id.page2);
+        imageView3 = findViewById(R.id.page3);
 
-        int[] imageIds = getIntent().getIntArrayExtra("imageIds");
+        // Nhận dữ liệu từ Intent
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String json = sharedPreferences.getString("listImageReview", null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        ArrayList<String> listImageReview = new Gson().fromJson(json, type);
 
-        if (imageIds != null && imageIds.length >= 3) {
-            imageView1 = findViewById(R.id.page1);
-            imageView2 = findViewById(R.id.page2);
-            imageView3 = findViewById(R.id.page3);
-
-            imageView1.setImageResource(imageIds[0]);
-            imageView2.setImageResource(imageIds[1]);
-            imageView3.setImageResource(imageIds[2]);
+        if (listImageReview != null && listImageReview.size() >= 3) {
+            setImageFromBase64(imageView1, listImageReview.get(0));
+            setImageFromBase64(imageView2, listImageReview.get(1));
+            setImageFromBase64(imageView3, listImageReview.get(2));
         }
+//        //int[] imageIds = getIntent().getIntArrayExtra("imageIds");
+//
+//        if (imageIds != null && imageIds.length >= 3) {
+//            imageView1 = findViewById(R.id.page1);
+//            imageView2 = findViewById(R.id.page2);
+//            imageView3 = findViewById(R.id.page3);
+//
+//            imageView1.setImageResource(imageIds[0]);
+//            imageView2.setImageResource(imageIds[1]);
+//            imageView3.setImageResource(imageIds[2]);
+//        }
         btn_download = findViewById(R.id.btn_download);
         btn_download.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +152,12 @@ public class Review extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "Lỗi khi lưu hình ảnh", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setImageFromBase64(ImageView imageView, String base64Image) {
+        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        imageView.setImageBitmap(decodedByte);
     }
 }
 
