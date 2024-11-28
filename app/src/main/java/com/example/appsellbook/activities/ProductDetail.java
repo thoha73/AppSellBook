@@ -2,6 +2,7 @@ package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import com.example.appsellbook.graphql.GraphQLRequest;
 import com.example.appsellbook.graphql.GraphQLResponse;
 import com.example.appsellbook.graphql.RetrofitClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class ProductDetail  extends AppCompatActivity {
     private Button btn_review;
     private RecyclerView recyclerView;
     private CommentArrayAdapter commentArrayAdapter;
+    private List<String> listImageReview;
 
     @SuppressLint({"MissingInflatedId", "ResourceType"})
     @Override
@@ -63,6 +66,7 @@ public class ProductDetail  extends AppCompatActivity {
         tv_category=findViewById(R.id.textViewContentCategory);
         tv_publisher=findViewById(R.id.textViewContentPublisher);
 
+        listImageReview = new ArrayList<>();
         btn_review = findViewById(R.id.btn_review);
         recyclerView = findViewById(R.id.listview_comment);
         ImageView img_cart;
@@ -125,9 +129,14 @@ public class ProductDetail  extends AppCompatActivity {
         btn_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(listImageReview);
+                editor.putString("listImageReview", json);
+                editor.apply();
+
                 Intent intent = new Intent(ProductDetail.this, Review.class);
-                int[] imageIds = {R.drawable.dacnhantam1, R.drawable.dacnhantam2, R.drawable.dacnhantam3};
-                intent.putExtra("imageIds", imageIds);
                 startActivity(intent);
             }
         });
@@ -192,6 +201,12 @@ public class ProductDetail  extends AppCompatActivity {
                             List<LinkedTreeMap<String, Object>> images = (List<LinkedTreeMap<String, Object>>) bookById.get("images");
                             if (images != null && !images.isEmpty()) {
                                 String base64Image = (String) images.get(0).get("imageData");
+                                String image1 = (String) images.get(1).get("imageData") ;
+                                String image2 = (String) images.get(2).get("imageData") ;
+                                String image3 = (String) images.get(3).get("imageData") ;
+                                listImageReview.add(image1);
+                                listImageReview.add(image2);
+                                listImageReview.add(image3);
                                 setImageFromBase64(base64Image);
                             }
                             LinkedTreeMap<String ,Object> author = (LinkedTreeMap<String, Object>) bookById.get("author");

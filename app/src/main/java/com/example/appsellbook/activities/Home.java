@@ -66,15 +66,10 @@ public class Home extends BaseActivity {
         gridview3=findViewById(R.id.gridview3);
         bottom_NavigationView = findViewById(R.id.bottom_navigation);
 
-        tv_category.setOnClickListener(view -> {
-            startActivity(new Intent(Home.this,AllCategories.class));
-        });
-        tv_popular.setOnClickListener(view -> {
-            startActivity(new Intent(Home.this,Popular.class));
-        });
-        tv_new.setOnClickListener(view -> {
-            startActivity(new Intent(Home.this,NewProduct.class));
-        });
+//        tv_category.setOnClickListener(view -> {
+//            startActivity(new Intent(Home.this,AllCategories.class));
+//        });
+
         bottom_NavigationView.setSelectedItemId(R.id.menu_home);
         bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -165,21 +160,14 @@ public class Home extends BaseActivity {
                                 }
                                 books.add(book);
                             }
-
+                            tv_popular.setOnClickListener(view -> {
+                                startActivity(new Intent(Home.this,Popular.class));
+                            });
+                            tv_new.setOnClickListener(view -> {
+                                startActivity(new Intent(Home.this,NewProduct.class));
+                            });
                             if (!books.isEmpty() && books!= null) {
-                                initGridView1(books, gridview1);
-                                gridview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                    @Override
-                                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                                        Log.d("GridView", "Item clicked: " + position);
-                                        com.example.appsellbook.DTOs.Book selectedBook = books.get(position);
-                                        if (selectedBook != null) {
-                                            Intent intent = new Intent(Home.this, ProductDetail.class);
-                                            intent.putExtra("BookId", selectedBook.getBookId());
-                                            startActivity(intent);
-                                        }
-                                    }
-                                });
+                                initGridView1(books, gridview1,gridview2);
                             } else {
                                 Log.d("GraphQL", "Danh sách sách không có dữ liệu.");
                             }
@@ -201,11 +189,51 @@ public class Home extends BaseActivity {
         });
             }
 
-    private void initGridView1(List<com.example.appsellbook.DTOs.Book> list,GridView grv){
-        grv.setPadding(10,10,10,20);
-        ArrayList<com.example.appsellbook.DTOs.Book> books=new ArrayList<com.example.appsellbook.DTOs.Book>(list);
-        myAdapter = new BookArrayAdapter(Home.this,R.layout.layout_item_book,books);
-        grv.setAdapter(myAdapter);
+    private void initGridView1(List<com.example.appsellbook.DTOs.Book> list, GridView gridview1, GridView gridview2) {
+        // Lấy ba quyển sách cuối cùng cho gridview1
+        List<com.example.appsellbook.DTOs.Book> lastThreeBooks = list.subList(0, Math.min(3, list.size())) ;
+        // Lấy ba quyển sách đầu tiên cho gridview2
+        List<com.example.appsellbook.DTOs.Book> firstThreeBooks = list.subList(Math.max(list.size() - 3, 0), list.size());
+
+        // Khởi tạo gridview1 với ba quyển sách cuối cùng
+        gridview1.setPadding(10, 10, 10, 20);
+        ArrayList<com.example.appsellbook.DTOs.Book> booksForGridView1 = new ArrayList<>(lastThreeBooks);
+        BookArrayAdapter adapter1 = new BookArrayAdapter(Home.this, R.layout.layout_item_book, booksForGridView1);
+        gridview1.setAdapter(adapter1);
+
+        // Khởi tạo gridview2 với ba quyển sách đầu tiên
+        gridview2.setPadding(10, 10, 10, 20);
+        ArrayList<com.example.appsellbook.DTOs.Book> booksForGridView2 = new ArrayList<>(firstThreeBooks);
+        BookArrayAdapter adapter2 = new BookArrayAdapter(Home.this, R.layout.layout_item_book, booksForGridView2);
+        gridview2.setAdapter(adapter2);
+
+        // Thiết lập bộ xử lý sự kiện nhấp chuột cho gridview1
+        gridview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Log.d("GridView1", "Item clicked: " + position);
+                com.example.appsellbook.DTOs.Book selectedBook = booksForGridView1.get(position);
+                if (selectedBook != null) {
+                    Intent intent = new Intent(Home.this, ProductDetail.class);
+                    intent.putExtra("BookId", selectedBook.getBookId());
+                    startActivity(intent);
+                }
+            }
+        });
+
+        // Thiết lập bộ xử lý sự kiện nhấp chuột cho gridview2
+        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Log.d("GridView2", "Item clicked: " + position);
+                com.example.appsellbook.DTOs.Book selectedBook = booksForGridView2.get(position);
+                if (selectedBook != null) {
+                    Intent intent = new Intent(Home.this, ProductDetail.class);
+                    intent.putExtra("BookId", selectedBook.getBookId());
+                    startActivity(intent);
+                }
+            }
+        });
     }
 //    @Override
 //    protected void onResume() {

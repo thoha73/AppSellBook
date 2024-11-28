@@ -1,4 +1,7 @@
 package com.example.appsellbook.DTOs;
+
+import java.util.Date;
+
 public class User {
     private int userId;
     private String username;
@@ -11,8 +14,17 @@ public class User {
     private int point;
     private String purchaseAddress;
     private String deliveryAddress;
+    private Date dateOfBirth;
 
     public User() {
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public int getUserId() {
@@ -40,7 +52,7 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -56,7 +68,7 @@ public class User {
     }
 
     public String getPhone() {
-        return phone;
+        return this.phone;
     }
 
     public void setPhone(String phone) {
@@ -96,7 +108,7 @@ public class User {
     }
 
     public String getDeliveryAddress() {
-        return deliveryAddress;
+        return this.deliveryAddress;
     }
 
     public void setDeliveryAddress(String deliveryAddress) {

@@ -42,7 +42,7 @@
         android:layout_margin="10dp"
         android:src="@drawable/ic_cart" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
