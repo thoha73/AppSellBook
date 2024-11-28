@@ -28,7 +28,7 @@ public class BaseActivity extends AppCompatActivity {
         if (sessionStartTime != -1) {
             long currentTimeMillis = System.currentTimeMillis();
             long sessionDuration = currentTimeMillis - sessionStartTime;
-            long maxSessionDuration = 1 * 60 * 1000; // 1 phút (hoặc 5 phút tùy vào yêu cầu)
+            long maxSessionDuration = 5 * 60 * 1000; // 1 phút (hoặc 5 phút tùy vào yêu cầu)
 
             if (sessionDuration < maxSessionDuration) {
                 // Kéo dài thời gian session nếu chưa hết hạn

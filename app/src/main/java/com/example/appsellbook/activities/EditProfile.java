@@ -38,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfile extends BaseActivity {
     EditText edt_fullname, edt_dateofbirth, edt_email, edt_address, edt_phone;
     RadioButton radio_nam, radio_nu;
     Button buttonSave;
