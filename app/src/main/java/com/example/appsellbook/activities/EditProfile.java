@@ -21,7 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.appsellbook.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class EditProfile extends AppCompatActivity {
+public class EditProfile extends BaseActivity {
     EditText edt_fullname, edt_dateofbirth, edt_email, edt_address, edt_phone;
     RadioButton radio_nam, radio_nu;
     Button buttonSave;

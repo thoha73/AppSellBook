@@ -79,7 +79,7 @@ public class Settings extends AppCompatActivity {
             startActivity(new Intent(Settings.this,Login.class));
         });
         btnEdit.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this,EditProfile.class));
+            startActivity(new Intent(Settings.this,WishList.class));
         });
         btnChangePassword.setOnClickListener(view -> {
             Intent intent = new Intent(Settings.this, ChangePassword.class);

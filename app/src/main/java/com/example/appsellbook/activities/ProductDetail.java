@@ -1,10 +1,12 @@
 package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,6 +28,7 @@ import com.example.appsellbook.DTOs.Commentation;
 import com.example.appsellbook.DTOs.User;
 import com.example.appsellbook.R;
 import com.example.appsellbook.Utils.CurrencyFormat;
+import com.example.appsellbook.Utils.SessionManager;
 import com.example.appsellbook.adapter.CommentArrayAdapter;
 import com.example.appsellbook.graphql.GraphQLApiService;
 import com.example.appsellbook.graphql.GraphQLRequest;
@@ -41,13 +44,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductDetail  extends AppCompatActivity {
+public class ProductDetail  extends BaseActivity {
     private TextView tv_nameBook,tv_price,tv_author,tv_isbn,tv_description,tv_publisher,tv_category;
     private ImageView img,img_heart;
     private boolean isRedHeart = false;
     private Button btn_review;
     private RecyclerView recyclerView;
     private CommentArrayAdapter commentArrayAdapter;
+    public List<String > listImageReview;
 
     @SuppressLint({"MissingInflatedId", "ResourceType"})
     @Override
@@ -62,6 +66,7 @@ public class ProductDetail  extends AppCompatActivity {
         tv_isbn = findViewById(R.id.textViewContentISBN);
         tv_category=findViewById(R.id.textViewContentCategory);
         tv_publisher=findViewById(R.id.textViewContentPublisher);
+        listImageReview= new ArrayList<String>();
 
         btn_review = findViewById(R.id.btn_review);
         recyclerView = findViewById(R.id.listview_comment);
@@ -72,21 +77,7 @@ public class ProductDetail  extends AppCompatActivity {
         });
         Intent intent = getIntent();
         ImageView img_heart = findViewById(R.id.imageView2);
-        img_heart.setOnClickListener(v -> {
-            if (isRedHeart) {
-                img_heart.setImageResource(R.drawable.heart);
-            } else {
-                img_heart.setImageResource(R.drawable.heart_red);
-                Intent wishListIntent = new Intent(ProductDetail.this, WishList.class);
-                wishListIntent.putExtra("image", getIntent().getIntExtra("image", 0)) ;
 
-                wishListIntent.putExtra("image1", getIntent().getIntExtra("image1", 0));
-                wishListIntent.putExtra("name3", tv_nameBook.getText().toString());
-                wishListIntent.putExtra("author3", tv_author.getText().toString());
-                startActivity(wishListIntent);
-            }
-            isRedHeart = !isRedHeart;
-        });
 
         BottomNavigationView bottom_NavigationView;
         bottom_NavigationView = findViewById(R.id.bottom_navigation);
@@ -122,21 +113,35 @@ public class ProductDetail  extends AppCompatActivity {
                 return false;
             }
         });
-        btn_review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProductDetail.this, Review.class);
-                int[] imageIds = {R.drawable.dacnhantam1, R.drawable.dacnhantam2, R.drawable.dacnhantam3};
-                intent.putExtra("imageIds", imageIds);
-                startActivity(intent);
-            }
-        });
+
         int bookId = getIntent().getIntExtra("BookId", 0);
         if (bookId != 0) {
             fetchBookDetails(bookId);
             getCommentationInBook(bookId);
+            SessionManager sessionManager = new SessionManager(ProductDetail.this);
+            int userId= sessionManager.getUserId();
+            img_heart.setOnClickListener(v -> {
+                if (isRedHeart) {
+                    img_heart.setImageResource(R.drawable.heart);
+                } else {
+                    img_heart.setImageResource(R.drawable.heart_red);
+                    addWishList(userId,bookId);
+                }
+                isRedHeart = !isRedHeart;
+            });
+            img_cart.setOnClickListener(v->{
+                addCart(userId,bookId);
+            });
         }
 
+        btn_review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProductDetail.this, Review.class);
+                intent.putExtra("ListImage", (Parcelable) listImageReview);
+                startActivity(intent);
+            }
+        });
     }
     private void fetchBookDetails(int bookId) {
         GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
@@ -192,6 +197,12 @@ public class ProductDetail  extends AppCompatActivity {
                             List<LinkedTreeMap<String, Object>> images = (List<LinkedTreeMap<String, Object>>) bookById.get("images");
                             if (images != null && !images.isEmpty()) {
                                 String base64Image = (String) images.get(0).get("imageData");
+                                String img1=(String) images.get(1).get("imageData");
+                                String img2=(String) images.get(2).get("imageData");
+                                String img3=(String) images.get(3).get("imageData");
+                                listImageReview.add(img1);
+                                listImageReview.add(img2);
+                                listImageReview.add(img3);
                                 setImageFromBase64(base64Image);
                             }
                             LinkedTreeMap<String ,Object> author = (LinkedTreeMap<String, Object>) bookById.get("author");
@@ -315,4 +326,147 @@ public class ProductDetail  extends AppCompatActivity {
             }
         });
     }
+    private void addWishList(int userId, int bookId) {
+        GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
+        String query = "mutation {\n" +
+                "  addWishlist(userId: " + userId + ", bookId: " + bookId + ") {\n" +
+                "    wishListId\n" +
+                "    wishListName\n" +
+                "    userId\n" +  // Đảm bảo API trả về trường userId nếu cần
+                "  }\n" +
+                "}";
+
+        GraphQLRequest request = new GraphQLRequest(query);
+        apiService.executeQuery(request).enqueue(new Callback<GraphQLResponse<Object>>() {
+            @Override
+            public void onResponse(Call<GraphQLResponse<Object>> call, Response<GraphQLResponse<Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    GraphQLResponse<Object> data = response.body();
+                    if (data.getErrors() != null && !data.getErrors().isEmpty()) {
+                        // Nếu có lỗi trong response, hiển thị lỗi
+                        String errorMessage = data.getErrors().get(0).getMessage();
+                            new AlertDialog.Builder(ProductDetail.this)
+                                    .setTitle("Thông báo")
+                                    .setMessage(errorMessage)
+                                    .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                                    .show();
+                    } else {
+                        try {
+                            if (data.getData() instanceof LinkedTreeMap) {
+                                LinkedTreeMap<String, Object> dataMap = (LinkedTreeMap<String, Object>) data.getData();
+                                Object wishList = dataMap.get("addWishlist");
+
+                                if (wishList instanceof LinkedTreeMap) {
+                                    LinkedTreeMap<String, Object> wishListMap = (LinkedTreeMap<String, Object>) wishList;
+
+                                    // Lấy và kiểm tra các trường từ map
+                                    Double wishListIdValue = (Double) wishListMap.get("wishListId");
+                                    String wishListName = (String) wishListMap.get("wishListName");
+                                    Double userIdValue = (Double) wishListMap.get("userId");
+
+                                    if (wishListIdValue != null && userIdValue != null && wishListName != null) {
+                                        int wishListId = wishListIdValue.intValue(); // Chuyển đổi Double thành int
+                                        int userId = userIdValue.intValue();
+
+                                        // Hiển thị thông báo thành công
+                                        new AlertDialog.Builder(ProductDetail.this)
+                                        .setTitle("Thông báo")
+                                        .setMessage("Sách đã được thêm vào danh sách yêu thích!\n")
+                                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                                        .show();
+                                    } else {
+                                        Log.e("Error","Dữ liệu trả về chứa giá trị null cho wishListId, userId hoặc wishListName.");
+                                    }
+                                } else {
+                                    Log.e("Error","Dữ liệu 'addWishlist' không phải LinkedTreeMap: " + wishList);
+                                }
+                            } else {
+                                Log.e("Error","Dữ liệu phản hồi không đúng định dạng: " + data.getData());
+                            }
+                        } catch (Exception e) {
+                            Log.e("Error","Lỗi khi xử lý dữ liệu trả về từ GraphQL: " + e.getMessage());
+                        }
+                    }
+                } else {
+                    Log.e("Error","Phản hồi thất bại: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GraphQLResponse<Object>> call, Throwable t) {
+                Log.e("Error","Lỗi khi tải dữ liệu: " + t.getMessage());
+            }
+        });
+    }
+    private void addCart(int userId, int bookId) {
+        GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
+        String query = "mutation{\n" +
+                "  addCart(userId: "+userId+",bookId: "+bookId+"){\n" +
+                "    cartId\n" +
+                "    userId\n" +
+                "  }  \n" +
+                "}";
+
+        GraphQLRequest request = new GraphQLRequest(query);
+        apiService.executeQuery(request).enqueue(new Callback<GraphQLResponse<Object>>() {
+            @Override
+            public void onResponse(Call<GraphQLResponse<Object>> call, Response<GraphQLResponse<Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    GraphQLResponse<Object> data = response.body();
+                    if (data.getErrors() != null && !data.getErrors().isEmpty()) {
+                        // Nếu có lỗi trong response, hiển thị lỗi
+                        String errorMessage = data.getErrors().get(0).getMessage();
+                        new AlertDialog.Builder(ProductDetail.this)
+                                .setTitle("Thông báo")
+                                .setMessage(errorMessage)
+                                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                                .show();
+                    } else {
+                        try {
+                            if (data.getData() instanceof LinkedTreeMap) {
+                                LinkedTreeMap<String, Object> dataMap = (LinkedTreeMap<String, Object>) data.getData();
+                                Object  cart= dataMap.get("addCart");
+
+                                if (cart instanceof LinkedTreeMap) {
+                                    LinkedTreeMap<String, Object> wishListMap = (LinkedTreeMap<String, Object>) cart;
+
+                                    // Lấy và kiểm tra các trường từ map
+                                    Double cartIdValue = (Double) wishListMap.get("cartId");
+                                    Double userIdValue = (Double) wishListMap.get("userId");
+
+                                    if (cartIdValue != null && userIdValue != null ) {
+                                        int wishListId = cartIdValue.intValue();
+                                        int userId = userIdValue.intValue();
+
+                                        // Hiển thị thông báo thành công
+                                        new AlertDialog.Builder(ProductDetail.this)
+                                                .setTitle("Thông báo")
+                                                .setMessage("Sách đã được thêm vào giỏ hàng!\n")
+                                                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                                                .show();
+                                    } else {
+                                        Log.e("Error","Dữ liệu trả về chứa giá trị null cho cartId, userId");
+                                    }
+                                } else {
+                                    Log.e("Error","Dữ liệu 'addCart' không phải LinkedTreeMap: " + cart);
+                                }
+                            } else {
+                                Log.e("Error","Dữ liệu phản hồi không đúng định dạng: " + data.getData());
+                            }
+                        } catch (Exception e) {
+                            Log.e("Error","Lỗi khi xử lý dữ liệu trả về từ GraphQL: " + e.getMessage());
+                        }
+                    }
+                } else {
+                    Log.e("Error","Phản hồi thất bại: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GraphQLResponse<Object>> call, Throwable t) {
+                Log.e("Error","Lỗi khi tải dữ liệu: " + t.getMessage());
+            }
+        });
+    }
+
 }
