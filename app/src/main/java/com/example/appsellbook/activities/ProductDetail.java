@@ -3,6 +3,7 @@ package com.example.appsellbook.activities;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import com.example.appsellbook.graphql.GraphQLRequest;
 import com.example.appsellbook.graphql.GraphQLResponse;
 import com.example.appsellbook.graphql.RetrofitClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
@@ -137,8 +139,14 @@ public class ProductDetail  extends BaseActivity {
         btn_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(listImageReview);
+                editor.putString("listImageReview", json);
+                editor.apply();
+
                 Intent intent = new Intent(ProductDetail.this, Review.class);
-                intent.putExtra("ListImage", (Parcelable) listImageReview);
                 startActivity(intent);
             }
         });
@@ -296,7 +304,7 @@ public class ProductDetail  extends BaseActivity {
                                         LinkedTreeMap<String, Object> userMap = (LinkedTreeMap<String, Object>) userObj;
                                         User user = new User();
                                         user.setFirstName((String) userMap.get("firstName"));
-                                        user.setLastName((String) userMap.get("lastName"));
+//                                        user.setLastName((String) userMap.get("lastName"));
                                         commentation.setUser(user);
                                     }
 

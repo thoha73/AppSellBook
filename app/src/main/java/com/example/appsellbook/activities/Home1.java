@@ -2,8 +2,11 @@ package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,38 +24,29 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appsellbook.R;
 import com.example.appsellbook.adapter.BookArrayAdapter;
+import com.example.appsellbook.graphql.GraphQLApiService;
+import com.example.appsellbook.graphql.GraphQLRequest;
+import com.example.appsellbook.graphql.GraphQLResponse;
+import com.example.appsellbook.graphql.RetrofitClient;
 import com.example.appsellbook.model.Book;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-public class Home1 extends AppCompatActivity {
-    String role;
-    int image[]={R.drawable.book11,R.drawable.book13,R.drawable.book6,R.drawable.book12};
-    String nameBook[]={"English","Nhật ký của tôi","Mỗi lần vấp ngã là một lần trưởng thành","Thành phố phép màu"};
-    String author[] ={"Jason","Nguyễn Nhật Ánh","Trần Văn An","Đặng Khánh Vân"};
-    double price[]={150000,500000,999999,8888888};
-    String description[]={"Xin chào","Xin chào","Xin chào","Xin chào"};
-    String ISBN[]={"12312312","123124151","151251251","124125412"};
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    int image1[]={R.drawable.book9,R.drawable.book7,R.drawable.book8,R.drawable.book10};
-    String nameBook1[]={"Đắc nhân tâm","Chí phèo","Tài chính","Think & grow rich"};
-    String author1[] ={"Bill Gate","Thị Nở","Phạm Nhật Vượng","Đặng Khánh Vân"};
-    double price1[]={150000,500000,999999,8888888};
-    String description1[]={"Xin chào","Xin chào","Xin chào","Xin chào"};
-    String ISBN1[]={"12312312","123124151","151251251","124125412"};
-    int image2[]={R.drawable.book1,R.drawable.book3,R.drawable.book4,R.drawable.book5};
-    String nameBook2[]={"Sách động lực","Sách hư cấu","Sách tiểu thuyết","Sách kinh tế"};
-    String author2[] ={"Jackma","Võ Nghịch Tiên","Lý Mộ Uyển","Elon Musk"};
-    double price2[]={111000,1000000,676767,12315488};
-    String description2[]={"Hello ","Hello","Method...","Hello"};
-    String ISBN2[]={"345634643","5236346","1523562352","57345435"};
+public class Home1 extends BaseActivity {
+
     GridView gridview1,gridview2,gridview3;
     TextView tv_new,tv_popular,tv_category;
     ArrayList<Book> listBook,listBook1,listBook2;
-    LinearLayout llHome,llNotification,llSetting,llSearch,llProduct;
     BookArrayAdapter myAdapter;
-    @SuppressLint("MissingInflatedId")
+
+    @SuppressLint("MissinginFlatedID")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,61 +64,9 @@ public class Home1 extends AppCompatActivity {
         gridview2=findViewById(R.id.gridview2);
         gridview3=findViewById(R.id.gridview3);
 
-
-//        initGridView(listBook,image,nameBook,author,price,description,ISBN,gridview1);
-//        initGridView(listBook1,image1,nameBook1,author1,price1,description1,ISBN1,gridview2);
-//        initGridView(listBook2,image2,nameBook2,author2,price2,description2,ISBN2,gridview3);
-
 //        tv_category.setOnClickListener(view -> {
-//            startActivity(new Intent(Home1.this,AllCategories.class));
+//            startActivity(new Intent(Home.this,AllCategories.class));
 //        });
-//        tv_popular.setOnClickListener(view -> {
-//            startActivity(new Intent(Home1.this,Popular.class));
-//        });
-        tv_new.setOnClickListener(view -> {
-            startActivity(new Intent(Home1.this,NewProduct.class));
-        });
-        gridview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(Home1.this,ProductDetail.class);
-                intent.putExtra("image",image[position]);
-                intent.putExtra("name",nameBook[position]);
-                intent.putExtra("author",author[position]);
-                intent.putExtra("price",price[position]);
-                intent.putExtra("description",description[position]);
-                intent.putExtra("ISBN",ISBN[position]);
-                intent.putExtra("source","gridview1");
-                startActivity(intent);
-            }
-        });
-        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(Home1.this,ProductDetail.class);
-                intent.putExtra("image1",image1[position]);
-                intent.putExtra("name1",nameBook1[position]);
-                intent.putExtra("author1",author1[position]);
-                intent.putExtra("price1",price1[position]);
-                intent.putExtra("description1",description1[position]);
-                intent.putExtra("ISBN1",ISBN1[position]);
-                intent.putExtra("source","gridview2");
-                startActivity(intent);
-            }
-        });
-        gridview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent2 = new Intent(Home1.this,ProductDetail.class);
-                intent2.putExtra("image2",image2[position]);
-                intent2.putExtra("name2",nameBook2[position]);
-                intent2.putExtra("author2",author2[position]);
-                intent2.putExtra("price2",price2[position]);
-                intent2.putExtra("description2",description2[position]);
-                intent2.putExtra("ISBN2",ISBN2[position]);
-                startActivity(intent2);
-            }
-        });
 
         BottomNavigationView bottom_NavigationView2;
         bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
@@ -160,23 +102,183 @@ public class Home1 extends AppCompatActivity {
                 return false;
             }
         });
+        GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
+        String query = " query{\n" +
+                "    books(order: [ {\n" +
+                "       bookId: DESC\n" +
+                "    }]){\n" +
+                "        bookId\n" +
+                "        bookName\n" +
+                "        isbn\n" +
+                "        listedPrice\n" +
+                "        sellPrice\n" +
+                "        quantity\n" +
+                "        description\n" +
+                "        author{\n" +
+                "          authorId\n" +
+                "          authorName\n" +
+                "        }\n" +
+                "        rank\n" +
+                "        images{\n" +
+                "            imageId\n" +
+                "            imageName\n" +
+                "            imageData\n" +
+                "            icon\n" +
+                "        }\n" +
+                "        \n" +
+                "    }\n" +
+                "}";
+        GraphQLRequest request = new GraphQLRequest(query);
+        Log.d("GraphQL", "Request: " + request.getQuery());
+        apiService.executeQuery(request).enqueue(new Callback<GraphQLResponse<Object>>() {
+            @Override
+            public void onResponse(Call<GraphQLResponse<Object>> call, Response<GraphQLResponse<Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    GraphQLResponse<Object> data = response.body();
+                    if (data != null && data.getData() instanceof Map) {
+                        Map<String, Object> responseData = (Map<String, Object>) data.getData();
+                        Object booksData = responseData.get("books");
+                        if (booksData instanceof List) {
+                            List<Map<String, Object>> booksList = (List<Map<String, Object>>) booksData;
 
+                            List<com.example.appsellbook.DTOs.Book> books = new ArrayList<>();
+                            for (Map<String, Object> bookMap : booksList) {
+                                com.example.appsellbook.DTOs.Book book = new com.example.appsellbook.DTOs.Book();
+
+                                Object bookId = bookMap.get("bookId");
+                                if (bookId instanceof Number) {
+                                    book.setBookId(((Number) bookId).intValue());
+                                }
+
+                                book.setBookName((String) bookMap.get("bookName"));
+                                book.setDescription((String) bookMap.get("description"));
+                                if (bookMap.get("images") instanceof List) {
+                                    List<Map<String, Object>> imagesList = (List<Map<String, Object>>) bookMap.get("images");
+                                    List<com.example.appsellbook.DTOs.Image> images = new ArrayList<>();
+                                    for (Map<String, Object> imageMap : imagesList) {
+                                        com.example.appsellbook.DTOs.Image image = new com.example.appsellbook.DTOs.Image();
+                                        image.setImageData((String) imageMap.get("imageData"));
+                                        images.add(image);
+                                    }
+                                    book.setImages(images);
+                                }
+                                books.add(book);
+                            }
+                            tv_popular.setOnClickListener(view -> {
+                                startActivity(new Intent(Home1.this,Popular.class));
+                            });
+                            tv_new.setOnClickListener(view -> {
+                                startActivity(new Intent(Home1.this,NewProduct.class));
+                            });
+                            if (!books.isEmpty() && books!= null) {
+                                initGridView1(books, gridview1,gridview2);
+                            } else {
+                                Log.d("GraphQL", "Danh sách sách không có dữ liệu.");
+                            }
+                        } else {
+                            Log.d("GraphQL", "Không thể lấy danh sách sách từ dữ liệu trả về.");
+                        }
+                    } else {
+                        Log.d("GraphQL", "Dữ liệu trả về không phải là Map.");
+                    }
+                } else {
+                    Log.d("Error", response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GraphQLResponse<Object>> call, Throwable t) {
+                Log.e("GraphQL Error", t.getMessage());
+            }
+        });
     }
-//    private void initGridView(ArrayList<Book> list,int img[],String nameBook[],String author[],double price[],String description[],String ISBN[],GridView grv){
-//        grv.setPadding(10,10,10,20);
-//        list=new ArrayList<>();
-//        for(int i=0;i<img.length;i++){
-//            list.add(new Book(img[i],nameBook[i],author[i],price[i],description[i],ISBN[i]));
-//        }
-//        myAdapter = new BookArrayAdapter(this,R.layout.layout_item_book,list);
-//        grv.setAdapter(myAdapter);
+
+    private void initGridView1(List<com.example.appsellbook.DTOs.Book> list, GridView gridview1, GridView gridview2) {
+        // Lấy ba quyển sách cuối cùng cho gridview1
+        List<com.example.appsellbook.DTOs.Book> lastThreeBooks = list.subList(0, Math.min(3, list.size())) ;
+        // Lấy ba quyển sách đầu tiên cho gridview2
+        List<com.example.appsellbook.DTOs.Book> firstThreeBooks = list.subList(Math.max(list.size() - 3, 0), list.size());
+
+        // Khởi tạo gridview1 với ba quyển sách cuối cùng
+        gridview1.setPadding(10, 10, 10, 20);
+        ArrayList<com.example.appsellbook.DTOs.Book> booksForGridView1 = new ArrayList<>(lastThreeBooks);
+        BookArrayAdapter adapter1 = new BookArrayAdapter(Home1.this, R.layout.layout_item_book, booksForGridView1);
+        gridview1.setAdapter(adapter1);
+
+        // Khởi tạo gridview2 với ba quyển sách đầu tiên
+        gridview2.setPadding(10, 10, 10, 20);
+        ArrayList<com.example.appsellbook.DTOs.Book> booksForGridView2 = new ArrayList<>(firstThreeBooks);
+        BookArrayAdapter adapter2 = new BookArrayAdapter(Home1.this, R.layout.layout_item_book, booksForGridView2);
+        gridview2.setAdapter(adapter2);
+
+        // Thiết lập bộ xử lý sự kiện nhấp chuột cho gridview1
+        gridview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Log.d("GridView1", "Item clicked: " + position);
+                com.example.appsellbook.DTOs.Book selectedBook = booksForGridView1.get(position);
+                if (selectedBook != null) {
+                    Intent intent = new Intent(Home1.this, ProductDetail.class);
+                    intent.putExtra("BookId", selectedBook.getBookId());
+                    startActivity(intent);
+                }
+            }
+        });
+
+        // Thiết lập bộ xử lý sự kiện nhấp chuột cho gridview2
+        gridview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Log.d("GridView2", "Item clicked: " + position);
+                com.example.appsellbook.DTOs.Book selectedBook = booksForGridView2.get(position);
+                if (selectedBook != null) {
+                    Intent intent = new Intent(Home1.this, ProductDetail.class);
+                    intent.putExtra("BookId", selectedBook.getBookId());
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        checkSessionTimeout();
 //    }
-    private void navigateToSettings() {
-        if ("admin".equals(role)) {
-            startActivity(new Intent(Home1.this, AdminDashboard.class));
-        } else {
-            startActivity(new Intent(Home1.this, ShopOwner.class));
-        }
-    }
-
+//    private void updateSessionStartTime() {
+//        long currentTimeMillis = System.currentTimeMillis();
+//        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putLong("session_start_time", currentTimeMillis); // Cập nhật thời gian bắt đầu
+//        editor.apply();
+//    }
+//    private void checkSessionTimeout() {
+//        SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);
+//        long sessionStartTime = preferences.getLong("session_start_time", -1);
+//
+//        if (sessionStartTime != -1) {
+//            long currentTimeMillis = System.currentTimeMillis();
+//            long sessionDuration = currentTimeMillis - sessionStartTime;
+//            long maxSessionDuration = 5 * 60 * 1000; // 5 phút
+//
+//            if (sessionDuration < maxSessionDuration) {
+//                // Nếu session còn hiệu lực, kéo dài thời gian session
+//                updateSessionStartTime();
+//            } else {
+//                // Nếu session hết hạn, yêu cầu người dùng đăng nhập lại
+//                new AlertDialog.Builder(this)
+//                        .setTitle("Phiên làm việc hết hạn")
+//                        .setMessage("Phiên làm việc của bạn đã hết hạn. Vui lòng đăng nhập lại.")
+//                        .setPositiveButton("OK", (dialog, which) -> {
+//                            dialog.dismiss();
+//                            // Xử lý đăng nhập lại (chẳng hạn như mở lại màn hình đăng nhập)
+//                            startActivity(new Intent(Home.this, Login.class));
+//                            finish(); // Đóng activity hiện tại
+//                        })
+//                        .show();
+//            }
+//        }
+//    }
 }
+
+
+

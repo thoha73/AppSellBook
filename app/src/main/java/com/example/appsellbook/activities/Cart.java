@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -22,9 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appsellbook.DTOs.Book;
 import com.example.appsellbook.DTOs.CartDetail;
+import com.example.appsellbook.DTOs.DataCache;
 import com.example.appsellbook.DTOs.Image;
 import com.example.appsellbook.DTOs.User;
 import com.example.appsellbook.R;
+import com.example.appsellbook.Utils.CurrencyFormat;
 import com.example.appsellbook.Utils.SessionManager;
 import com.example.appsellbook.adapter.CartAdapter;
 import com.example.appsellbook.adapter.CartsAdapter;
@@ -32,6 +35,7 @@ import com.example.appsellbook.graphql.GraphQLApiService;
 import com.example.appsellbook.graphql.GraphQLRequest;
 import com.example.appsellbook.graphql.GraphQLResponse;
 import com.example.appsellbook.graphql.RetrofitClient;
+import com.example.appsellbook.interfaces.OnCheckBoxChangeListener;
 import com.example.appsellbook.model.Carts;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.internal.LinkedTreeMap;
@@ -44,12 +48,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Cart extends AppCompatActivity {
+public class Cart extends AppCompatActivity implements OnCheckBoxChangeListener {
     private ListView listViewCart;
-    private CartAdapter cartAdapter;
-    private ArrayList<CartDetail> listCart;
+    private TextView totalPaymentAmount;
+    private CartAdapter adapter;
+    private ArrayList<CartDetail> listCart = new ArrayList<>();
     private RecyclerView recyclerView;
     CheckBox selectall;
+    int userID;
+
     @SuppressLint("MissinginFlatedID")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +70,24 @@ public class Cart extends AppCompatActivity {
 
         });
         Button btnOrder = findViewById(R.id.btn_order);
+        totalPaymentAmount = findViewById(R.id.totalPaymentAmount);
         recyclerView = findViewById(R.id.cart_list);
         selectall = findViewById(R.id.selectAllCheckBox);
-        selectall.setOnClickListener(view -> {
-        });
+
         btnOrder.setOnClickListener(v -> {
-            Intent intent = new Intent(Cart.this,OrderTotal.class);
+            ArrayList<CartDetail> selectedItems = new ArrayList<>();
+            double totalOrder = 0;
+            for (CartDetail cartDetail : listCart) {
+
+                if (cartDetail.isSelected()) {
+                    selectedItems.add(cartDetail);
+                    totalOrder += cartDetail.getSellPrice() * cartDetail.getQuantity();
+                }
+
+            }
+            Intent intent = new Intent(Cart.this, OrderTotal.class);
+            DataCache.setSelectedItems(selectedItems);
+            DataCache.setTotalOrder(totalOrder);
             startActivity(intent);
             overridePendingTransition(0, 0);
         });
@@ -111,11 +130,12 @@ public class Cart extends AppCompatActivity {
             }
         });
         SessionManager section = new SessionManager(Cart.this);
-        int userID = section.getUserId();
+        userID = section.getUserId();
         if (userID != 0) {
             CartDetail(userID);
         }
     }
+
     private void CartDetail(int userId) {
         GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
         String query = "query {\n" +
@@ -123,6 +143,7 @@ public class Cart extends AppCompatActivity {
                 "    cartDetailId\n" +
                 "    sellPrice\n" +
                 "    quantity\n" +
+                "    isSelected\n" +
                 "    book {\n" +
                 "      bookName\n" +
                 "      images {\n" +
@@ -149,19 +170,27 @@ public class Cart extends AppCompatActivity {
                                 if (cartObj instanceof LinkedTreeMap) {
                                     LinkedTreeMap<String, Object> cartMap = (LinkedTreeMap<String, Object>) cartObj;
                                     CartDetail cartDetail = new CartDetail();
-
                                     // Kiểm tra và gán giá trị sellPrice
                                     if (cartMap.get("sellPrice") instanceof Number) {
                                         cartDetail.setSellPrice(((Number) cartMap.get("sellPrice")).doubleValue());
                                     } else {
                                         Log.d("CartDebug", "sellPrice không hợp lệ hoặc bị null");
                                     }
-
-                                    // Kiểm tra và gán giá trị quantity
                                     if (cartMap.get("quantity") instanceof Number) {
                                         cartDetail.setQuantity(((Number) cartMap.get("quantity")).intValue());
                                     } else {
                                         Log.d("CartDebug", "quantity không hợp lệ hoặc bị null");
+                                    }
+                                    if (cartMap.get("isSelected") instanceof Boolean) {
+                                        cartDetail.setSelected(((Boolean) cartMap.get("isSelected")));
+                                    } else {
+                                        Log.d("CartDebug", "quantity không hợp lệ hoặc bị null");
+                                    }
+                                    // Kiểm tra và gán giá trị quantity
+                                    if (cartMap.get("cartDetailId") instanceof Number) {
+                                        cartDetail.setCartDetailId(((Number) cartMap.get("cartDetailId")).intValue());
+                                    } else {
+                                        Log.d("CartDebug", "cartDetailId không hợp lệ hoặc bị null");
                                     }
 
                                     // Lấy đối tượng book từ cartMap
@@ -188,19 +217,24 @@ public class Cart extends AppCompatActivity {
                                             }
                                             book.setImages(images);
                                         }
-
-                                        // Gán book cho cartDetail
                                         cartDetail.setBook(book);
                                     }
 
-                                    // Thêm cartDetail vào danh sách
-                                    cartDetailList.add(cartDetail);
+                                    listCart.add(cartDetail);
+                                    updateTotalPaymentAmount();
                                 }
                             }
                             // Cập nhật RecyclerView
                             recyclerView.setLayoutManager(new LinearLayoutManager(Cart.this));
-                            CartAdapter adapter = new CartAdapter(Cart.this, new ArrayList<>(cartDetailList));
+                            adapter = new CartAdapter(Cart.this, new ArrayList<>(listCart), Cart.this);
                             recyclerView.setAdapter(adapter);
+                            selectall.setOnClickListener(view -> {
+                                for (CartDetail cartDetail : listCart) {
+                                    cartDetail.setSelected(selectall.isChecked());
+                                }
+                                adapter.notifyDataSetChanged();
+                                updateTotalPaymentAmount();
+                            });
                         } else {
                             Log.e("Error", "cartDetail không phải là danh sách");
                         }
@@ -219,4 +253,19 @@ public class Cart extends AppCompatActivity {
         });
     }
 
+    private void updateTotalPaymentAmount() {
+        double totalOrder = 0;
+        for (CartDetail cartDetail : listCart) {
+            if (cartDetail.isSelected()) {
+                totalOrder += cartDetail.getSellPrice() * cartDetail.getQuantity();
+            }
+        }
+        totalPaymentAmount.setText(CurrencyFormat.formatCurrency(totalOrder));
+    }
+
+    @Override
+    public void onCheckBoxChanged() {
+        updateTotalPaymentAmount();
+    }
 }
+

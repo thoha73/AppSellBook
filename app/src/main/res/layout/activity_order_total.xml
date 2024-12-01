@@ -36,8 +36,8 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/listview_ordertotal"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_ordertotal"
             android:layout_width="match_parent"
             android:layout_height="109dp" />
         <LinearLayout
@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv_address"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:text="Từ Thành phố Đà Nẵng"
@@ -112,16 +113,17 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_swpoint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="-10.000đ"
+                    android:text=""
                     android:textColor="#DEB8B7B3" />
 
                 <Switch
                     android:id="@+id/switchbtn_bypoints"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:textOff=""
                     android:textOn=""
                     android:thumbTint="@color/white"
@@ -153,6 +155,7 @@
                     android:textSize="18dp" />
 
                 <TextView
+                    android:id="@+id/tv_totalMoney"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -175,10 +178,11 @@
                     android:textSize="18dp" />
 
                 <TextView
+                    android:id="@+id/tvpoint"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="-10.000đ"
+                    android:text=""
                     android:textColor="#BB2B2B"
                     android:textSize="15dp" />
 
@@ -206,28 +210,28 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="40dp">-->
 
-                <TextView
-                    android:layout_width="280dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
-                    android:text="Tổng"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:layout_width="280dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:text="Tổng"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:textStyle="bold" />-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="90.000đ"
-                    android:textColor="#BB2B2B"
-                    android:textSize="15dp" />
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="90.000đ"-->
+<!--                    android:textColor="#BB2B2B"-->
+<!--                    android:textSize="15dp" />-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -324,10 +328,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/total_Pay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="90.000 đ"
+                android:text=" "
                 android:textColor="@color/black"
                 android:textSize="22dp"
                 android:textStyle="bold" />

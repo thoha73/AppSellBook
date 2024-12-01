@@ -135,6 +135,7 @@ public class Login extends AppCompatActivity {
                 "  }) {\n" +
                 "    userId\n" +
                 "    username\n" +
+                "    point\n" +
                 "    firstName\n" +
                 "    roleUsers{\n"+
                 "       rolesroleId\n"+
@@ -162,10 +163,12 @@ public class Login extends AppCompatActivity {
 
                             // Trích xuất thông tin từ phản hồi
                             Double userIdDouble = (Double) userMap.get("userId");
+                            Double pointDouble = (Double) userMap.get("point");
                             String returnedUsername = (String) userMap.get("username");
                             String returnedfirstname = (String) userMap.get("firstName");
 
                             int userId = userIdDouble != null ? userIdDouble.intValue() : -1;
+                            int point = pointDouble != null ? pointDouble.intValue() : 0;
                             List<LinkedTreeMap<String, Object>> roleUsers = (List<LinkedTreeMap<String, Object>>) userMap.get("roleUsers");
                             List<Integer> roleIds = new ArrayList<>();
                             if (roleUsers != null) {
@@ -179,7 +182,7 @@ public class Login extends AppCompatActivity {
                             }
                             // Lưu thông tin vào session
                             SessionManager sessionManager = new SessionManager(getApplicationContext());
-                            sessionManager.saveUserSession(userId, returnedfirstname,roleIds);
+                            sessionManager.saveUserSession(userId, returnedfirstname,roleIds,point);
 
                             long currentTimeMillis = System.currentTimeMillis();
                             SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);

@@ -1,7 +1,11 @@
 package com.example.appsellbook.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,89 +14,93 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.appsellbook.DTOs.OrderDetails;
 
 import com.example.appsellbook.R;
 import com.example.appsellbook.activities.Feedback;
 import com.example.appsellbook.model.Order;
-import com.example.appsellbook.model.OrderDetails;
 
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class OrderAdapter extends ArrayAdapter<Order> {
-    private int resource;
-    private Context myContext;
-    private List<Order> orderList;
-    public OrderAdapter(Context myContext,int resource, ArrayList<Order> orderList) {
-        super(myContext,resource,orderList);
-        this.myContext=myContext;
-        this.orderList=orderList;
-        this.resource=resource;
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
+    private Activity context;
+    private  ArrayList<OrderDetails> listOrder;
+    public OrderAdapter(Activity context,ArrayList<OrderDetails> listOrder){
+        this.listOrder = listOrder;
+        this.context = context;
     }
-
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ViewHolder viewHolder;
-        if(convertView==null){
-            convertView= LayoutInflater.from(myContext).inflate(R.layout.layout_item_history,parent,false);
-            viewHolder=new ViewHolder();
-            viewHolder.imageV_book=convertView.findViewById(R.id.imageV_book);
-            viewHolder.tv_bookName=convertView.findViewById(R.id.tv_bookName);
-            viewHolder.tv_quantity=convertView.findViewById(R.id.tv_quantity);
-            viewHolder.tv_totalPay=convertView.findViewById(R.id.tv_totalPay);
-            viewHolder.btn_fback=convertView.findViewById(R.id.btn_feedback);
-            convertView.setTag(viewHolder);
-        }else{
-            viewHolder=(ViewHolder) convertView.getTag();
-        }
-
-        Order order = orderList.get(position);
-        if (order != null && order.getOrderDetails() != null && !order.getOrderDetails().isEmpty()) {
-            OrderDetails details = order.getOrderDetails().get(0); // Lấy OrderDetails đầu tiên
-            if (details.getBook() != null) {
-                viewHolder.imageV_book.setImageResource(details.getBook().getImage());
-                viewHolder.tv_bookName.setText(details.getBook().getBookName());
-            }
-            viewHolder.tv_quantity.setText(String.valueOf(details.getQuantity()));
-            double totalPrice = details.getPrice() * details.getQuantity();
-            String formatterPrice = formatCurrency(totalPrice);
-            viewHolder.tv_totalPay.setText(formatterPrice + " đ");
-//            viewHolder.btn_fback.setOnClickListener(view -> {
-//                Intent intent = new Intent(myContext, Feedback.class);
-//                intent.putExtra("bookName", details.getBook().getBookName());
-//                intent.putExtra("image", details.getBook().getImage());
-//                intent.putExtra("bookId", details.getBook().getBookId());
-//                myContext.startActivity(intent);
-//            });
-            viewHolder.btn_fback.setOnClickListener(view -> {
-                if (details.getBook() != null) {
-                    Intent intent = new Intent(myContext, Feedback.class);
-                    intent.putExtra("bookName", details.getBook().getBookName());
-                    intent.putExtra("image", details.getBook().getImage());
-                    myContext.startActivity(intent);
-                } else {
-                    // Có thể thêm một log hoặc thông báo cho người dùng
-                    Log.e("OrderAdapter", "Book details are null");
-                }
-            });
-        }
-        return convertView;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_item_history, parent, false);
+        return new ViewHolder(view);
     }
 
-    public class ViewHolder{
-        ImageView imageV_book;
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        OrderDetails orderDetails = listOrder.get(position);
+        holder.tv_bookName.setText(orderDetails.getBookName());
+        holder.tv_quantity.setText(orderDetails.getQuantity()+ "");
+        holder.tv_totalPay.setText(formatCurrency(orderDetails.getSellPrice())+"");
+        String base64Image = orderDetails.getImages().get(0).getImageData();
+        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        holder.image_book.setImageBitmap(decodedByte);
+        holder.btn_fback.setOnClickListener(view -> {
+            try {
+                // Save the image to a file
+                File imageFile = new File(view.getContext().getCacheDir(), "book_image.png");
+                FileOutputStream fos = new FileOutputStream(imageFile);
+                decodedByte.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.close();
+
+                // Log the file path
+                Log.d("Feedback", "Image saved at: " + imageFile.getAbsolutePath());
+
+                // Pass book name and file path
+                Intent intent = new Intent(view.getContext(), Feedback.class);
+                intent.putExtra("bookName", orderDetails.getBookName());
+                intent.putExtra("imagePath", imageFile.getAbsolutePath());
+                intent.putExtra("bookId",orderDetails.getBookId());
+
+                view.getContext().startActivity(intent);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return listOrder.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView image_book;
         TextView tv_bookName;
         TextView tv_quantity;
         TextView tv_totalPay;
         Button btn_fback;
 
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            image_book = itemView.findViewById(R.id.imageV_book);
+            tv_bookName = itemView.findViewById(R.id.tv_bookName);
+            tv_quantity = itemView.findViewById(R.id.tv_quantity);
+            tv_totalPay = itemView.findViewById(R.id.tv_totalPay);
+            btn_fback = itemView.findViewById(R.id.btn_feedback);
+        }
     }
     public String formatCurrency(double number){
         String result = String.format("%,.0f", number).replace(",", ".");

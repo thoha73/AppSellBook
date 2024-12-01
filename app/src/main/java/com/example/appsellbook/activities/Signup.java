@@ -279,7 +279,7 @@ public class Signup extends AppCompatActivity {
                             SessionManager sessionManager = new SessionManager(getApplicationContext());
                             List<Integer> roleIds = new ArrayList<>();
                             roleIds.add(1);
-                            sessionManager.saveUserSession(userId, returnedUsername,roleIds);
+                            sessionManager.saveUserSession(userId, returnedUsername,roleIds,0);
 
                             long currentTimeMillis = System.currentTimeMillis();
                             SharedPreferences preferences = getSharedPreferences("user_session", MODE_PRIVATE);

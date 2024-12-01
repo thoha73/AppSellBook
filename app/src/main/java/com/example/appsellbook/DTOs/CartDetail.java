@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.Date;
 import java.util.List;
 
 @SuppressLint("ParcelCreator")
@@ -15,6 +16,7 @@ public class CartDetail implements Parcelable {
     private Book book; // Lưu đối tượng Book thay vì lưu bookId, bookName, và images riêng biệt
     private int quantity;
     private double sellPrice;
+    private boolean isSelected;
 
     public CartDetail() {
     }
@@ -28,8 +30,8 @@ public class CartDetail implements Parcelable {
         this.cartDetailId = cartDetailId;
     }
 
-    public Carts getCartId() {
-        return cartId;
+    public int getCartId() {
+        return cartId != null ? cartId.getCartId(): 0;
     }
 
     public void setCartId(Carts cartId) {
@@ -70,11 +72,21 @@ public class CartDetail implements Parcelable {
         return book != null ? book.getImages() : null;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
-
+    public String getdate(){
+        return cartId != null ? cartId.getPurchaseAddress() : null;
+    }
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeInt(cartDetailId);
@@ -82,6 +94,7 @@ public class CartDetail implements Parcelable {
         dest.writeParcelable(book, flags); // Ghi đối tượng Book
         dest.writeInt(quantity);
         dest.writeDouble(sellPrice);
+        dest.writeByte((byte) (isSelected ? 1 : 0));
     }
 
     public static final Parcelable.Creator<CartDetail> CREATOR = new Parcelable.Creator<CartDetail>() {
@@ -103,5 +116,7 @@ public class CartDetail implements Parcelable {
         book = in.readParcelable(Book.class.getClassLoader()); // Đọc đối tượng Book
         quantity = in.readInt();
         sellPrice = in.readDouble();
+        isSelected = in.readByte() != 0;
     }
+
 }

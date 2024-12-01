@@ -2,6 +2,7 @@ package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -130,7 +131,18 @@ public class Profile extends AppCompatActivity {
                             user.setPhone((String) informationMap.get("phone"));
                             user.setEmail((String) informationMap.get("email"));
                             user.setDeliveryAddress((String) informationMap.get("deliveryAddress"));
-
+                            Object pointObject = informationMap.get("point");
+                            if (pointObject instanceof Double) {
+                                user.setPoint(((Double) pointObject).intValue());
+                            } else if (pointObject instanceof Integer) {
+                                user.setPoint((Integer) pointObject);
+                            } else {
+                                user.setPoint(0);
+                            }
+                            SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putInt("userPoint", user.getPoint());
+                            editor.apply();
                             // Set data to TextViews
                             tv_name.setText(user.getFirstName());
                             tv_gender.setText(user.getGender());
@@ -138,6 +150,7 @@ public class Profile extends AppCompatActivity {
                             tv_phone.setText(user.getPhone());
                             tv_email.setText(user.getEmail());
                             tv_address.setText(user.getDeliveryAddress());
+
                         }
                     }
                 }

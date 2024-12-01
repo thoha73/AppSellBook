@@ -6,14 +6,18 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appsellbook.R;
+import com.example.appsellbook.Utils.SessionManager;
 import com.example.appsellbook.model.Orders;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Set;
 
 public class ShopOwner extends AppCompatActivity {
     LinearLayout ln1,ln2,ln3,ln4,ln5;
@@ -22,7 +26,21 @@ public class ShopOwner extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopowner);
-
+        TextView name = findViewById(R.id.textNameowner);
+        TextView role  = findViewById(R.id.role);
+        SessionManager sessionManager = new SessionManager(this);
+        String nameshop = sessionManager.getUsername();
+        Set<Integer> list = sessionManager.getRoleIds();
+        int roles = 0;
+        for (int x : list){
+            roles = x ;
+        }
+        name.setText(nameshop);
+        if (roles == 2){
+            role.setText("Shop");
+        }else {
+            role.setText("User");
+        }
         ln1 = findViewById(R.id.linearLayoutN);
         ln2 = findViewById(R.id.linearLayoutOrder);
         ln3 = findViewById(R.id.linearLayoutPostP);

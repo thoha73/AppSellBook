@@ -3,9 +3,10 @@ package com.example.appsellbook.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,41 +18,38 @@ import com.example.appsellbook.DTOs.CartDetail;
 import com.example.appsellbook.DTOs.DataCache;
 import com.example.appsellbook.R;
 import com.example.appsellbook.adapter.OrderTotalAdapter;
+import com.example.appsellbook.adapter.YourOrderAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class ChangeSuccess extends AppCompatActivity {
-    private Button btn_next,btn_cancel;
-    RecyclerView recyclerView ;
-    private ArrayList<CartDetail> selectedItems = DataCache.getSelectedItems();
+public class YourOrders extends AppCompatActivity {
+    RecyclerView recyclerView;
+    TextView tv_detail_your_order,tv_his;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_success);
-        btn_next = findViewById(R.id.btn_next_Order);
-        btn_cancel = findViewById(R.id.btn_cancel_order);
-        recyclerView = findViewById(R.id.rcv_status_order);
-        ImageView img_back;
-        img_back = findViewById(R.id.imageV_back);
-        img_back.setOnClickListener(view -> finish());
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(ChangeSuccess.this));
-        OrderTotalAdapter adapter = new OrderTotalAdapter(this,selectedItems);
-        recyclerView.setAdapter(adapter);
-
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_your_orders);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        btn_next.setOnClickListener(v -> {
-            Intent intent = new Intent(ChangeSuccess.this, Home.class);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+        recyclerView = findViewById(R.id.rcv_your_order);
+        tv_his = findViewById(R.id.tv_history);
+        tv_his.setOnClickListener(view -> {
+            startActivity(new Intent(YourOrders.this, History.class));
         });
+        ImageView img_back;
+        img_back = findViewById(R.id.imageV_back);
+        img_back.setOnClickListener(view -> finish());
+        recyclerView.setLayoutManager(new LinearLayoutManager(YourOrders.this));
+        YourOrderAdapter adapter = new YourOrderAdapter(this);
+        recyclerView.setAdapter(adapter);
+
 
         BottomNavigationView bottom_NavigationView;
         bottom_NavigationView = findViewById(R.id.bottom_navigation);

@@ -83,14 +83,13 @@
                 android:textColor="#7E6C6C"
                 android:textSize="13sp" />
 
-            <Button
-                android:id="@+id/increase_button"
-                android:layout_width="54dp"
-                android:layout_height="48dp"
-               android:backgroundTint="#E9EAEF"
-                android:text="+"
-                android:textColor="#7E6C6C"
-                android:textSize="16sp" />
+            <Button android:id="@+id/increase_button"
+            android:layout_width="54dp"
+            android:layout_height="48dp"
+            android:backgroundTint="#E9EAEF"
+            android:text="+"
+            android:textColor="#7E6C6C"
+            android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

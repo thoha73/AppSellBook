@@ -35,8 +35,8 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/lv_OrderHistory"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_history"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

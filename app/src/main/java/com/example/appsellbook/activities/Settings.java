@@ -2,6 +2,7 @@ package com.example.appsellbook.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -41,16 +42,22 @@ public class Settings extends AppCompatActivity {
         TextView tv_point = findViewById(R.id.tv_point);
         SessionManager sessionManager = new SessionManager(this);
         String username = sessionManager.getUsername();
+        int point = sessionManager.getPoint();
         Set<Integer> list = sessionManager.getRoleIds();
         int role = 0;
         for (int x : list){
             role = x ;
         }
         tv_username.setText(username);
+        tv_point.setText(point+"");
         if (role == 1){
             tv_userrole.setText("User");
+        }else {
+            tv_userrole.setText("Shop");
         }
-
+//        SharedPreferences sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+//        int userPoint = sharedPreferences.getInt("userPoint", 0);
+//        tv_point.setText(String.valueOf(userPoint));
         Button btnLogout=findViewById(R.id.btn_logout);
         Button btnNotification=findViewById(R.id.btn_notification);
         Button btnMyCart=findViewById(R.id.btn_mycart);

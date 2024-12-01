@@ -44,10 +44,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/image_ItemBook"
+                android:id="@+id/img_feedback"
                 android:layout_width="100dp"
                 android:layout_height="130dp"
-                android:src="@drawable/book4" />
+                 />
             <TextView
                 android:id="@+id/textView_bookName"
                 android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             />
 
         <RatingBar
-            android:id="@+id/ratingbar"
+            android:id="@+id/ratingbar_feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -79,7 +79,10 @@
             android:numStars="5"
             android:scaleX="0.7"
             android:scaleY="0.7"
-            android:stepSize="1" />
+            android:stepSize="1"
+            android:progressTint="#EDD900"
+            android:secondaryProgressTint="#EDD900"
+            />
         <TextView
             android:id="@+id/improved"
             android:layout_width="match_parent"
@@ -91,7 +94,7 @@
             />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/content_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -109,6 +112,7 @@
             app:backgroundTint="@null" />
 
         <Button
+            android:id="@+id/btn_confirm_feedback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
