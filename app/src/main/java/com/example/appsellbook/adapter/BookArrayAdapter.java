@@ -26,12 +26,15 @@ import java.util.ArrayList;
 public class BookArrayAdapter extends ArrayAdapter<Book> {
     Activity context;
     int idLayout;
+    boolean isGridView3;
     ArrayList<com.example.appsellbook.DTOs.Book> listBook;
-    public BookArrayAdapter(Activity context, int idLayout, ArrayList<com.example.appsellbook.DTOs.Book> listBook) {
+    public BookArrayAdapter(Activity context, int idLayout, ArrayList<com.example.appsellbook.DTOs.Book> listBook,boolean isGridView3) {
         super(context, idLayout, listBook);
         this.context = context;
         this.idLayout = idLayout;
         this.listBook = listBook;
+        this.isGridView3 = isGridView3;
+
     }
 
     @NonNull
@@ -54,9 +57,21 @@ public class BookArrayAdapter extends ArrayAdapter<Book> {
             }
         }
         TextView textView=convertView.findViewById(R.id.textView);
-        textView.setText(book.getBookName());
+        if (isGridView3) {
+
+            String categoryName = getCategoryNameFromBook(book);  // Giả sử bạn có thể lấy categoryId từ sách
+            textView.setText(categoryName);
+        } else {
+            textView.setText(book.getBookName());
+        }
 
         return convertView;
+    }
+    private String getCategoryNameFromBook(com.example.appsellbook.DTOs.Book book) {
+        if (book.getCategories() != null && !book.getCategories().isEmpty()) {
+            return (String) book.getCategories().get(0).getCategoryName();
+        }
+        return "No Category";
     }
     private Bitmap decodeBase64ToBitmap(String base64String) {
         try {

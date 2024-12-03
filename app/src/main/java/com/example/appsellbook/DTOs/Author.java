@@ -89,4 +89,8 @@ public class Author implements Parcelable {
             return new Author[size];
         }
     };
+    @Override
+    public String toString() {
+        return authorName; // Chỉ trả về tên tác giả
+    }
 }

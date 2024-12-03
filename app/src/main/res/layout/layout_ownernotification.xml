@@ -12,13 +12,13 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:gravity="center"
-    >
+        >
         <ImageView
             android:id="@+id/imgUserNotification"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/book3"
+            android:src="@drawable/account"
             />
 
         <TextView
@@ -26,7 +26,6 @@
             android:layout_width="230dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
             android:text="Elsa đã gửi một đánh giá cho một đơn hàng"
             android:textSize="12dp" />
 
@@ -41,18 +40,18 @@
                 android:layout_height="45dp"
                 android:text="10 thg 10"
                 android:textSize="12dp"
-                android:gravity="bottom|center"
+                android:gravity="center"
                 android:layout_gravity="center"
                 />
 
-            <TextView
-                android:id="@+id/tv_Orderdetails"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Chi tiết "
-                android:textColor="#387FD2"
-                android:textSize="12dp" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_Orderdetails"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="Chi tiết "-->
+            <!--                android:textColor="#387FD2"-->
+            <!--                android:textSize="12dp" />-->
         </LinearLayout>
 
     </LinearLayout>

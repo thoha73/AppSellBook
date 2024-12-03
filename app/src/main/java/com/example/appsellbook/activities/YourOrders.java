@@ -47,7 +47,7 @@ public class YourOrders extends AppCompatActivity {
         img_back = findViewById(R.id.imageV_back);
         img_back.setOnClickListener(view -> finish());
         recyclerView.setLayoutManager(new LinearLayoutManager(YourOrders.this));
-        YourOrderAdapter adapter = new YourOrderAdapter(this);
+        YourOrderAdapter adapter = new YourOrderAdapter(this,this::onItemClick);
         recyclerView.setAdapter(adapter);
 
 
@@ -83,5 +83,9 @@ public class YourOrders extends AppCompatActivity {
             }
             return false;
         });
+    }
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, ChangeSuccess.class);
+        startActivity(intent);
     }
 }

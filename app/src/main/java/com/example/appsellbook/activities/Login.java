@@ -115,13 +115,6 @@ public class Login extends AppCompatActivity {
                 LoginApp(username,password);
             }
 
-            if(edt_username.getText().toString().equals("Admin") && edt_password.getText().toString().equals("123456")){
-                startActivity(new Intent(Login.this,AdminDashboard.class));
-            }
-            if(edt_username.getText().toString().equals("Shop") && edt_password.getText().toString().equals("123456")){
-                startActivity(new Intent(Login.this,Home1.class));
-            }
-
         });
     }
     private void LoginApp(String username, String password) {

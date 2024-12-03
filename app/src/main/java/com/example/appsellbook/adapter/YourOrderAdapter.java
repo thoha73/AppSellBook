@@ -22,18 +22,22 @@ import com.example.appsellbook.DTOs.DataCache;
 import com.example.appsellbook.R;
 import com.example.appsellbook.Utils.SessionManager;
 import com.example.appsellbook.activities.YourOrders;
+import com.example.appsellbook.interfaces.OnItemClickListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.ViewHolder> {
     private Activity context;
     SharedPreferences sharedPreferences;
     SessionManager sessionManager ;
+    private OnItemClickListener onItemClickListener;
     private ArrayList<CartDetail> selectedItems;
-    public YourOrderAdapter(Activity context){
+    public YourOrderAdapter(Activity context,OnItemClickListener onItemClickListener){
         this.context =  context ;
         this.sharedPreferences = context.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE);
         this.sessionManager = new SessionManager(this.context);
+        this.onItemClickListener = onItemClickListener;
     }
     @NonNull
     @Override
@@ -44,12 +48,20 @@ public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
         int orderId = sharedPreferences.getInt("orderId", 0);
         holder.code.setText("DHHKVBOOK00"+orderId);
         holder.content.setText("Tổng "+DataCache.getSelectedItemsCount() + " sản phẩm");
         int point = sessionManager.getPoint();
         Double tongtien = (DataCache.getTotalOrder() - point*100);
-        holder.total.setText("Tổng tiền: "+tongtien+"đ");
+        holder.total.setText("Tổng tiền: "+decimalFormat.format(tongtien)+"đ");
+
+        holder.tv_viewdetail.setOnClickListener(v -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(position);
+
+            }
+        });
     }
 
     @Override
@@ -57,7 +69,7 @@ public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.View
         return 1;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView code,content,total;
+        TextView code,content,total,tv_viewdetail;
 
 
         public ViewHolder(View itemView) {
@@ -65,7 +77,7 @@ public class YourOrderAdapter extends RecyclerView.Adapter<YourOrderAdapter.View
             code = itemView.findViewById(R.id.order_code);
             content = itemView.findViewById(R.id.tv_order_content);
             total = itemView.findViewById(R.id.tv_total);
-
+            tv_viewdetail = itemView.findViewById(R.id.tv_view_detail_order);
 
 
         }

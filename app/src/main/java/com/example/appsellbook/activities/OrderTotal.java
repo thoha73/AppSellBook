@@ -68,6 +68,7 @@ public class OrderTotal extends AppCompatActivity {
         SessionManager sessionManager = new SessionManager(this);
         DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
         int swpoint = sessionManager.getPoint();
+        int userId = sessionManager.getUserId();
 
 
         tv_point.setText(decimalFormat.format((swpoint * 100))+"đ");
@@ -89,7 +90,6 @@ public class OrderTotal extends AppCompatActivity {
                 tv_point.setVisibility(View.VISIBLE);
                 tv_swpoint.setText(decimalFormat.format((swpoint * 100))+"đ");
                 tv_totalpay.setText(decimalFormat.format(tongthanhtoan)+"đ");
-
             }else {
                 tv_swpoint.setVisibility(View.GONE);
                 tv_point.setVisibility(View.GONE);
@@ -104,9 +104,16 @@ public class OrderTotal extends AppCompatActivity {
 
         Button btnPurchase = findViewById(R.id.btn_purchase);
         btnPurchase.setOnClickListener(v -> {
-            int userId;
-            userId = sessionManager.getUserId();
+            String userName = sessionManager.getUsername();
+
             AddOrder(userId);
+            CreateNotification(userName);
+            if (sw_point.isChecked()){
+                UpdatePoint(userId,0);
+            }
+            else{
+                UpdatePoint(userId,swpoint+DataCache.getSelectedItemsCount()*2);
+            }
         });
 
         ImageView img_back;
@@ -135,7 +142,8 @@ public class OrderTotal extends AppCompatActivity {
                         editor.putInt("orderId", id);
                         editor.apply();
 
-                        Toast.makeText(OrderTotal.this, "Đặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderTotal.this, "Đặt hàng thành công ! \n Chúc mừng bạn nhận được "+ (DataCache.getSelectedItemsCount()*2), Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(OrderTotal.this,YourOrders.class);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
@@ -149,6 +157,78 @@ public class OrderTotal extends AppCompatActivity {
             public void onFailure(Call<GraphQLResponse<Object>> call, Throwable t) {
                 Log.e("Feedback", "Lỗi kết nối: " + t.getMessage());
                 Toast.makeText(OrderTotal.this, "Kết nối thất bại! Vui lòng kiểm tra mạng.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    public void CreateNotification( String context){
+        GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
+        String query = " mutation{\n" +
+                "  createNotification(notification:  {\n" +
+                "     context: \""+context+" đã đặt một đơn hàng.\",\n" +
+                "     userId: "+12+"\n" +
+                "  })\n" +
+                "}";
+        GraphQLRequest request = new GraphQLRequest(query);
+        apiService.executeQuery(request).enqueue(new Callback<GraphQLResponse<Object>>() {
+            @Override
+            public void onResponse(Call<GraphQLResponse<Object>> call, Response<GraphQLResponse<Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    GraphQLResponse<Object> data = response.body();
+                    // Assuming the response contains a "success" field indicating the result of the mutation
+                    if (data.getData() instanceof LinkedTreeMap) {
+                        LinkedTreeMap<String, Object> dataMap = (LinkedTreeMap<String, Object>) data.getData();
+                        Boolean success = (Boolean) dataMap.get("createNotification");
+
+                        // If 'success' is true, log or handle the successful update
+                        if (success != null && success) {
+                            Log.d("Notification", "Update successfully for notification: " );
+                        } else {
+                            Log.d("Notification", "Update failed for notification: " );
+                        }
+                    }
+                } else {
+                    Log.e("GraphQL Error", "Mutation failed: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GraphQLResponse<Object>> call, Throwable t) {
+                Log.e("GraphQL Error", "Error during mutation", t);
+            }
+        });
+    }
+    public void UpdatePoint(int userId,int point){
+        GraphQLApiService apiService = RetrofitClient.getClient(this).create(GraphQLApiService.class);
+        String query = " mutation{\n" +
+                "  updatePoint(point: "+point+",userId: "+userId+")\n" +
+                "}";
+        GraphQLRequest request = new GraphQLRequest(query);
+        apiService.executeQuery(request).enqueue(new Callback<GraphQLResponse<Object>>() {
+            @Override
+            public void onResponse(Call<GraphQLResponse<Object>> call, Response<GraphQLResponse<Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    GraphQLResponse<Object> data = response.body();
+                    // Assuming the response contains a "success" field indicating the result of the mutation
+                    if (data.getData() instanceof LinkedTreeMap) {
+                        LinkedTreeMap<String, Object> dataMap = (LinkedTreeMap<String, Object>) data.getData();
+                        Boolean success = (Boolean) dataMap.get("updatePoint");
+
+                        // If 'success' is true, log or handle the successful update
+                        if (success != null && success) {
+                            Log.d("Notification", "Update successfully for point: " + userId);
+
+                        } else {
+                            Log.d("Notification", "Update failed for point: " + userId);
+                        }
+                    }
+                } else {
+                    Log.e("GraphQL Error", "Mutation failed: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GraphQLResponse<Object>> call, Throwable t) {
+                Log.e("GraphQL Error", "Error during mutation", t);
             }
         });
     }

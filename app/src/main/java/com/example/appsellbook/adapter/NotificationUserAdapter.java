@@ -11,10 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.appsellbook.DTOs.Notification;
 import com.example.appsellbook.R;
-import com.example.appsellbook.model.Notification;
 
+
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.zip.Inflater;
 
 public class NotificationUserAdapter extends ArrayAdapter<Notification> {
@@ -33,25 +36,27 @@ public class NotificationUserAdapter extends ArrayAdapter<Notification> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         ViewHolder viewHolder;
         if(convertView==null){
-         convertView= LayoutInflater.from(myContext).inflate(R.layout.layout_item_notification,parent,false);
-         viewHolder= new ViewHolder();
-         viewHolder.tv_title=convertView.findViewById(R.id.textView_titleNotification);
-         viewHolder.tv_time=convertView.findViewById(R.id.textView_time);
-         viewHolder.img_read=convertView.findViewById(R.id.imageV_circle);
-         convertView.setTag(viewHolder);
+            convertView= LayoutInflater.from(myContext).inflate(R.layout.layout_item_notification,parent,false);
+            viewHolder= new ViewHolder();
+            viewHolder.tv_title=convertView.findViewById(R.id.textView_titleNotification);
+            viewHolder.tv_time=convertView.findViewById(R.id.textView_time);
+            viewHolder.img_read=convertView.findViewById(R.id.imageV_circle);
+            convertView.setTag(viewHolder);
         }else{
             viewHolder=(ViewHolder) convertView.getTag();
         }
-
+        SimpleDateFormat df= new SimpleDateFormat("dd 'thg' MM", new Locale("vi","VN"));
         Notification notification=listNotification.get(position);
-        viewHolder.tv_title.setText(notification.getTitle());
-        viewHolder.tv_time.setText(notification.getCreatedDate());
+        viewHolder.tv_title.setText(notification.getContext());
+        viewHolder.tv_time.setText(df.format(notification.getCreatedDate()));
         if(notification.isRead()){
             viewHolder.img_read.setVisibility(View.INVISIBLE);
         }else{
             viewHolder.img_read.setVisibility(View.VISIBLE);
         }
-
+        convertView.setOnClickListener(view -> {
+            viewHolder.img_read.setVisibility(View.INVISIBLE);
+        });
         return convertView;
 
     }

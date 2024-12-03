@@ -12,19 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.appsellbook.DTOs.Order;
 import com.example.appsellbook.R;
 import com.example.appsellbook.activities.OrderdetailsActivity;
 import com.example.appsellbook.model.OrderDetail;
-import com.example.appsellbook.model.Orders;
 
 import java.util.List;
 
-public class OrdersAdapter extends ArrayAdapter<Orders> {
+public class OrdersAdapter extends ArrayAdapter<Order> {
 
-    private List<Orders> ordersList;
+    private List<Order> ordersList;
     private int resourceLayout;
 
-    public OrdersAdapter(@NonNull Context context, int resourceLayout, @NonNull List<Orders> ordersList) {
+    public OrdersAdapter(@NonNull Context context, int resourceLayout, @NonNull List<Order> ordersList) {
         super(context, resourceLayout, ordersList);
         this.resourceLayout = resourceLayout;
         this.ordersList = ordersList;
@@ -37,7 +37,7 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
 
     @Nullable
     @Override
-    public Orders getItem(int position) {
+    public Order getItem(int position) {
         return ordersList.get(position);
     }
 
@@ -62,17 +62,16 @@ public class OrdersAdapter extends ArrayAdapter<Orders> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Orders orders = getItem(position);
+        Order orders = getItem(position);
 
         if (orders != null) {
-            holder.img.setImageResource(orders.getImg());
-            holder.order.setText(orders.getOrderer());
-            holder.content.setText(orders.getContent());
+            holder.order.setText("Người đặt hàng : "+orders.getUser().getFirstName());
+            String content="Đã đặt đơn hàng (Tổng số sản phẩm: "+orders.getOrderDetails().stream().count()+")";
+            holder.content.setText(content);
             holder.detail.setOnClickListener(view -> {
                 Intent intent = new Intent(getContext(), OrderdetailsActivity.class);
-                intent.putExtra("img", orders.getImg());
-                intent.putExtra("orderer", orders.getOrderer());
-                intent.putExtra("content", orders.getContent());
+                intent.putExtra("orderId", orders.getOrderId());
+                intent.putExtra("userId", orders.getUser().getUserId());
                 getContext().startActivity(intent);
             });
         }

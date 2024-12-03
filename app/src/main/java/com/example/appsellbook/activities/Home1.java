@@ -22,6 +22,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.appsellbook.DTOs.Category;
+import com.example.appsellbook.DTOs.Image;
 import com.example.appsellbook.R;
 import com.example.appsellbook.adapter.BookArrayAdapter;
 import com.example.appsellbook.graphql.GraphQLApiService;
@@ -44,6 +46,7 @@ public class Home1 extends BaseActivity {
     GridView gridview1,gridview2,gridview3;
     TextView tv_new,tv_popular,tv_category;
     ArrayList<Book> listBook,listBook1,listBook2;
+    BottomNavigationView bottom_NavigationView;
     BookArrayAdapter myAdapter;
 
     @SuppressLint("MissinginFlatedID")
@@ -63,20 +66,14 @@ public class Home1 extends BaseActivity {
         gridview1=findViewById(R.id.gridview1);
         gridview2=findViewById(R.id.gridview2);
         gridview3=findViewById(R.id.gridview3);
-
-//        tv_category.setOnClickListener(view -> {
-//            startActivity(new Intent(Home.this,AllCategories.class));
-//        });
-
         BottomNavigationView bottom_NavigationView2;
         bottom_NavigationView2 = findViewById(R.id.bottom_navigation2);
+        bottom_NavigationView2.setSelectedItemId(R.id.menu_home);
         bottom_NavigationView2.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if(id==R.id.menu_home){
-                    startActivity(new Intent(getApplicationContext(), Home1.class));
-                    overridePendingTransition(0,0);
                     return  true;
                 }
                 if(id==R.id.menu_notification){
@@ -114,6 +111,10 @@ public class Home1 extends BaseActivity {
                 "        sellPrice\n" +
                 "        quantity\n" +
                 "        description\n" +
+                "        categories{\n" +
+                "          categoryId\n" +
+                "          categoryName\n" +
+                "        }\n" +
                 "        author{\n" +
                 "          authorId\n" +
                 "          authorName\n" +
@@ -162,6 +163,20 @@ public class Home1 extends BaseActivity {
                                     }
                                     book.setImages(images);
                                 }
+                                if (bookMap.get("categories") instanceof List){
+                                    List<Map<String,Object>> categoryList =(List<Map<String, Object>>) bookMap.get("categories");
+                                    List<Category> categories = new ArrayList<>();
+                                    for (Map<String,Object> categoryMap : categoryList){
+                                        Category category = new Category();
+                                        Object categoryId = categoryMap.get("categoryId");
+                                        if (categoryId instanceof Number) {
+                                            category.setCategoryId(((Number) categoryId).intValue());
+                                        }
+                                        category.setCategoryName((String) categoryMap.get("categoryName"));
+                                        categories.add(category);
+                                    }
+                                    book.setCategories(categories);
+                                }
                                 books.add(book);
                             }
                             tv_popular.setOnClickListener(view -> {
@@ -170,8 +185,14 @@ public class Home1 extends BaseActivity {
                             tv_new.setOnClickListener(view -> {
                                 startActivity(new Intent(Home1.this,NewProduct.class));
                             });
+                            List<Book> books1List = new ArrayList<>();
+
+                            tv_category.setOnClickListener(view -> {
+                                Intent intent = new Intent(Home1.this, AllCategories.class);
+                                startActivity(intent);
+                            });
                             if (!books.isEmpty() && books!= null) {
-                                initGridView1(books, gridview1,gridview2);
+                                initGridView1(books, gridview1,gridview2,gridview3);
                             } else {
                                 Log.d("GraphQL", "Danh sách sách không có dữ liệu.");
                             }
@@ -193,7 +214,7 @@ public class Home1 extends BaseActivity {
         });
     }
 
-    private void initGridView1(List<com.example.appsellbook.DTOs.Book> list, GridView gridview1, GridView gridview2) {
+    private void initGridView1(List<com.example.appsellbook.DTOs.Book> list, GridView gridview1, GridView gridview2,GridView gridview3) {
         // Lấy ba quyển sách cuối cùng cho gridview1
         List<com.example.appsellbook.DTOs.Book> lastThreeBooks = list.subList(0, Math.min(3, list.size())) ;
         // Lấy ba quyển sách đầu tiên cho gridview2
@@ -202,14 +223,32 @@ public class Home1 extends BaseActivity {
         // Khởi tạo gridview1 với ba quyển sách cuối cùng
         gridview1.setPadding(10, 10, 10, 20);
         ArrayList<com.example.appsellbook.DTOs.Book> booksForGridView1 = new ArrayList<>(lastThreeBooks);
-        BookArrayAdapter adapter1 = new BookArrayAdapter(Home1.this, R.layout.layout_item_book, booksForGridView1);
+        BookArrayAdapter adapter1 = new BookArrayAdapter(Home1.this, R.layout.layout_item_book, booksForGridView1,false);
         gridview1.setAdapter(adapter1);
 
         // Khởi tạo gridview2 với ba quyển sách đầu tiên
         gridview2.setPadding(10, 10, 10, 20);
         ArrayList<com.example.appsellbook.DTOs.Book> booksForGridView2 = new ArrayList<>(firstThreeBooks);
-        BookArrayAdapter adapter2 = new BookArrayAdapter(Home1.this, R.layout.layout_item_book, booksForGridView2);
+        BookArrayAdapter adapter2 = new BookArrayAdapter(Home1.this, R.layout.layout_item_book, booksForGridView2,false);
         gridview2.setAdapter(adapter2);
+
+        int size = list.size();
+        int startIndex = (size - 3) / 2; // Tính chỉ số bắt đầu
+        int endIndex = startIndex + 3; // Tính chỉ số kết thúc
+
+        // Nếu danh sách có ít hơn 3 sách, sử dụng toàn bộ danh sách
+        List<com.example.appsellbook.DTOs.Book> middleThreeBooks;
+        if (size < 3) {
+            middleThreeBooks = new ArrayList<>(list);
+        } else {
+            middleThreeBooks = list.subList(startIndex, endIndex);
+        }
+        gridview3.setPadding(10, 10, 10, 20);
+        ArrayList<com.example.appsellbook.DTOs.Book> booksForGridView3 = new ArrayList<>(middleThreeBooks);
+        BookArrayAdapter adapter3 = new BookArrayAdapter(Home1.this, R.layout.layout_item_book, booksForGridView3,true);
+        gridview3.setAdapter(adapter3);
+
+
 
         // Thiết lập bộ xử lý sự kiện nhấp chuột cho gridview1
         gridview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -218,7 +257,7 @@ public class Home1 extends BaseActivity {
                 Log.d("GridView1", "Item clicked: " + position);
                 com.example.appsellbook.DTOs.Book selectedBook = booksForGridView1.get(position);
                 if (selectedBook != null) {
-                    Intent intent = new Intent(Home1.this, ProductDetail.class);
+                    Intent intent = new Intent(Home1.this, ProductDetail2.class);
                     intent.putExtra("BookId", selectedBook.getBookId());
                     startActivity(intent);
                 }
@@ -232,7 +271,7 @@ public class Home1 extends BaseActivity {
                 Log.d("GridView2", "Item clicked: " + position);
                 com.example.appsellbook.DTOs.Book selectedBook = booksForGridView2.get(position);
                 if (selectedBook != null) {
-                    Intent intent = new Intent(Home1.this, ProductDetail.class);
+                    Intent intent = new Intent(Home1.this, ProductDetail2.class);
                     intent.putExtra("BookId", selectedBook.getBookId());
                     startActivity(intent);
                 }

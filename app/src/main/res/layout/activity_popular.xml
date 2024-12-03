@@ -44,13 +44,13 @@
             />
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#D5D1D1"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/menu" />
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_navigation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="#D5D1D1"-->
+<!--        app:labelVisibilityMode="labeled"-->
+<!--        app:menu="@menu/menu" />-->
 
 </RelativeLayout>

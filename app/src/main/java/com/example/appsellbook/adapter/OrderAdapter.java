@@ -51,7 +51,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         OrderDetails orderDetails = listOrder.get(position);
         holder.tv_bookName.setText(orderDetails.getBookName());
         holder.tv_quantity.setText(orderDetails.getQuantity()+ "");
-        holder.tv_totalPay.setText(formatCurrency(orderDetails.getSellPrice())+"");
+        holder.tv_totalPay.setText(formatCurrency(orderDetails.getSellPrice()*orderDetails.getQuantity())+"");
         String base64Image = orderDetails.getImages().get(0).getImageData();
         byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);

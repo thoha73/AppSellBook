@@ -61,4 +61,8 @@ public class Category implements Parcelable {
             return new Category[size];
         }
     };
+    @Override
+    public String toString() {
+        return categoryName;
+    }
 }
