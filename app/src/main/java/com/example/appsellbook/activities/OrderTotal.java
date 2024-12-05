@@ -142,7 +142,7 @@ public class OrderTotal extends AppCompatActivity {
                         editor.putInt("orderId", id);
                         editor.apply();
 
-                        Toast.makeText(OrderTotal.this, "Đặt hàng thành công ! \n Chúc mừng bạn nhận được "+ (DataCache.getSelectedItemsCount()*2), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderTotal.this, "Đặt hàng thành công ! \n Chúc mừng bạn nhận được "+ (DataCache.getSelectedItemsCount()) +" điểm thưởng", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(OrderTotal.this,YourOrders.class);
                     startActivity(intent);

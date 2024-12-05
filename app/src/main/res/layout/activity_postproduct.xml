@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#E9EAEF">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_above="@+id/bottom_navigation2"
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,11 +40,7 @@
         <!--            android:layout_width="match_parent"-->
         <!--            android:layout_height="wrap_content"-->
         <!--            android:src="@drawable/bookmark"/>-->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            >
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -354,13 +356,14 @@
                     android:layout_gravity="center"
                     android:text="ĐĂNG"/>
             </LinearLayout>
-        </ScrollView>
     </LinearLayout>
+    </ScrollView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/menu2"
+        app:layout_behavior="com.google.android.material.bottomnavigation.BottomNavigationBehavior"
         android:layout_alignParentBottom="true"
         app:labelVisibilityMode="labeled"
         android:background="#D5D1D1"

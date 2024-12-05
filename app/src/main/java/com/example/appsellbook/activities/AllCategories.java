@@ -62,41 +62,40 @@ public class AllCategories extends AppCompatActivity {
         recyclerViewBooks.setAdapter(categoryAdapter);
 
         fetchBooks();
-//
-//        BottomNavigationView bottom_NavigationView;
-//        bottom_NavigationView = findViewById(R.id.bottom_navigation);
-//        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                int id = item.getItemId();
-//                if (id == R.id.menu_home) {
-//                    startActivity(new Intent(getApplicationContext(), Home.class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
-//                }
-//                if (id == R.id.menu_notification) {
-//                    startActivity(new Intent(getApplicationContext(), Notification.class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
-//                }
-//                if (id == R.id.menu_search) {
-//                    startActivity(new Intent(getApplicationContext(), Home.class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
-//                }
-//                if (id == R.id.menu_setting) {
-//                    startActivity(new Intent(getApplicationContext(), Settings.class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
-//                }
-//                if (id == R.id.menu_profile) {
-//                    startActivity(new Intent(getApplicationContext(), Profile.class));
-//                    overridePendingTransition(0, 0);
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+        BottomNavigationView bottom_NavigationView;
+        bottom_NavigationView = findViewById(R.id.bottom_navigation);
+        bottom_NavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.menu_home) {
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                if (id == R.id.menu_notification) {
+                    startActivity(new Intent(getApplicationContext(), Notification.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                if (id == R.id.menu_search) {
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                if (id == R.id.menu_setting) {
+                    startActivity(new Intent(getApplicationContext(), Settings.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                if (id == R.id.menu_profile) {
+                    startActivity(new Intent(getApplicationContext(), Profile.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void fetchBooks() {

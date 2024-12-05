@@ -64,6 +64,8 @@ public class Settings extends AppCompatActivity {
         Button btnMyHictory=findViewById(R.id.btn_myhictory);
         Button btnChangePassword=findViewById(R.id.btn_changepassword);
         Button btnEdit=findViewById(R.id.btn_edit);
+        Button btnWishList = findViewById(R.id.btn_wishlist);
+
         btnLogout.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this,Login.class));
         });
@@ -120,5 +122,9 @@ public class Settings extends AppCompatActivity {
         btnMyCart.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this,Cart.class));
         });
+        btnWishList.setOnClickListener(view -> {
+            startActivity(new Intent(Settings.this, WishList.class));
+        });
         }
+
     }
