@@ -248,6 +248,31 @@ public class BookMutation
     //CartDetails
 
     //Users
+    public async Task<bool> UpdateLock(int userId, bool isBlock)
+    {
+
+        User user = await _userRepository.GetUserById(userId);
+        if (user == null)
+        {
+            var errorResponse = new ErrorResponse
+            {
+                StatusCode = 404,
+                Message = "Tài khoản đã tồn tại. Vui lòng nhập tài khoản khác",
+                Details = "Lỗi khi đã tồn tại 1 tài khoản"
+            };
+            throw new GraphQLException(errorResponse.Message);
+        }
+        user.isBlock = isBlock;
+        user = await _userRepository.UpdateUser2(user);
+        if (user != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public async Task<UserResult> Register(AppSellBook.Schema.Inputs.RegisterRequest registerRequest)
     {
         User userByUsername= await _userRepository.GetUserByName(registerRequest.Username);

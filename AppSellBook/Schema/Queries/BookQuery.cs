@@ -313,23 +313,44 @@ namespace AppSellBook.Schema.Queries
         }
         public async Task<IEnumerable<UserResult>> GetUsers()
         {
-            IEnumerable<User> users= await _userRepository.GetAllUser();
-            return users.Select(u=>new UserResult()
+            IEnumerable<User> users = await _userRepository.GetAllUser();
+            return users.Select(u => new UserResult()
             {
-                username= u.username,
-                password= u.password,
+                userId = u.userId,
+                username = u.username,
+                password = u.password,
                 point = u.point,
-                email=u.email,
-                phone=u.phone,
-                gender=u.gender,
+                email = u.email,
+                phone = u.phone,
+                gender = u.gender,
                 dateOfBirth = u.dateOfBirth,
-                deliveryAddress=u.deliveryAddress,
-                firstName=u.firstName,
-                isBlock=u.isBlock,
+                deliveryAddress = u.deliveryAddress,
+                firstName = u.firstName,
+                isBlock = u.isBlock,
 
             }).ToList();
         }
         //Order
+        public async Task<IEnumerable<OrderResult>> GetAllOrders()
+        {
+            IEnumerable<Order> orders = await _orderRepository.GetAllOrder();
+            return orders.Select(d => new OrderResult()
+            {
+                orderId = d.orderId,
+                orderStatus = d.orderStatus,
+                deliveryDate = d.deliveryDate,
+                user = new UserResult()
+                {
+                    firstName = d.user.firstName
+                },
+                orderDetails = d.orderDetails?.Select(o => new OrderDetailResult()
+                {
+                    bookId = o.bookId,
+                    quantity = o.quantity,
+                    sellPrice = o.sellPrice
+                })
+            });
+        }
 
         public async Task<IEnumerable<OrderResult>> GetOrderConfirm()
         {

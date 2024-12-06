@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <h2 class="text-center" style="color: rgb(167, 105, 24); font-weight: bold;font-size: 4em;">Tạo tài khoản</h2>
+    <form action="">
+        <div class="row mt-4">
+            <div class="col-6">
+                <h4 class="text-center">Thông tin cá nhân</h4>
+                <div class="form-group">
+                    <label for="inputHoten">Họ tên</label>
+                    <input type="text" class="form-control" id="inputHoten" aria-describedby="title" placeholder="Nhập họ tên">
+                </div>
+                <div class="form-group">
+                    <label for="inputNgaysinh">Ngày sinh</label>
+                    <input type="date" class="form-control" id="inputNgaysinh">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="text" class="form-control" id="inputEmail" placeholder="Nhập Email">
+                </div>
+                <div class="form-group">
+                    <label for="inputSodt">Số điện thoại</label>
+                    <input type="text" class="form-control" id="inputSodt" placeholder="Nhập số điện thoại">
+                </div>
+                <div class="form-group">
+                    <label for="inputDiachi">Địa chỉ</label>
+                    <input type="number" class="form-control" id="inputDiachi" placeholder="Nhập địa chỉ">
+                </div>
+                <div class="form-group">
+                    <label for="inputNXB">Giới tính</label>
+                    <div style="margin-left: 100px;">
+                        <div class="form-check form-check-inline" style="margin-right: 50px">
+                            <input class="form-check-input" type="radio" name="gioitinh" id="gioitinhnam" value="Nam" checked="">
+                            <label class="form-check-label" for="gioitinhnam">Nam</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gioitinh" id="gioitinhnu" value="Nữ">
+                            <label class="form-check-label" for="gioitinhnu">Nữ</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="container">
+                    <h3 class="text-center">Thông tin tài khoản</h3>
+                    <div class="form-group">
+                        <label for="inputHoten">Tên đăng nhập</label>
+                        <input type="text" class="form-control" id="inputHoten" aria-describedby="title" placeholder="Nhập họ tên">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMatkhau">Mật khẩu</label>
+                        <input type="password" class="form-control" id="inputMatkhau" placeholder="Nhập mật khẩu">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNhaplaimatkhau">Nhập lại mật khẩu</label>
+                        <input type="password" class="form-control" id="inputNhaplaimatkhau" placeholder="Nhập lại mật khẩu">
+                    </div>
+                    <div class="form-group">
+                        <label for="roleSelect">Vai trò</label>
+                        <select class="form-control" id="roleSelect">
+                            <option value="User">User</option>
+                            <option value="Editor">Editor</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center" style="padding: 10px ;">
+            <button class="btn btn-primary" style="width: 300px;" type="submit" value="luuthongtin">Lưu thông tin</button>
+        </div>
+    </form>
+</div>

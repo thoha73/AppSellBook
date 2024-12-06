@@ -9,5 +9,6 @@ namespace AppSellBook.Services.Orders
         Task<Order> GetOrderById(int orderId);
         Task<IEnumerable<Order>> GetOrdersByProcesing();
         Task<bool> ConfirmOrder(Order order);
+        Task<IEnumerable<Order>> GetAllOrder();
     }
 }

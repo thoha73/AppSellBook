@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AppSellBookMVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d28696c8e8be09c5bc2a0ecd5499097d1a98e38")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53a6ac15dee9ba1ac13d569f6bf913dbb6a7836e")]
 [assembly: System.Reflection.AssemblyProductAttribute("AppSellBookMVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AppSellBookMVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Order History Column -->
+<div class="col-lg-6 mb-4">
+    <!-- Order History Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Lịch sử đặt hàng</h6>
+        </div>
+        <div class="card-body" style="height: 500px; overflow: auto;">
+            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Khách hàng</th>
+                        <th>Thành tiền</th>
+                        <th>Phí ship</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in ViewBag.Orders)
+                    {
+                        <tr>
+                            <td>@order.orderId</td>
+                            <td>@order.deliveryDate?.ToString("dd/MM/yyyy")</td>
+                            <td>@order.user.firstName</td>
+                            <td>@order.TotalAmount</td>
+                            <td>Free ship</td>
+                            <td>@(order.TotalAmount.ToString("N0")) </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center" style="padding: 8px;">
+            <a href="#">Xem thêm</a>
+        </div>
+    </div>
+</div>

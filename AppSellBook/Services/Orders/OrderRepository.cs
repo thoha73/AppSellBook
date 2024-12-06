@@ -32,7 +32,13 @@ namespace AppSellBook.Services.Orders
             
         }
 
-
+        public async Task<IEnumerable<Order>> GetAllOrder()
+        {
+            using (BookDBContext context = _contextFactory.CreateDbContext())
+            {
+                return await context.Orders.Include(u => u.user).Include(r => r.orderDetails).Where(o => o.orderStatus.Equals("Success")).ToListAsync();
+            }
+        }
         public async Task<bool> DeleteOrder(Order order)
         {
             using (BookDBContext context = _contextFactory.CreateDbContext())

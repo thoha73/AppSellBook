@@ -8,5 +8,7 @@
         public Book bookById {  get; set; }
         public List<Category> categories { get; set; }
         public List<Author> authors { get; set; }
+        public List<Order> allOrders { get; set; }
+        public List<User> users { get; set; }
     }
 }

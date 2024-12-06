@@ -20,3 +20,27 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* Improve the look of product rows */
+.row.mb-3 {
+    transition: all 0.3s ease-in-out;
+}
+
+    .row.mb-3:hover {
+        background-color: #f8f9fa;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+}
+
+/* Ensure images scale well */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
